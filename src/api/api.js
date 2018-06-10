@@ -4,14 +4,18 @@ axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;char
 axios.defaults.baseURL = '//u-to-world.com:3000'
 // let axiosDate = new Date()
 
-// axios.interceptors.request.use(function (config) {
-//   // Do something before request is sent
-//   store.dispatch('FETCH_LOADING', true) // 请求时加载loading
-//   return config
-// }, function (error) {
-//   // Do something with request error
-//   return Promise.reject(error)
-// })
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  // store.dispatch('FETCH_LOADING', true) // 请求时加载loading
+  config.params = Object.assign({
+    xhrFields: '{ withCredentials: true }'
+  }, config.params)
+
+  return config
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error)
+})
 // axios.interceptors.response.use(function (response) {
 //   // 处理响应数据
 //   let oDate = new Date()
