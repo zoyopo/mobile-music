@@ -13,8 +13,8 @@ export default new Router({
       children: [
         {
           path: '/',
-          name: 'HelloWorldFromVux',
-          component: view('', 'HelloFromVux')
+          name: 'Recomend',
+          component: view('', 'Recomend')
         }
       ]
     }

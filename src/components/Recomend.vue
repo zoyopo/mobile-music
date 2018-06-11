@@ -3,9 +3,13 @@
     <div class="vux-demo">
       <div v-if="picArray.length>0">
         <slide :loop='loop' :autoPlay='autoPlay' :picArray="picArray">
-
+            
         </slide>
         
+        <circle-icon v-for="(item,index) in icons"  :icon="item.name" :key="index" :class="'distance'"></circle-icon>
+         <!-- <circle-icon :icon="'fa fa-book'"></circle-icon>
+          <circle-icon :icon="'fa fa-book'"></circle-icon>
+           <circle-icon :icon="'fa fa-book'"></circle-icon> -->
       </div>
     </div>
 </template>
@@ -13,10 +17,12 @@
 <script>
 // import { Group, Cell } from 'vux'
 import Slide from "components/Index/Slider.vue";
-import {getFirstScreenData} from "api/api.js"
+import {getFirstScreenData} from "api/api.js";
+import CircleIcon from "components/Recomend/CircleIcon"
 export default {
   components: {
-    Slide
+    Slide,
+    CircleIcon
   },
   data() {
     return {
@@ -25,6 +31,12 @@ export default {
       // preserves its current state and we are modifying
       // its initial state.
       // msg: "Hello World!",
+      icons:[
+        {name:"fa fa-book"},
+        {name:"fa fa-book"},
+        {name:"fa fa-book"},
+        {name:"fa fa-book"}
+      ],
       loop: true,
       autoPlay: true,
        picArray: [],
@@ -66,7 +78,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .vux-demo {
   text-align: center;
 }
@@ -74,4 +86,12 @@ export default {
   width: 100px;
   height: 100px;
 }
+.distance{
+  margin-left: 5%;
+  // &::first-child{
+  //   margin-left: 0;
+  // }
+  margin-top: 10px;
+}
+
 </style>
