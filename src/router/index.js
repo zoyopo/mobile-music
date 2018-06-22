@@ -8,6 +8,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'formom',
+      component: view('', 'ForMyMomBirth')
+    },
+    {
+      path: '/index',
       name: 'Index',
       component: view('', 'Index'),
       children: [

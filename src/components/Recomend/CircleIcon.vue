@@ -21,7 +21,7 @@ props:{
 
 .circle{
     display: inline-block;
-    width: 7%;
+    width: 26px;
     border:solid 1px;
     //border-radius: 50%;
     border-radius: 50%;
