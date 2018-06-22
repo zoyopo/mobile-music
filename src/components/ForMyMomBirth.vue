@@ -1014,7 +1014,74 @@ export default {
 /*msg*/
 
 /*淡入淡出*/
-@keyframes fadeIn {
+@keyframes fadeIn{
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    color: #18dbe2;
+  }
+  30% {
+    opacity: 0.3; /*中间状态 透明度为0*/
+    color: #1db3d8;
+  }
+  50% {
+    opacity: 0.5; /*中间状态 透明度为0*/
+    color: #391dd8;
+  }
+  70% {
+    opacity: 0.7; /*中间状态 透明度为0*/
+    color: #d81dbf;
+  }
+  100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    color:#e20e71;
+  }
+}
+@keyframes fadeInW {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    color: #93b1c0;
+  }
+  30% {
+    opacity: 0.3; /*中间状态 透明度为0*/
+    color: #1db3d8;
+  }
+  50% {
+    opacity: 0.5; /*中间状态 透明度为0*/
+    color: #391dd8;
+  }
+  70% {
+    opacity: 0.7; /*中间状态 透明度为0*/
+    color: #d81dbf;
+  }
+  100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    color:#0cceec;
+  }
+}
+
+@keyframes fadeInC {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    color: #bfd9e6;
+  }
+  30% {
+    opacity: 0.3; /*中间状态 透明度为0*/
+    color: #1db3d8;
+  }
+  50% {
+    opacity: 0.5; /*中间状态 透明度为0*/
+    color: #391dd8;
+  }
+  70% {
+    opacity: 0.7; /*中间状态 透明度为0*/
+    color: #25e213;
+  }
+  100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    color:#10ec10;
+  }
+}
+@keyframes fadeInS {
   0% {
     opacity: 0; /*初始状态 透明度为0*/
     color: #bfd9e6;
@@ -1033,7 +1100,29 @@ export default {
   }
   100% {
     opacity: 1; /*结尾状态 透明度为1*/
-    color: #f63b2a;
+    color:#f3160e;
+  }
+}
+@keyframes fadeInA {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    color: #bfd9e6;
+  }
+  30% {
+    opacity: 0.3; /*中间状态 透明度为0*/
+    color: #1db3d8;
+  }
+  50% {
+    opacity: 0.5; /*中间状态 透明度为0*/
+    color: #391dd8;
+  }
+  70% {
+    opacity: 0.7; /*中间状态 透明度为0*/
+    color: #d81dbf;
+  }
+  100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    color:#ecb80c;
   }
 }
 .first-msg {
@@ -1063,7 +1152,7 @@ export default {
   color: #f63b2a;
   top: 109%;
   left: 47%;
-  animation-name: fadeIn; /*动画名称*/
+  animation-name: fadeInW; /*动画名称*/
   animation-duration: 3s; /*动画持续时间*/
   animation-iteration-count: 1; /*动画次数*/
   animation-delay:9s; /*延迟时间*/
@@ -1074,7 +1163,7 @@ export default {
   color: #f63b2a;
   top: 116%;
   left: 47%;
-  animation-name: fadeIn; /*动画名称*/
+  animation-name: fadeInC; /*动画名称*/
   animation-duration: 3s; /*动画持续时间*/
   animation-iteration-count: 1; /*动画次数*/
   animation-delay:12s; /*延迟时间*/
@@ -1085,7 +1174,7 @@ export default {
   color: #f63b2a;
   top: 123%;
   left: 47%;
-  animation-name: fadeIn; /*动画名称*/
+  animation-name: fadeInS; /*动画名称*/
   animation-duration: 3s; /*动画持续时间*/
   animation-iteration-count: 1; /*动画次数*/
   animation-delay:15s; /*延迟时间*/
@@ -1096,7 +1185,7 @@ export default {
   color: #f63b2a;
   top: 130%;
   left: 47%;
-  animation-name: fadeIn; /*动画名称*/
+  animation-name: fadeInA; /*动画名称*/
   animation-duration: 3s; /*动画持续时间*/
   animation-iteration-count: 1; /*动画次数*/
   animation-delay:18s; /*延迟时间*/
@@ -1146,6 +1235,7 @@ body {
   position: relative;
   width: 800px;
   height: 450px;
+  /* overflow-x: hidden; */
 }
 
 .sun {
