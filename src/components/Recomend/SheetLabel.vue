@@ -20,7 +20,7 @@ export default {
 <style lang="scss" scoped>
 .sheet-label {
   text-align: left;
-  padding-left: 6%;
+  padding-left: .5rem;
   padding-top: 6%;
 }
 </style>
