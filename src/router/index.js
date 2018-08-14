@@ -18,6 +18,11 @@ export default new Router({
           component: view('', 'Recomend')
         }
       ]
+    },
+    {
+      path: '/songsheets',
+      name: 'SongSheet',
+      component: view('', 'SongSheet')
     }
   ]
 })
