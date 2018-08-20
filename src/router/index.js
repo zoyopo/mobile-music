@@ -6,7 +6,11 @@ Vue.use(Router)
 const view = (path, name) => () => import(`@/components/${path}${name}`)// 路由按需加载
 export default new Router({
   routes: [
-
+    // {
+    //   // path: '/',
+    //   // name: 'formom',
+    //   // component: view('', 'ForMyMomBirth')
+    // },
     {
       path: '/',
       name: 'Index',
