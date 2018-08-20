@@ -5,11 +5,11 @@
       <!--头部-->
       <div class='header'>
         <div class="header-arrow">
-          <img id="header-arrow-arrow" src="../assets/songsheet/arrow-left.png" alt="暂无">
+          <img @click="back" id="header-arrow-arrow" src="../assets/songsheet/arrow-left.png" alt="暂无">
         </div>
         <div class="header-title">
           <div class="header-title-title">歌单</div>
-          <div class="header-title-description">歌单描述</div>
+          <div class="header-title-description">{{info.description}}</div>
         </div>
         <div class="header-search"><img id='header-search-icon' src="../assets/songsheet/search-sm.png" alt="暂无"></div>
         <div class="header-share"><img id="header-share-icon" src="../assets/songsheet/Option.png" alt="暂无"></div>
@@ -19,21 +19,34 @@
         <!--主体上-->
         <div class="main-top">
 
-          <img class="main-top-image" src="../assets/logo.png" alt="">
+          <img class="main-top-image" :src="info.coverImgUrl" alt="">
           <div class="main-top-right">
-            <div class="main-top-title">歌单标题</div>
-            <div class="main-top-author">歌单作者</div>
+            <div class="main-top-title">{{info.name}}</div>
+            <div class="main-top-author">
+              <div class="avatar-div"><img id="ct-avatar" :src="info.creator.avatarUrl" /></div>
+              <div class="ct-nickname">{{info.creator.nickname}}</div>
+            </div>
           </div>
         </div>
         <!-- 操作-->
         <div class="main-options">
-        <div class="main-options-icon"><i class="fa fa-commenting-o"></i></div>
-        <div class="main-options-icon"><i class="fa fa-share-alt"></i></div>
-        <div class="main-options-icon"><i class="fa fa-download"></i></div>
-        <div class="main-options-icon"><i class="fa fa-check-square-o"></i></div>
+          <div class="main-options-icon">
+            <i class="fa fa-commenting-o"></i>
+          </div>
+          <div class="main-options-icon">
+            <i class="fa fa-share-alt"></i>
+          </div>
+          <div class="main-options-icon">
+            <i class="fa fa-download"></i>
+          </div>
+          <div class="main-options-icon">
+            <i class="fa fa-check-square-o"></i>
+          </div>
         </div>
         <!-- 歌曲列表-->
-        <div class="main-list"></div>
+        <div class="main-list">
+          <List :list="songList"></List>
+        </div>
 
       </main>
 
@@ -42,15 +55,56 @@
 </template>
 
 <script>
+import { getSheetDetail } from "api/api.js";
+import List from "base/List";
 export default {
-  name: "SongSheet",
-  created() {
-    console.log("created");
-    console.log(this.$route.params);
+  components: {
+    List
   },
-  mounted() {
-    console.log("mounted");
-    console.log(this.$route.params);
+  name: "SongSheet",
+  data() {
+    return {
+      info: {},
+      songList: []
+    };
+  },
+
+  activated() {
+    let id = this.$route.params.id;
+    this.getDetail(id);
+  },
+  methods: {
+    async getDetail(id) {
+      let data = await getSheetDetail(id);
+      debugger
+      // console.log(data);
+      let info = {
+        coverImgUrl: data.coverImgUrl,
+        name: data.name.trimStart(),
+        createTime: data.createTime,
+        trackCount: data.trackCount,
+        playCount: data.playCount,
+        description: data.description,
+        tags: data.tags,
+        creator: {
+          avatarUrl: data.creator.avatarUrl,
+
+          nickname: data.creator.nickname
+        }
+      };
+      this.info = info;
+      data.tracks.forEach(element => {
+        let d = (element.duration / 1000).toFixed() * 1;
+        element.singer = element.artists.map(t => t.name).join("/"); //歌手
+        element.albumName = element.album.name;
+        element.duration =
+          Math.floor(d / 60) + ":" + (d % 60 < 10 ? "0" + d % 60 : d % 60);
+      });
+      this.songList = data.tracks;
+    },
+    back() {
+      this.$router.go(-1);
+    }
   }
 };
 </script>
@@ -76,12 +130,17 @@ export default {
       flex-direction: column;
       justify-content: center;
       flex: 0.7;
+      width: 50%;
       .header-title-title {
         // height: 20px;
         font-size: 1.2rem;
       }
       .header-title-description {
         font-size: 0.5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
       }
     }
     .header-search {
@@ -104,29 +163,43 @@ export default {
     height: calc(100% - 49px);
     overflow: auto;
     .main-top {
+      padding-top: 0.5rem;
       overflow: hidden;
+      padding-bottom: 1rem;
       .main-top-image {
         float: left;
 
         width: 35%;
       }
       .main-top-right {
-         overflow: hidden;
-         padding-top: .5rem;
-         padding-left: .5rem;
+        overflow: hidden;
+        padding-left: 0.5rem;
         .main-top-title {
-         height: 60px;
+          height: 60px;
         }
         .main-top-author {
-         font-size: .5rem;
+          font-size: 0.5rem;
+          display: flex;
+          .avatar-div {
+            width: 10%;
+            margin-right: 0.5rem;
+            #ct-avatar {
+              width: 100%;
+              display: block;
+              border-radius: 50%;
+            }
+          }
+          .ct-nickname {
+            align-self: flex-end;
+          }
         }
       }
     }
     .main-options {
       font-size: 0;
-      color:#fff;
-      
-      .main-options-icon{
+      color: #fff;
+
+      .main-options-icon {
         width: 25%;
         font-size: 24px;
         display: inline-block;

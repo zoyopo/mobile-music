@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -32,7 +33,6 @@ html {
     height: 100%;
     #app {
       height: 100%;
-     
     }
   }
 }

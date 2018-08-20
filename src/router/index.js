@@ -20,7 +20,7 @@ export default new Router({
       ]
     },
     {
-      path: '/songsheets',
+      path: '/songsheets/:id',
       name: 'SongSheet',
       component: view('', 'SongSheet')
     }

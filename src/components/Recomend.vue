@@ -125,7 +125,7 @@ export default {
     goToSongSheet(id){
 
       //this.$router.push({name:"SongSheet",params: {id}})=>这种写法无效
-         this.$router.push({path:`/songsheets`,params: {id}})
+         this.$router.push(`/songsheets/${id}`)
       
     }
   },
@@ -155,6 +155,9 @@ export default {
 .weui-grid__label div {
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.weui-grid{
+  height: 12rem;
 }
 .weui-grid__icon {
   width: auto !important;

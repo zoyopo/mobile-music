@@ -8,7 +8,10 @@ const recomend = {
   catlist: '/playlist/catlist',
   newsongs: '/personalized/newsong'
 }
-
+const songsheet = {
+  sheetdetail: '/playlist/detail'
+}
 module.exports = {
-  recomend: recomend
+  recomend: recomend,
+  songsheet: songsheet
 }
