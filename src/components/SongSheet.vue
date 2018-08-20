@@ -8,14 +8,14 @@
           <img @click="back" id="header-arrow-arrow" src="../assets/songsheet/arrow-left.png" alt="暂无">
         </div>
         <div class="header-title">
-          <div class="header-title-title">歌单</div>
+          <div class="header-title-title">{{title}}</div>
           <div class="header-title-description">{{info.description}}</div>
         </div>
         <div class="header-search"><img id='header-search-icon' src="../assets/songsheet/search-sm.png" alt="暂无"></div>
         <div class="header-share"><img id="header-share-icon" src="../assets/songsheet/Option.png" alt="暂无"></div>
       </div>
       <!--主体-->
-      <main>
+      <main ref='main'>
         <!--主体上-->
         <div class="main-top">
 
@@ -57,6 +57,8 @@
 <script>
 import { getSheetDetail } from "api/api.js";
 import List from "base/List";
+import { debug } from "util";
+import { defaultCoreCipherList } from "constants";
 export default {
   components: {
     List
@@ -64,19 +66,38 @@ export default {
   name: "SongSheet",
   data() {
     return {
+      title: "歌单",
       info: {},
       songList: []
     };
   },
-
+  mounted() {
+    window.addEventListener("touchmove", this.scorll);
+  },
   activated() {
     let id = this.$route.params.id;
     this.getDetail(id);
   },
+  computed: {
+    // title() {
+    //   this.$nextTick(() => {
+    //     debugger
+    //     if (this.$refs.main.scrollTop < 50) return "歌单";
+    //   });
+    // }
+  },
+  watch: {},
   methods: {
+    scorll() {
+      if (this.$refs.main.scrollTop > 50) {
+        this.title = this.info.name;
+      } else {
+        this.title = "歌单";
+      }
+    },
     async getDetail(id) {
       let data = await getSheetDetail(id);
-      debugger
+      //debugger
       // console.log(data);
       let info = {
         coverImgUrl: data.coverImgUrl,
@@ -134,6 +155,10 @@ export default {
       .header-title-title {
         // height: 20px;
         font-size: 1.2rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
       }
       .header-title-description {
         font-size: 0.5rem;

@@ -2,7 +2,7 @@
     <div class="list">
 
         <div class="list-item" v-for="(item,index) in list" :key="item.id">
-            <div class="item-num">{{index}}</div>
+            <div class="item-num">{{index+1}}</div>
             <div class="item-content">
                 <div class="item-content-name">{{item.name}}</div>
                 <div class="item-content-artist">{{item.singer}}</div>
@@ -40,7 +40,7 @@ export default {
     border-bottom: solid 1px #ddd;
     .item-num {
       align-self: center;
-
+      width:3%;
       padding-left: 0.5rem;
       padding-right: 1.5rem;
     }
