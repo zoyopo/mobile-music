@@ -16,7 +16,13 @@ import store from './store'
 // const router = new VueRouter({
 //   routes
 // })
-
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: '../static/img/no-pic.png',
+  // loading: '../static/img/loading.gif',
+  attempt: 1
+})
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false

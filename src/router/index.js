@@ -22,6 +22,11 @@ export default new Router({
           component: view('', 'Recomend')
         }
       ]
+    },
+    {
+      path: '/songsheets/:id',
+      name: 'SongSheet',
+      component: view('', 'SongSheet')
     }
   ]
 })

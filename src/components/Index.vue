@@ -1,13 +1,13 @@
 <template>
     <div class="index">
 
-        <drawer width="200px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#ddd', width: '200px'}">
+        <drawer width="340px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#fff', width: '340px'}">
 
-            <div slot="drawer">
+            <div slot="drawer" class="menu-container">
                 <!-- 菜单内容 -->
                 <Menu></Menu>
             </div>
-            <div>
+            <div class="main">
                 <x-header>
                     <div slot="overwrite-left">
                         <i class="fa fa-reorder" @click="showDrawer"></i>
@@ -72,8 +72,15 @@ export default {
 </script>
 
 <style lang="scss">
+.vux-header{
+  background: #9bca4f !important;
+}
+
 .index {
   height: 100%;
+  .main{
+    height: 100%;
+  }
   .fa-reorder {
     font-size: 2rem;
     vertical-align: middle;
@@ -92,6 +99,10 @@ export default {
   .vux-header-left {
     top: 7px !important;
   }
+}
+
+.menu-container{
+  height: 100%;
 }
 
 .title-icon {
