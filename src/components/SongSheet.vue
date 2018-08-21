@@ -68,7 +68,9 @@ export default {
   data() {
     return {
       title: "歌单",
-      info: {},
+      info: {
+        creator:{}
+      },
       songList: []
     };
   },
@@ -114,7 +116,7 @@ export default {
         description: data.description,
         tags: data.tags,
         creator: {
-          avatarUrl: data.creator.avatarUrl,
+          avatarUrl: data.creator.avatarUrl||'',
 
           nickname: data.creator.nickname
         }
