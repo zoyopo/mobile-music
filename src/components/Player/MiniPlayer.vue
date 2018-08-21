@@ -29,9 +29,7 @@ export default {
   },
   mounted() {},
   methods: {
-    back() {
-      this.setFullScreen(false);
-    },
+    
     open() {
       debugger
       this.setFullScreen(true);      

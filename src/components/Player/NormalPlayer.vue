@@ -1,5 +1,5 @@
 <template>
-    <div class="player" v-show="fullScreen">
+    <div class="player" v-show="fullScreen" @click="back">
         <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
             <div class="normal-player">
                 <div class="normal-player-header">1111111</div>
@@ -24,6 +24,9 @@ export default {
     return {};
   },
   methods: {
+    back() {
+      this.setFullScreen(false);
+    },
     enter(el, done) {
       const { x, y, scale } = this._getPosAndScale();
 
@@ -82,6 +85,7 @@ export default {
 .player {
   width: 100%;
   height: 100%;
+ 
   .normal-player {
     background: #ddd;
     height: 100%;

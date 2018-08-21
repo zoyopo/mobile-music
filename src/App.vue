@@ -3,7 +3,7 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <normal-player></normal-player>
+    <normal-player class="normal-player"></normal-player>
     <mini-player class="_player"></mini-player>
 
   </div>
@@ -19,16 +19,15 @@ export default {
     MiniPlayer,
     NormalPlayer
   },
-  mounted(){
-    window.addEventListener('resize',this.refreshRem);
+  mounted() {
+    window.addEventListener("resize", this.refreshRem);
   },
-  methods:{
-   
-    refreshRem(){
-      let docEl=window.documentElement;
-      let width=docEl.getBoundingClientRect().width;
-      let rem=width/10;
-      docEl.style.fontSize=rem+'px';
+  methods: {
+    refreshRem() {
+      let docEl = window.documentElement;
+      let width = docEl.getBoundingClientRect().width;
+      let rem = width / 10;
+      docEl.style.fontSize = rem + "px";
     }
   },
   data() {
@@ -55,9 +54,12 @@ html {
     height: 100%;
     #app {
       height: 100%;
-      ._player{
-      
-        
+      ._player {
+      }
+      .normal-player {
+        position: fixed;
+        bottom: 0;
+        height: 100%;
       }
     }
   }
