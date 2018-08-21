@@ -5,13 +5,13 @@
         <m-header :info="info" @back="back" class="top"></m-header>
         <div class="normal-player-cd" ref="cdWrapper">
           <div class="cd" :class="cdCls">
-            <img class="image" src="../../assets/logo.png">
+            <img class="image" :src="currentSong.album.blurPicUrl">
           </div>
         </div>
         <div class="normal-player-option"></div>
         <div class="normal-player-progress"></div>
         <div class="normal-player-operation bottom">
-          <div v-for="item in playerIcon" :key="item"><img :src="item" alt=""></div>
+          <div v-for="(item,index) in playerIcon" :key="index" @click="operate(index)"><img :src="item" alt=""></div>
 
         </div>
       </div>
@@ -29,7 +29,6 @@ export default {
   },
   data() {
     return {
-      info: { title: "歌曲名称", description: "hhh" },
       playerIcon: [
         require("../../assets/player/music_list_loop.png"),
         require("../../assets/player/music_previous.png"),
@@ -40,6 +39,13 @@ export default {
     };
   },
   methods: {
+    operate(index) {
+      switch (index) {
+        case 2:
+          this.setPlayState(!this.playing);
+         
+      }
+    },
     back() {
       this.setFullScreen(false);
     },
@@ -86,13 +92,27 @@ export default {
       this.$refs.cdWrapper.style[transform] = "";
     },
     ...mapMutations({
-      setFullScreen: "SET_FULL_SCREEN"
+      setFullScreen: "SET_FULL_SCREEN",
+      setPlayState: "SET_PLAYING_STATE"
     })
   },
   computed: {
-    ...mapGetters(["fullScreen"]),
+    ...mapGetters(["fullScreen", "playing", "currentSong", "currentIndex"]),
     cdCls() {
       return this.playing ? "play" : "play pause";
+    },
+    info() {
+      return {
+        title: this.currentSong.name,
+        description: this.currentSong.singer
+      };
+    }
+  },
+  watch: {
+    playing(val){
+       this.playerIcon[2] = val
+            ? require("../../assets/player/music_pause.png")
+            : require("../../assets/player/music_play.png");
     }
   }
 };

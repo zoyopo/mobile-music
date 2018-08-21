@@ -1,21 +1,22 @@
 <template>
-  <div class="player" v-show="!fullScreen" @click.prevent="open">
+  <div class="player" v-show="!fullScreen" @click="open">
     <transition name="mini">
       <div class="mini-player">
-        <div class="player-pic"><img src="../../assets/logo.png" alt=""></div>
+        <div class="player-pic"><img :src="currentSong.album.blurPicUrl||''" alt=""></div>
         <div class="music-content">
-          <div class="music-content-name">歌名</div>
-          <div class="music-content-artist">作者</div>
+          <div class="music-content-name">{{currentSong.name}}</div>
+          <div class="music-content-artist">{{currentSong.singer}}</div>
         </div>
         <div class="player-play">
           <!-- <i class="fa fa-play-circle-o play-icon"></i> -->
-          <img :src="playIcon" alt="">
+          <img :src="playIcon" alt="" @click.stop="play">
         </div>
         <div class="player-list">
           <img :src="listIcon" alt="">
         </div>
+        <audio ref="audio" @play="ready" @end="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`"></audio>
       </div>
-      <audio ref="audio" @play="ready" @end="end" @error="error" @timeupdate="updateTime"></audio>
+
     </transition>
   </div>
 </template>
@@ -27,31 +28,52 @@ export default {
   name: "player",
   data() {
     return {
-      playIcon: require("../../assets/player/music_play_black.png"),
-      listIcon: require("../../assets/player/music list_black.png")
+      listIcon: require("../../assets/player/music list_black.png"),
+      playIcon: "../static/img/music_play_black.png"
     };
   },
   mounted() {},
   methods: {
+    play() {
+     
+      this.setPlayState(!this.playing);    
+    },
     open() {
       //debugger
       this.setFullScreen(true);
     },
     ready() {},
-    end() {},
+    end() {
+       this.setPlayState(!this.playing);
+    },
     error() {},
     updateTime() {},
     ...mapMutations({
-      setFullScreen: "SET_FULL_SCREEN"
+      setFullScreen: "SET_FULL_SCREEN",
+      setPlayState: "SET_PLAYING_STATE"
     })
   },
   computed: {
-    ...mapGetters(["fullScreen"]),
+    ...mapGetters(["fullScreen", "playing", "currentSong", "currentIndex"]),
     cdCls() {
       return this.playing ? "play" : "play pause";
     }
   },
-  watch: {}
+  watch: {
+    playing(val) {
+      this.$nextTick(() => {
+        this.playIcon = val
+          ? "../static/img/music_pause_black.png"
+          : "../static/img/music_play_black.png";
+        val ? this.$refs.audio.play() : this.$refs.audio.pause();
+      });
+    },
+    currentSong(){
+      this.$nextTick(() => {
+       this.$refs.audio.play();
+      })
+    }
+  }
 };
 </script>
 

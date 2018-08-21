@@ -58,7 +58,7 @@
 import { getSheetDetail } from "api/api.js";
 import List from "base/List";
 // import MHeader from 'base/MHeader'
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 export default {
   components: {
     List
@@ -89,9 +89,9 @@ export default {
   },
   watch: {},
   methods: {
-    selectItem(index,item){
-
-      
+    selectItem(index, item) {
+       // debugger
+      this.selectSong({song:item,index});
     },
     scorll() {
       if (this.$refs.main && this.$refs.main.scrollTop > 50) {
@@ -129,7 +129,7 @@ export default {
           Math.floor(d / 60) + ":" + (d % 60 < 10 ? "0" + d % 60 : d % 60);
       });
       this.songList = data.tracks;
-      let playList = songList.map(item => {
+      let playList = this.songList.map(item => {
         return {
           name: item.name,
           singer: item.singer,
@@ -144,6 +144,9 @@ export default {
     },
     ...mapMutations({
       setPlayList: "SET_PLAY_LIST"
+    }),
+    ...mapActions({
+       selectSong: 'SELECT_SONG'
     })
   }
 };

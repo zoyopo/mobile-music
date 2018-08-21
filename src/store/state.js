@@ -9,8 +9,9 @@ const state = {
   isLoading: true,
   fullScreen: false,
   playList: [],
-  currentSong: {},
-  currentIndex: 0
+  currentSong: {album: {}},
+  currentIndex: 0,
+  playing: false
 
 }
 

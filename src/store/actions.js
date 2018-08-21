@@ -1,4 +1,5 @@
  import * as types from './mutation-types'
+
  // import {playMode} from 'common/js/config'
  // import {shuffle} from 'common/js/util'
  // import {saveSearch, clearSearch, deleteSearch, savePlay, saveFavorite, deleteFavorite} from 'common/js/cache'
@@ -10,8 +11,10 @@
    commit(types.FETCH_LOADING, res)
  }
 
- export const SELECT_SONG = function ({commit}, res) {
-
+ export const SELECT_SONG = function ({commit}, {song, index}) {
+   commit(types.SET_CURRENT_SONG, song)
+   commit(types.SET_CURRENT_INDEX, index)
+   commit(types.SET_PLAYING_STATE, true)
  }
 
  // function findIndex(list, song) {

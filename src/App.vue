@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     refreshRem() {
-      let docEl = window.documentElement;
+      let docEl = window.document.documentElement;
       let width = docEl.getBoundingClientRect().width;
       let rem = width / 10;
       docEl.style.fontSize = rem + "px";
@@ -36,6 +36,7 @@ export default {
     };
   },
   methods: {}
+ 
 };
 </script>
 
