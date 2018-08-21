@@ -129,15 +129,15 @@ export default {
        
       });
       this.songList = data.tracks;
-      let playList = this.songList.map(item => {
-        return {
-          name: item.name,
-          singer: item.singer,
-          picUrl: item.album.blurPicUrl,
-          id: item.id
-        };
-      });
-      this.setPlayList(playList);
+      // let playList = this.songList.map(item => {
+      //   return {
+      //     name: item.name,
+      //     singer: item.singer,
+      //     picUrl: item.album.blurPicUrl,
+      //     id: item.id
+      //   };
+      // });
+      // this.setPlayList(playList);
     },
     back() {
       this.$router.go(-1);
