@@ -77,7 +77,7 @@ export default {
 }
 
 .index {
-  height: 90%;
+  height: 100%;
   .main{
     height: 100%;
   }

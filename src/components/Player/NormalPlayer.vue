@@ -1,27 +1,43 @@
 <template>
-    <div class="player" v-show="fullScreen" @click="back">
-        <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
-            <div class="normal-player">
-                <div class="normal-player-header">1111111</div>
-                <div class="normal-player-cd" ref="cdWrapper">
-                    <div class="cd" :class="cdCls">
-                        <img class="image" src="../../assets/logo.png">
-                    </div>
-                </div>
-                <div class="normal-player-option"></div>
-                <div class="normal-player-progress"></div>
-                <div class="normal-player-operation"></div>
-            </div>
-        </transition>
-    </div>
+  <div class="player" v-show="fullScreen">
+    <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
+      <div class="normal-player">
+        <m-header :info="info" @back="back" class="top"></m-header>
+        <div class="normal-player-cd" ref="cdWrapper">
+          <div class="cd" :class="cdCls">
+            <img class="image" src="../../assets/logo.png">
+          </div>
+        </div>
+        <div class="normal-player-option"></div>
+        <div class="normal-player-progress"></div>
+        <div class="normal-player-operation bottom">
+          <div v-for="item in playerIcon" :key="item"><img :src="item" alt=""></div>
+
+        </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
+import MHeader from "base/MHeader";
 export default {
+  components: {
+    MHeader
+  },
   data() {
-    return {};
+    return {
+      info: { title: "歌曲名称", description: "hhh" },
+      playerIcon: [
+        require("../../assets/player/music_list_loop.png"),
+        require("../../assets/player/music_previous.png"),
+        require("../../assets/player/music_play.png"),
+        require("../../assets/player/music_next.png"),
+        require("../../assets/player/music list.png")
+      ]
+    };
   },
   methods: {
     back() {
@@ -85,47 +101,76 @@ export default {
 .player {
   width: 100%;
   height: 100%;
- 
+
   .normal-player {
     background: #ddd;
+    width: 100%;
     height: 100%;
     .normal-player-header {
     }
     .normal-player-cd {
-      .cd-wrapper {
-        position: absolute;
-        left: 10%;
-        top: 0;
-        width: 80%;
+      // position: absolute;
+      // left: calc(50% - 125px);
+      // top: calc(50% - 125px);
+      height: 80%;
+      .cd {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         height: 100%;
-        .cd {
-          width: 100%;
-          height: 100%;
-          box-sizing: border-box;
-          border: 10px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+
+        &.play {
+          animation: rotate 20s linear infinite;
+        }
+        &.pause {
+          animation-play-state: paused;
+        }
+        .image {
+          width: 60%;
+          display: block;
           border-radius: 50%;
-          &.play {
-            animation: rotate 20s linear infinite;
-          }
-          &.pause {
-            animation-play-state: paused;
-          }
-          .image {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-          }
+          border: solid 1px #fff;
         }
       }
     }
+
     .normal-player-option {
     }
     .normal-player-progress {
     }
     .normal-player-operation {
+      display: flex;
+      text-align: center;
+      position: absolute;
+      bottom: 1rem;
+      div {
+        width: 20%;
+        img {
+          width: 45%;
+        }
+      }
+    }
+  }
+
+  .normal-enter-active,
+  .normal-leave-active {
+    transition: all 0.4s;
+    .top,
+    .bottom {
+      transition: all 0.4s cubic-bezier(0.86, 0.18, 0.82, 1.32);
+    }
+  }
+
+  .normal-enter,
+  .normal-leave-to {
+    opacity: 0;
+    .top {
+      transform: translate3d(0, -100px, 0);
+    }
+    .bottom {
+      transform: translate3d(0, 100px, 0);
     }
   }
 }

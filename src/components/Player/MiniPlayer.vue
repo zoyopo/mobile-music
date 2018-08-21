@@ -1,22 +1,23 @@
 <template>
-    <div class="player" v-show="!fullScreen" @click.prevent="open">      
-        <transition name="mini">
-            <div class="mini-player">
-                <div class="player-pic"><img src="../../assets/logo.png" alt=""></div>
-                <div class="music-content">
-                    <div class="music-content-name">歌名</div>
-                    <div class="music-content-artist">作者</div>
-                </div>
-                <div class="player-play">
-                    <i class="fa fa-play-circle-o play-icon"></i>
-                </div>
-                <div class="player-list">
-                    <i class="fa fa-list-ul"></i>
-                </div>
-            </div>
-            <audio ref="audio"></audio>
-        </transition>
-    </div>
+  <div class="player" v-show="!fullScreen" @click.prevent="open">
+    <transition name="mini">
+      <div class="mini-player">
+        <div class="player-pic"><img src="../../assets/logo.png" alt=""></div>
+        <div class="music-content">
+          <div class="music-content-name">歌名</div>
+          <div class="music-content-artist">作者</div>
+        </div>
+        <div class="player-play">
+          <!-- <i class="fa fa-play-circle-o play-icon"></i> -->
+          <img :src="playIcon" alt="">
+        </div>
+        <div class="player-list">
+          <img :src="listIcon" alt="">
+        </div>
+      </div>
+      <audio ref="audio" @play="ready" @end="end" @error="error" @timeupdate="updateTime"></audio>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -25,16 +26,22 @@ import animations from "create-keyframe-animation";
 export default {
   name: "player",
   data() {
-    return {};
+    return {
+      playIcon: require("../../assets/player/music_play_black.png"),
+      listIcon: require("../../assets/player/music list_black.png")
+    };
   },
   mounted() {},
   methods: {
-    
     open() {
-      debugger
-      this.setFullScreen(true);      
+      //debugger
+      this.setFullScreen(true);
     },
-     ...mapMutations({
+    ready() {},
+    end() {},
+    error() {},
+    updateTime() {},
+    ...mapMutations({
       setFullScreen: "SET_FULL_SCREEN"
     })
   },
@@ -53,7 +60,6 @@ export default {
   width: 100%;
   height: 10%;
   .mini-player {
-   
     &.mini-enter-active,
     &.mini-leave-active {
       transition: all 0.4s;
@@ -88,9 +94,14 @@ export default {
     }
     .player-list,
     .player-play {
-      color: #a9a2a2;
-      font-size: 1.8rem;
+      // color: #a9a2a2;
+      // font-size: 1.8rem;
       width: 12%;
+      img {
+        width: 65%;
+
+        display: block;
+      }
     }
   }
 }

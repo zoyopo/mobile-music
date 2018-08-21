@@ -10,3 +10,9 @@ export const arrayInfo = state => state.arrayInfo
 export const isLoading = state => state.isLoading
 
 export const fullScreen = state => state.fullScreen
+
+export const playList = state => state.playList
+
+export const currentSong = state => state.currentSong
+
+export const currentIndex = state => state.currentIndex

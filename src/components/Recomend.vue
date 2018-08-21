@@ -13,7 +13,7 @@
     <div class="song-sheets">
       <sheet-label :title="'推荐歌单'"></sheet-label>
       <grid :col=2 :cols=3>
-        <grid-item label="Grid" v-for="item in contentArray" :key="item.id" @click.prevent.native="goToSongSheet(item.id)">
+        <grid-item label="Grid" v-for="item in contentArray" :key="item.id" :link="{ path: `/songsheets/${item.id}`}">
           <img slot="icon" v-lazy="item.picUrl">
           <div slot="label">{{item.name}}</div>
           <div class="right-top">
@@ -28,7 +28,7 @@
     <div class="song-sheets">
       <sheet-label :title="'最新音乐'"></sheet-label>
       <grid :col=2 :cols=3>
-        <grid-item label="Grid" v-for="item in newsongs" :key="item.id" @click="goToSongSheet(item.id)">
+        <grid-item label="Grid" v-for="item in newsongs" :key="item.id" @click.native="goToSongSheet(item.id)">
           <img slot="icon" v-lazy="item.coverImgUrl">
           <div slot="label">{{item.name}}</div>
           <div class="right-top">
@@ -122,11 +122,10 @@ export default {
         this.videoArray = privateContent.data.result;
       }
     },
-    goToSongSheet(id){
-
+    goToSongSheet(id) {
       //this.$router.push({name:"SongSheet",params: {id}})=>这种写法无效
-         this.$router.push(`/songsheets/${id}`)
-      
+      //debugger
+      this.$router.push(`/songsheets/${id}`);
     }
   },
   created() {
@@ -156,8 +155,8 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.weui-grid{
-  height: 12rem;
+.weui-grid {
+  height: 10.5rem;
 }
 .weui-grid__icon {
   width: auto !important;

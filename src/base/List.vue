@@ -1,7 +1,7 @@
 <template>
     <div class="list">
 
-        <div class="list-item" v-for="(item,index) in list" :key="item.id">
+        <div class="list-item" v-for="(item,index) in list" :key="item.id" @click="selectItem(index,item)">
             <div class="item-num">{{index+1}}</div>
             <div class="item-content">
                 <div class="item-content-name">{{item.name}}</div>
@@ -24,6 +24,11 @@ export default {
     list: {
       type: Array,
       default: () => []
+    }
+  },
+  methods:{
+    selectItem(index,item){
+        this.$emit('select',index,item)
     }
   }
 };

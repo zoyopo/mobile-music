@@ -8,3 +8,9 @@ export const FETCH_LOADING = 'FETCH_LOADING'
 
 export const SET_FULL_SCREEN = 'SET_FULL_SCREEN'
 // export const SET_PLAYLIST = 'SET_PLAYLIST'
+
+export const SET_PLAY_LIST = 'SET_PLAY_LIST'
+
+export const SET_CURRENT_SONG = 'SET_CURRENT_SONG'
+
+export const SET_CURRENT_INDEX = 'SET_CURRENT_INDEX'

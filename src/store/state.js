@@ -1,4 +1,3 @@
-
 // import {playMode} from 'common/js/config'
 // import {loadSearch, loadPlay, loadFavorite} from 'common/js/cache'
 
@@ -8,7 +7,11 @@ const state = {
   CategoriesInfo: {},
   arrayInfo: [],
   isLoading: true,
-  fullScreen: false
+  fullScreen: false,
+  playList: [],
+  currentSong: {},
+  currentIndex: 0
+
 }
 
 export default state

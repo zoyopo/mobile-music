@@ -4,8 +4,8 @@
       <router-view></router-view>
     </keep-alive>
     <normal-player class="normal-player"></normal-player>
-    <mini-player class="_player"></mini-player>
-
+    <mini-player class="mini-player"></mini-player>
+   
   </div>
 </template>
 
@@ -31,7 +31,9 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      
+    };
   },
   methods: {}
 };
@@ -54,7 +56,9 @@ html {
     height: 100%;
     #app {
       height: 100%;
-      ._player {
+      .mini-player {
+        position: absolute;
+        bottom: 0;
       }
       .normal-player {
         position: fixed;

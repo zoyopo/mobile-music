@@ -5,10 +5,14 @@
 
  // 请求数据时状态loading
  export const FETCH_LOADING = function ({
-     commit
-   }, res) {
-     commit(types.FETCH_LOADING, res)
-   }
+   commit
+ }, res) {
+   commit(types.FETCH_LOADING, res)
+ }
+
+ export const SELECT_SONG = function ({commit}, res) {
+
+ }
 
  // function findIndex(list, song) {
  //   return list.findIndex((item) => {

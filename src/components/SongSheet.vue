@@ -45,7 +45,7 @@
         </div>
         <!-- 歌曲列表-->
         <div class="main-list">
-          <List :list="songList"></List>
+          <List :list="songList" @select="selectItem"></List>
         </div>
 
       </main>
@@ -57,11 +57,12 @@
 <script>
 import { getSheetDetail } from "api/api.js";
 import List from "base/List";
-import { debug } from "util";
-import { defaultCoreCipherList } from "constants";
+// import MHeader from 'base/MHeader'
+import { mapMutations } from "vuex";
 export default {
   components: {
     List
+    // MHeader
   },
   name: "SongSheet",
   data() {
@@ -88,8 +89,13 @@ export default {
   },
   watch: {},
   methods: {
+    selectItem(index,item){
+
+      
+    },
     scorll() {
-      if (this.$refs.main&&this.$refs.main.scrollTop > 50) {
+      if (this.$refs.main && this.$refs.main.scrollTop > 50) {
+        // debugger
         this.title = this.info.name;
       } else {
         this.title = "歌单";
@@ -114,6 +120,7 @@ export default {
         }
       };
       this.info = info;
+      //this.info.title="歌单";
       data.tracks.forEach(element => {
         let d = (element.duration / 1000).toFixed() * 1;
         element.singer = element.artists.map(t => t.name).join("/"); //歌手
@@ -122,10 +129,22 @@ export default {
           Math.floor(d / 60) + ":" + (d % 60 < 10 ? "0" + d % 60 : d % 60);
       });
       this.songList = data.tracks;
+      let playList = songList.map(item => {
+        return {
+          name: item.name,
+          singer: item.singer,
+          picUrl: item.album.blurPicUrl,
+          id: item.id
+        };
+      });
+      this.setPlayList(playList);
     },
     back() {
       this.$router.go(-1);
-    }
+    },
+    ...mapMutations({
+      setPlayList: "SET_PLAY_LIST"
+    })
   }
 };
 </script>
@@ -133,8 +152,6 @@ export default {
 .song-sheet {
   height: 100%;
   .header {
-    // height: 60px;
-    // line-height: 60px;
     background: #ddd;
     color: #fff;
     display: flex;
