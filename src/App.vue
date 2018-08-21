@@ -3,13 +3,28 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
+    <Player class="player"></Player>
   </div>
 </template>
 
 <script>
+import Player from "components/Player";
 export default {
   name: "app",
-
+  components: {
+    Player
+  },
+  mounted(){
+    window.addEventListener('resize',this.refreshRem);
+  },
+  methods:{
+    refreshRem(){
+      let docEl=window.documentElement;
+      let width=docEl.getBoundingClientRect().width;
+      let rem=width/10;
+      docEl.style.fontSize=rem+'px';
+    }
+  },
   data() {
     return {};
   },
@@ -29,10 +44,15 @@ body {
 @import "common/sass/font-awesome.scss";
 html {
   height: 100%;
+  // font-size: 62.5%;
   body {
     height: 100%;
     #app {
       height: 100%;
+      .player{
+        position: fixed;
+        bottom: 0;
+      }
     }
   }
 }
