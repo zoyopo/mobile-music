@@ -89,7 +89,7 @@ export default {
   watch: {},
   methods: {
     scorll() {
-      if (this.$refs.main.scrollTop > 50) {
+      if (this.$refs.main&&this.$refs.main.scrollTop > 50) {
         this.title = this.info.name;
       } else {
         this.title = "歌单";

@@ -3,21 +3,27 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <Player class="player"></Player>
+    <normal-player></normal-player>
+    <mini-player class="_player"></mini-player>
+
   </div>
 </template>
 
 <script>
-import Player from "components/Player";
+import MiniPlayer from "components/Player/MiniPlayer";
+import NormalPlayer from "components/Player/NormalPlayer";
+
 export default {
   name: "app",
   components: {
-    Player
+    MiniPlayer,
+    NormalPlayer
   },
   mounted(){
     window.addEventListener('resize',this.refreshRem);
   },
   methods:{
+   
     refreshRem(){
       let docEl=window.documentElement;
       let width=docEl.getBoundingClientRect().width;
@@ -49,9 +55,9 @@ html {
     height: 100%;
     #app {
       height: 100%;
-      .player{
-        position: fixed;
-        bottom: 0;
+      ._player{
+      
+        
       }
     }
   }
