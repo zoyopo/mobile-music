@@ -124,11 +124,9 @@ export default {
       this.info = info;
       //this.info.title="歌单";
       data.tracks.forEach(element => {
-        let d = (element.duration / 1000).toFixed() * 1;
+        //let d = (element.duration / 1000).toFixed() * 1;
         element.singer = element.artists.map(t => t.name).join("/"); //歌手
-        element.albumName = element.album.name;
-        element.duration =
-          Math.floor(d / 60) + ":" + (d % 60 < 10 ? "0" + d % 60 : d % 60);
+       
       });
       this.songList = data.tracks;
       let playList = this.songList.map(item => {
