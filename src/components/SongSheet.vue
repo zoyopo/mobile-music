@@ -207,6 +207,7 @@ export default {
     height: calc(100% - 49px);
     overflow: auto;
     .main-top {
+      padding-left: 1rem;
       padding-top: 0.5rem;
       overflow: hidden;
       padding-bottom: 1rem;

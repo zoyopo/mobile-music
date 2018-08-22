@@ -5,7 +5,7 @@
         <m-header :info="info" @back="back" class="top"></m-header>
         <div class="normal-player-cd" ref="cdWrapper">
           <div class="cd" :class="cdCls">
-            <img class="image" :src="currentSong.album.blurPicUrl">
+            <img class="image" v-lazy="currentSong.album.blurPicUrl">
           </div>
         </div>
         <div class="normal-player-option"></div>
@@ -103,8 +103,8 @@ export default {
     },
     info() {
       return {
-        title: this.currentSong.name,
-        description: this.currentSong.singer
+        title: this.currentSong.name||'暂无歌曲',
+        description: this.currentSong.singer||'暂无歌者'
       };
     }
   },

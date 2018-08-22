@@ -2,10 +2,10 @@
   <div class="player" v-show="!fullScreen" @click="open">
     <transition name="mini">
       <div class="mini-player">
-        <div class="player-pic"><img :src="currentSong.album.blurPicUrl||''" alt=""></div>
+        <div class="player-pic"><img v-lazy="currentSong.album.blurPicUrl" alt=""></div>
         <div class="music-content">
-          <div class="music-content-name">{{currentSong.name}}</div>
-          <div class="music-content-artist">{{currentSong.singer}}</div>
+          <div class="music-content-name">{{currentSong.name||"暂无歌曲"}}</div>
+          <div class="music-content-artist">{{currentSong.singer||"暂无歌者"}}</div>
         </div>
         <div class="player-play">
           <!-- <i class="fa fa-play-circle-o play-icon"></i> -->

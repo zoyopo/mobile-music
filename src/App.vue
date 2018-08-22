@@ -13,15 +13,27 @@
 <script>
 import MiniPlayer from "components/Player/MiniPlayer";
 import NormalPlayer from "components/Player/NormalPlayer";
-
+import {mapMutations} from "vuex"
 export default {
   name: "app",
   components: {
     MiniPlayer,
     NormalPlayer
   },
+  created(){
+    // let currentSong={
+    //   name:'I Hate U, I Love U',
+    //   singer:`gnash/Olivia O'Brien`,
+    //   album:{
+    //     blurPicUrl:"http://p1.music.126.net/1Cg_SfvPnVLJm5_6JDdbzg==/18633423557738147.jpg"
+    //   },
+    //   id:2369438970
+    // }
+    // this.setCurrentSong(currentSong)
+  },
   mounted() {
     window.addEventListener("resize", this.refreshRem);
+    
   },
   methods: {
     refreshRem() {
@@ -34,7 +46,13 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  //2369438970
+  methods: {
+
+    ...mapMutations({
+      setCurrentSong:'SET_CURRENT_SONG'
+    })
+  }
 };
 </script>
 
