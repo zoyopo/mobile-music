@@ -69,18 +69,17 @@ export default {
     return {
       title: "歌单",
       info: {
-        creator:{}
+        creator: {}
       },
       songList: []
     };
   },
   mounted() {
     window.addEventListener("touchmove", this.scorll);
-  },
-  activated() {
     let id = this.$route.params.id;
     this.getDetail(id);
   },
+  activated() {},
   computed: {
     // title() {
     //   this.$nextTick(() => {
@@ -92,8 +91,8 @@ export default {
   watch: {},
   methods: {
     selectItem(index, item) {
-       // debugger
-      this.selectSong({song:item,index});
+      // debugger
+      this.selectSong({ song: item, index });
     },
     scorll() {
       if (this.$refs.main && this.$refs.main.scrollTop > 50) {
@@ -116,7 +115,7 @@ export default {
         description: data.description,
         tags: data.tags,
         creator: {
-          avatarUrl: data.creator.avatarUrl||'',
+          avatarUrl: data.creator.avatarUrl || "",
 
           nickname: data.creator.nickname
         }
@@ -126,7 +125,6 @@ export default {
       data.tracks.forEach(element => {
         //let d = (element.duration / 1000).toFixed() * 1;
         element.singer = element.artists.map(t => t.name).join("/"); //歌手
-       
       });
       this.songList = data.tracks;
       // let playList = this.songList.map(item => {
@@ -146,7 +144,7 @@ export default {
       setPlayList: "SET_PLAY_LIST"
     }),
     ...mapActions({
-       selectSong: 'SELECT_SONG'
+      selectSong: "SELECT_SONG"
     })
   }
 };

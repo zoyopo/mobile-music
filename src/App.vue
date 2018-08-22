@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <keep-alive>
+    
       <router-view></router-view>
-    </keep-alive>
+   
     <normal-player class="normal-player"></normal-player>
     <mini-player class="mini-player"></mini-player>
    
