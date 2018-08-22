@@ -1,8 +1,8 @@
 <template>
-  <div class="player" v-show="!fullScreen" @click="open">
+  <div class="player" v-if="playList.length>0">
     <transition name="mini">
-      <div class="mini-player">
-        <div class="player-pic"><img v-lazy="currentSong.album.blurPicUrl" alt=""></div>
+      <div class="mini-player" v-show="!fullScreen" @click="open">
+        <div class="player-pic"><img :src="currentSong.album.blurPicUrl||'../static/img/no-pic.png'" alt=""></div>
         <div class="music-content">
           <div class="music-content-name">{{currentSong.name||"暂无歌曲"}}</div>
           <div class="music-content-artist">{{currentSong.singer||"暂无歌者"}}</div>
@@ -54,7 +54,7 @@ export default {
     })
   },
   computed: {
-    ...mapGetters(["fullScreen", "playing", "currentSong", "currentIndex"]),
+    ...mapGetters(["fullScreen", "playing", "currentSong", "currentIndex","playList"]),
     cdCls() {
       return this.playing ? "play" : "play pause";
     }

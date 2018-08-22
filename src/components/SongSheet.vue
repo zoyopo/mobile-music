@@ -93,7 +93,7 @@ export default {
   methods: {
     selectItem(index, item) {
       // debugger
-      this.selectSong({ song: item, index });
+      this.selectSong({ list:this.songList,song: item, index });
     },
     scorll() {
       if (this.$refs.main && this.$refs.main.scrollTop > 50) {
