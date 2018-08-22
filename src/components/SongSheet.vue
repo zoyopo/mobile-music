@@ -109,7 +109,7 @@ export default {
       // console.log(data);
       let info = {
         coverImgUrl: data.coverImgUrl,
-        name: data.name.trimStart(),
+        name: data.name,
         createTime: data.createTime,
         trackCount: data.trackCount,
         playCount: data.playCount,
