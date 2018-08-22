@@ -1,6 +1,6 @@
 <template>
 
-  <div class="rec-content">
+  <div class="rec-content" :class="{playerRstHeight:playList.length>0}">
     <div v-if="picArray.length>0">
       <slide :loop='loop' :autoPlay='autoPlay' :picArray="picArray" :style="{'margin-top':'10px'}">
 
@@ -50,7 +50,7 @@ import { getFirstScreenData, getSongSheetsData } from "api/api.js";
 import { Grid, GridItem } from "vux";
 import CircleIcon from "components/Recomend/CircleIcon";
 import SheetLabel from "components/Recomend/SheetLabel";
-
+import{mapGetters, mapActions} from 'vuex'
 export default {
   components: {
     Slide,
@@ -86,6 +86,12 @@ export default {
       // },
       newsongs: []
     };
+  },
+   created() {
+    this.getAllData();
+  },
+  computed:{
+    ...mapGetters(['playList'])
   },
   methods: {
     async getAllData() {
@@ -127,17 +133,19 @@ export default {
       //debugger
       this.$router.push(`/songsheets/${id}`);
     }
-  },
-  created() {
-    this.getAllData();
   }
+ 
 };
 </script>
 
 <style lang="scss">
+// 播放器出现，高度重新设置
+.playerRstHeight{
+  height:calc(100% - 155px)!important;
+}
 .rec-content {
   text-align: center;
-  height: 85%;
+  height: calc(100% - 90px);
   overflow: auto;
 }
 .logo {
