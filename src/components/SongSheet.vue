@@ -76,10 +76,11 @@ export default {
   },
   mounted() {
     window.addEventListener("touchmove", this.scorll);
+  },
+  activated() {
     let id = this.$route.params.id;
     this.getDetail(id);
   },
-  activated() {},
   computed: {
     // title() {
     //   this.$nextTick(() => {

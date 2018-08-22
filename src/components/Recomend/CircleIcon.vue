@@ -28,7 +28,7 @@ export default {
   //border-radius: 50%;
   border-radius: 50%;
   padding: 20%;
-  background: #94c540ed;
+  background: #94c540;
 }
 
 .wrapper{
