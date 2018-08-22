@@ -26,6 +26,7 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
 import MHeader from "base/MHeader";
 import {prefixStyle} from 'common/js/dom';
+import { defaultCoreCipherList } from 'constants';
 const transform=prefixStyle('transform');
 export default {
   components: {
@@ -44,6 +45,7 @@ export default {
   },
   methods: {
     operate(index) {
+      //debugger
       switch (index) {
         case 2:
           this.setPlayState(!this.playing);
