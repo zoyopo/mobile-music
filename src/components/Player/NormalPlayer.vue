@@ -1,12 +1,12 @@
 <template>
 
   <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
-    <div class="normal-player" v-show="fullScreen">
+    <div class="normal-player" v-show="fullScreen" ref='normal'>
       <m-header :info="info" @back="back" class="top"></m-header>
       <div class="normal-player-cd">
         <div class="cd" :class="cdCls">
           <div class="cd-wrapper" ref="cdWrapper">
-            <img class="image" :src="currentSong.album.blurPicUrl||'../static/img/no-pic.png'">
+            <img class="image" :src="currentSong.album.blurPicUrl||'../static/img/no-pic.png'" ref='img'>
           </div>
         </div>
       </div>
@@ -25,9 +25,11 @@
 import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
 import MHeader from "base/MHeader";
-import {prefixStyle} from 'common/js/dom';
-import { defaultCoreCipherList } from 'constants';
-const transform=prefixStyle('transform');
+import { prefixStyle } from "common/js/dom";
+
+
+const transform = prefixStyle("transform");
+
 export default {
   components: {
     MHeader
@@ -135,6 +137,11 @@ export default {
       this.playerIcon[2] = val
         ? require("../../assets/player/music_pause.png")
         : require("../../assets/player/music_play.png");
+    },
+    currentSong() {
+      // this.$nextTick(() => {
+      //   Grade()(this.$refs.normal, this.$refs.img);
+      // });
     }
   }
 };
