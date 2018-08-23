@@ -3,7 +3,7 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-
+    <Loading></Loading>
     <normal-player class="normal-player"></normal-player>
     <mini-player class="mini-player"></mini-player>
 
@@ -13,12 +13,14 @@
 <script>
 import MiniPlayer from "components/Player/MiniPlayer";
 import NormalPlayer from "components/Player/NormalPlayer";
+import Loading from 'base/Loading'
 import {mapMutations} from "vuex"
 export default {
   name: "app",
   components: {
     MiniPlayer,
-    NormalPlayer
+    NormalPlayer,
+    Loading
   },
   created(){
     // let currentSong={

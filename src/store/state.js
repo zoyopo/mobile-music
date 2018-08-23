@@ -11,7 +11,8 @@ const state = {
   playList: [],
   currentSong: {album: {}},
   currentIndex: 0,
-  playing: false
+  playing: false,
+  requestEnd: false
 
 }
 

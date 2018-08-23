@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-// import store from '@/store/index.js'
+import store from '@/store/index.js'
+import {SET_REQUEST_END} from '@/store/mutation-types'
 class Api {
   axios () {
     axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -9,7 +10,7 @@ class Api {
 
     axios.interceptors.request.use(function (config) {
       // Do something before request is sent
-      // store.dispatch('FETCH_LOADING', true) // 请求时加载loading
+      store.commit(SET_REQUEST_END, false) // 请求时加载loading
       config.params = Object.assign({
         xhrFields: '{ withCredentials: true }'
       }, config.params)
@@ -26,18 +27,13 @@ class Api {
 
 export default new Api()
 
-// axios.interceptors.response.use(function (response) {
-//   // 处理响应数据
-//   let oDate = new Date()
-//   let time = oDate.getTime() - axiosDate.getTime()
-//   if (time < 500) time = 500
-//   setTimeout(() => {
-//     store.dispatch('FETCH_LOADING', false) // 完成隐藏loading
-//   }, time)
-//   // store.dispatch('FETCH_LOADING', false)
-//   return response
-// }, function (error) {
-//   // 处理响应失败
-//   store.dispatch('FETCH_LOADING', false)
-//   return Promise.reject(error)
-// })
+axios.interceptors.response.use(function (response) {
+  store.commit(SET_REQUEST_END, true) // 完成隐藏loading
+
+  // store.dispatch('FETCH_LOADING', false)
+  return response
+}, function (error) {
+  // 处理响应失败
+  store.commit(SET_REQUEST_END, true)
+  return Promise.reject(error)
+})

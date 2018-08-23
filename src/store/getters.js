@@ -18,3 +18,5 @@ export const currentSong = state => state.currentSong
 export const currentIndex = state => state.currentIndex
 
 export const playing = state => state.playing
+
+export const requestEnd = state => state.requestEnd

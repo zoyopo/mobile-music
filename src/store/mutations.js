@@ -29,7 +29,11 @@ const mutations = {
   },
   [types.SET_PLAYING_STATE] (state, isPlaying) {
     state.playing = isPlaying
+  },
+  [types.SET_REQUEST_END] (state, isEnd) {
+    state.requestEnd = isEnd
   }
+
 }
 
 export default mutations
