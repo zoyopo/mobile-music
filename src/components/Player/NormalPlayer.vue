@@ -26,8 +26,7 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
 import MHeader from "base/MHeader";
 import { prefixStyle } from "common/js/dom";
-
-
+// import Grade from 'grade-js'
 const transform = prefixStyle("transform");
 
 export default {
@@ -140,7 +139,7 @@ export default {
     },
     currentSong() {
       // this.$nextTick(() => {
-      //   Grade()(this.$refs.normal, this.$refs.img);
+      //   Grade(this.$refs.normal,'.image');
       // });
     }
   }

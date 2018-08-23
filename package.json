@@ -20,8 +20,8 @@
     "better-scroll": "^1.9.1",
     "axios": "^0.18.0",
     "lyric-parser": "^1.0.1",
-    "create-keyframe-animation": "^0.1.0"
-    
+    "create-keyframe-animation": "^0.1.0",
+    "grade-js":"1.0.10"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

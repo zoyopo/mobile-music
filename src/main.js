@@ -31,5 +31,8 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  mounted () {
+    console.log(this)
+  },
   render: h => h(App)
 }).$mount('#app-box')
