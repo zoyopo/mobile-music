@@ -4,9 +4,11 @@
     <div class="normal-player" v-show="fullScreen" ref='normal'>
       <m-header :info="info" @back="back" class="top"></m-header>
       <div class="normal-player-cd">
-        <div class="cd" :class="cdCls">
+        <div class="cd">
           <div class="cd-wrapper" ref="cdWrapper">
-            <img class="image" :src="currentSong.album.blurPicUrl||'../static/img/no-pic.png'" ref='img'>
+
+            <img class="image" :src="currentSong.album.blurPicUrl||'../static/img/no-pic.png'" ref='img' :class="cdCls">
+
           </div>
         </div>
       </div>
@@ -46,11 +48,40 @@ export default {
   },
   methods: {
     operate(index) {
-      //debugger
-      switch (index) {
-        case 2:
-          this.setPlayState(!this.playing);
+      if (index === 2) {
+        this.setPlayState(!this.playing);
+        return;
       }
+      if (index === 1) {
+        let index = this.currentIndex - 1;
+        let song = this.playList[index];
+        this.nextOrPrevious({song:song,index:index});
+         return;
+      }
+      if (index === 3) {
+        //debugger
+        let _index = this.currentIndex + 1;
+        let _song = this.playList[_index];
+        this.nextOrPrevious({song:_song, index:_index});
+         return;
+      }
+      // debugger
+      // switch (index) {
+      //   case 2:
+
+      //     break;
+      //   case 1:
+      //     let index = this.currentIndex - 1;
+      //     let song = this.playList[index];
+      //     this.nextOrPrevious(song, index);
+      //     break;
+      //   case 3:
+      //   debugger
+      //     let _index = this.currentIndex + 1;
+      //     let _song = this.playList[index];
+      //     this.nextOrPrevious(_song, _index);
+      //     break;
+      // }
     },
     back() {
       this.setFullScreen(false);
@@ -117,10 +148,19 @@ export default {
     ...mapMutations({
       setFullScreen: "SET_FULL_SCREEN",
       setPlayState: "SET_PLAYING_STATE"
+    }),
+    ...mapActions({
+      nextOrPrevious: "NEXT_PREVIOUS"
     })
   },
   computed: {
-    ...mapGetters(["fullScreen", "playing", "currentSong", "currentIndex"]),
+    ...mapGetters([
+      "fullScreen",
+      "playing",
+      "currentSong",
+      "currentIndex",
+      "playList"
+    ]),
     cdCls() {
       return this.playing ? "play" : "play pause";
     },
@@ -165,20 +205,20 @@ export default {
       height: 100%;
       box-sizing: border-box;
 
-      &.play {
-        animation: rotate 20s linear infinite;
-      }
-      &.pause {
-        animation-play-state: paused;
-      }
       .cd-wrapper {
         width: 60%;
-
+        border-radius: 50%;
+        border: double #6b6969 17px;
         .image {
           display: block;
           width: 100%;
           border-radius: 50%;
-          border: solid 1px #fff;
+          &.play {
+            animation: rotate 20s linear infinite;
+          }
+          &.pause {
+            animation-play-state: paused;
+          }
         }
       }
     }
@@ -217,6 +257,14 @@ export default {
     .bottom {
       transform: translate3d(0, 100px, 0);
     }
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>

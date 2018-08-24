@@ -12,3 +12,10 @@
    commit(types.SET_CURRENT_INDEX, index)
    commit(types.SET_PLAYING_STATE, true)
  }
+
+ export const NEXT_PREVIOUS = function ({commit}, {song, index}) {
+   // debugger
+   commit(types.SET_CURRENT_SONG, song)
+   commit(types.SET_CURRENT_INDEX, index)
+   commit(types.SET_PLAYING_STATE, true)
+ }
