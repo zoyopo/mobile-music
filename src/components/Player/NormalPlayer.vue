@@ -1,13 +1,16 @@
 <template>
 
   <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
+
     <div class="normal-player" v-show="fullScreen" ref='normal'>
+      <div class="mask" :style="{'background-image':`url(${backgroundUrl})`}"></div>
       <m-header :info="info" @back="back" class="top"></m-header>
+
       <div class="normal-player-cd">
         <div class="cd">
           <div class="cd-wrapper" ref="cdWrapper">
 
-            <img class="image" :src="currentSong.album.blurPicUrl||'../static/img/no-pic.png'" ref='img' :class="cdCls">
+            <img class="image" :src="backgroundUrl" ref='img' :class="cdCls">
 
           </div>
         </div>
@@ -28,6 +31,7 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
 import MHeader from "base/MHeader";
 import { prefixStyle } from "common/js/dom";
+
 // import Grade from 'grade-js'
 const transform = prefixStyle("transform");
 
@@ -46,24 +50,44 @@ export default {
       ]
     };
   },
+  props: {
+    currentTime: {
+      type: Number,
+      default: 0
+    }
+  },
   methods: {
     operate(index) {
+      let currrentIndex = 0;
       if (index === 2) {
         this.setPlayState(!this.playing);
         return;
       }
       if (index === 1) {
-        let index = this.currentIndex - 1;
-        let song = this.playList[index];
-        this.nextOrPrevious({song:song,index:index});
-         return;
+        if (!this.songIsReady) {
+          return;
+        }
+        currrentIndex = this.currentIndex - 1;
+
+        if (currrentIndex === -1) {
+          currrentIndex = this.playList.length - 1;
+        }
+        this.setCurrentIndex(currrentIndex);
+        this.setSongReady(false);
+        return;
       }
       if (index === 3) {
+        if (!this.songIsReady) {
+          return;
+        }
         //debugger
-        let _index = this.currentIndex + 1;
-        let _song = this.playList[_index];
-        this.nextOrPrevious({song:_song, index:_index});
-         return;
+        currrentIndex = this.currentIndex + 1;
+        if (currrentIndex === this.playList.length) {
+          currrentIndex = 0;
+        }
+        this.setCurrentIndex(currrentIndex);
+        this.setSongReady(false);
+        return;
       }
       // debugger
       // switch (index) {
@@ -147,10 +171,9 @@ export default {
     },
     ...mapMutations({
       setFullScreen: "SET_FULL_SCREEN",
-      setPlayState: "SET_PLAYING_STATE"
-    }),
-    ...mapActions({
-      nextOrPrevious: "NEXT_PREVIOUS"
+      setPlayState: "SET_PLAYING_STATE",
+      setCurrentIndex: "SET_CURRENT_INDEX",
+      setSongReady: "SET_SONG_READY"
     })
   },
   computed: {
@@ -159,8 +182,12 @@ export default {
       "playing",
       "currentSong",
       "currentIndex",
-      "playList"
+      "playList",
+      "songIsReady"
     ]),
+    backgroundUrl() {
+      return this.currentSong.album.blurPicUrl || "../static/img/no-pic.png";
+    },
     cdCls() {
       return this.playing ? "play" : "play pause";
     },
@@ -187,16 +214,28 @@ export default {
 </script>
 <style lang="scss" scoped>
 .normal-player {
-  background: #ddd;
+  background: #cfd0c6;
+
   width: 100%;
   height: 100%;
+  .mask {
+    position: absolute;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    width: 100%;
+    z-index: -1111;
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+  }
   .normal-player-header {
   }
   .normal-player-cd {
     // position: absolute;
     // left: calc(50% - 125px);
     // top: calc(50% - 125px);
-    height: 80%;
+    height: 60%;
     .cd {
       display: flex;
       justify-content: center;
@@ -208,7 +247,7 @@ export default {
       .cd-wrapper {
         width: 60%;
         border-radius: 50%;
-        border: double #6b6969 17px;
+        border: double #9c9999 10px;
         .image {
           display: block;
           width: 100%;
@@ -232,7 +271,7 @@ export default {
     display: flex;
     text-align: center;
     position: absolute;
-    bottom: 1rem;
+    bottom: 3rem;
     div {
       width: 20%;
       img {

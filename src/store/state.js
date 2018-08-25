@@ -12,8 +12,9 @@ const state = {
   currentSong: {album: {}},
   currentIndex: 0,
   playing: false,
-  requestEnd: false
-
+  requestEnd: false,
+  songIsReady: false
+  // currentTime: 0
 }
 
 export default state

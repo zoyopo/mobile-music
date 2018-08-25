@@ -1,4 +1,5 @@
 import * as types from './mutation-types'
+import { type } from 'os'
 
 const mutations = {
   [types.storeCategoriesInfo] (state, CategoriesInfo) {
@@ -19,7 +20,6 @@ const mutations = {
     state.fullScreen = flag
   },
   [types.SET_PLAY_LIST] (state, list) {
-
     state.playList = list
   },
   [types.SET_CURRENT_SONG] (state, song) {
@@ -33,7 +33,13 @@ const mutations = {
   },
   [types.SET_REQUEST_END] (state, isEnd) {
     state.requestEnd = isEnd
+  },
+  [types.SET_SONG_READY] (state, isReady) {
+    state.songIsReady = isReady
   }
+  // [types.SET_CURRENT_TIME] (state, currentTime) {
+  //   state.songIsReady = currentTime
+  // }
 
 }
 

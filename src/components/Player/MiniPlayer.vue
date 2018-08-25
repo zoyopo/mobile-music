@@ -14,7 +14,7 @@
         <div class="player-list">
           <img :src="listIcon" alt="">
         </div>
-        <audio ref="audio" @play="ready" @end="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`"></audio>
+        <audio ref="audio" @canplay="ready" @end="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`"></audio>
       </div>
 
     </transition>
@@ -24,37 +24,56 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
+
 export default {
   name: "player",
   data() {
     return {
       listIcon: require("../../assets/player/music list_black.png"),
-      playIcon: "../static/img/music_play_black.png"
+      playIcon: "../static/img/music_play_black.png",
+      currentTime:0
     };
   },
   mounted() {},
+
+ 
   methods: {
     play() {
-     
-      this.setPlayState(!this.playing);    
+      this.setPlayState(!this.playing);
     },
     open() {
       //debugger
       this.setFullScreen(true);
     },
-    ready() {},
-    end() {
-       this.setPlayState(!this.playing);
+    ready() {
+      this.setSongReady(true);
     },
-    error() {},
-    updateTime() {},
+    end() {
+      this.setPlayState(!this.playing);
+    },
+    error() {
+      this.setSongReady(true);
+    },
+    updateTime(e) {
+      //debugger
+      this.currentTime=e.target.currentTime;
+    },
     ...mapMutations({
       setFullScreen: "SET_FULL_SCREEN",
-      setPlayState: "SET_PLAYING_STATE"
+      setPlayState: "SET_PLAYING_STATE",
+      setCurrentSong: "SET_CURRENT_SONG",
+      setSongReady: "SET_SONG_READY"
+      // setCurrentTime: "SET_CURRENT_TIME"
     })
   },
   computed: {
-    ...mapGetters(["fullScreen", "playing", "currentSong", "currentIndex","playList"]),
+    ...mapGetters([
+      "fullScreen",
+      "playing",
+      "currentSong",
+      "currentIndex",
+      "playList"
+    ]),
     cdCls() {
       return this.playing ? "play" : "play pause";
     }
@@ -68,10 +87,13 @@ export default {
         val ? this.$refs.audio.play() : this.$refs.audio.pause();
       });
     },
-    currentSong(){
+
+    currentIndex(val) {
+      this.setCurrentSong(this.playList[val]);
+      this.setPlayState(true);
       this.$nextTick(() => {
-       this.$refs.audio.play();
-      })
+        this.$refs.audio.play();
+      });
     }
   }
 };

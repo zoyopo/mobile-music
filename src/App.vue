@@ -4,8 +4,8 @@
       <router-view></router-view>
     </keep-alive>
     <Loading></Loading>
-    <normal-player class="normal-player"></normal-player>
-    <mini-player class="mini-player"></mini-player>
+    <normal-player class="normal-player" :currentTime="currentTime"></normal-player>
+    <mini-player class="mini-player" ref="miniPlayer"></mini-player>
 
   </div>
 </template>
@@ -13,8 +13,8 @@
 <script>
 import MiniPlayer from "components/Player/MiniPlayer";
 import NormalPlayer from "components/Player/NormalPlayer";
-import Loading from 'base/Loading'
-import {mapMutations} from "vuex"
+import Loading from "base/Loading";
+import { mapMutations, mapGetters } from "vuex";
 export default {
   name: "app",
   components: {
@@ -22,7 +22,7 @@ export default {
     NormalPlayer,
     Loading
   },
-  created(){
+  created() {
     // let currentSong={
     //   name:'I Hate U, I Love U',
     //   singer:`gnash/Olivia O'Brien`,
@@ -35,7 +35,6 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.refreshRem);
-    
   },
   methods: {
     refreshRem() {
@@ -46,14 +45,25 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+     
+    };
   },
   //2369438970
   methods: {
-
     ...mapMutations({
-      setCurrentSong:'SET_CURRENT_SONG'
+      setCurrentSong: "SET_CURRENT_SONG"
     })
+  },
+  computed: {
+    ...mapGetters(["playList"]),
+    currentTime() {
+      if (this.playList.length>0) {
+        return this.$refs.miniPlayer.currentTime;
+      }else{
+        
+      }
+    }
   }
 };
 </script>

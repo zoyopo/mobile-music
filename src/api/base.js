@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {debounce} from 'common/js/util'
 import store from '@/store/index.js'
 import {SET_REQUEST_END} from '@/store/mutation-types'
 class Api {
@@ -28,7 +28,7 @@ class Api {
 export default new Api()
 
 axios.interceptors.response.use(function (response) {
-  store.commit(SET_REQUEST_END, true) // 完成隐藏loading
+  debounce(store.commit(SET_REQUEST_END, true), 100)  // 完成隐藏loading
 
   // store.dispatch('FETCH_LOADING', false)
   return response
