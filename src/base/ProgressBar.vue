@@ -1,7 +1,7 @@
 <template>
 
   <div class="progress-bar">
-
+    <div class="rogress-bar-sttime">{{sttime}}</div>
     <div class="progress-bar-wrapper">
 
       <div class="progress-bar-inner" ref="inner">
@@ -10,10 +10,9 @@
 
       <div class="progress-bar-btn" ref="btn" @touchstart.prevent.stop="btnOnTouchStart" @touchmove.prevent.stop="btnOnTouchMove" @touchend.prevent.stop="btnOnTouchEnd">
       </div>
-      <div class="rogress-bar-sttime">{{sttime}}</div>
-      <div class="rogress-bar-edtime">{{edtime}}</div>
-    </div>
 
+    </div>
+    <div class="rogress-bar-edtime">{{edtime}}</div>
   </div>
 </template>
 
@@ -41,26 +40,29 @@ export default {
       //debugger
       this.touchState.isInit = true;
       this.touchState.startX = e.touches[0].pageX;
-      const progressLength=this.$refs.inner.style.width;
-      this.touchState.progessWidth = progressLength.length>2?progressLength.substring(0,progressLength.length-2)*1:0;
+      const progressLength = this.$refs.inner.style.width;
+      this.touchState.progessWidth =
+        progressLength.length > 2
+          ? progressLength.substring(0, progressLength.length - 2) * 1
+          : 0;
     },
     btnOnTouchMove(e) {
       //debugger;
       if (!this.touchState.isInit) {
         return;
       }
-      const offSetX =  e.touches[0].pageX - this.touchState.startX;
-      const barWidth=window.innerWidth * 0.7;
+      const offSetX = e.touches[0].pageX - this.touchState.startX;
+      const barWidth = window.innerWidth * 0.7;
       const progressWidth = Math.min(
         barWidth,
         Math.max(0, this.touchState.progessWidth + offSetX)
       );
-      this.touchState.finalRatio=progressWidth/barWidth;
+      this.touchState.finalRatio = progressWidth / barWidth;
       this.setOffSetWidth(progressWidth);
     },
     btnOnTouchEnd(e) {
       this.touchState.isInit = false;
-      this.$emit('barOnChange',this.touchState.finalRatio);
+      this.$emit("barOnChange", this.touchState.finalRatio);
     },
     setOffSetWidth(width) {
       this.$refs.inner.style.width = width + "px";
@@ -69,11 +71,11 @@ export default {
   },
   watch: {
     ratio(newRatio) {
-      if(!this.touchState.isInit&&newRatio>=0){
-      let currentWidth = window.innerWidth * 0.7 * newRatio - 9;
-      this.setOffSetWidth(currentWidth);
+      if (!this.touchState.isInit && newRatio >= 0) {
+        let currentWidth = window.innerWidth * 0.7 * newRatio - 9;
+        this.setOffSetWidth(currentWidth);
+      }
     }
-  }
   }
 };
 </script>
@@ -81,12 +83,12 @@ export default {
 <style lang="scss" scoped>
 .progress-bar {
   width: 100%;
-  // display: flex;
-
+  display: flex;
+  align-items: center;
   .progress-bar-wrapper {
     //display: inline-block;
     width: 70%;
-
+    height: 2px;
     margin: 0 auto;
     position: relative;
     border-radius: 50px;
@@ -108,22 +110,22 @@ export default {
 
       left: -9px;
     }
-    .rogress-bar-sttime {
-      //display: inline-block;
-      position: absolute;
-      top: -0.5rem;
-      left: -34px;
-      font-size: 0.5rem;
-      color: #fff;
-    }
-    .rogress-bar-edtime {
-      //display: inline-block;
-      position: absolute;
-      top: -0.5rem;
-      right: -34px;
-      font-size: 0.5rem;
-      color: #fff;
-    }
+  }
+  .rogress-bar-sttime {
+    //display: inline-block;
+
+    font-size: 0.5rem;
+    color: #fff;
+    position: absolute;
+    left: 1.6rem;
+  }
+  .rogress-bar-edtime {
+    //display: inline-block;
+
+    font-size: 0.5rem;
+    color: #fff;
+    position: absolute;
+    right: 1.6rem;
   }
 }
 </style>
