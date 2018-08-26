@@ -31,7 +31,7 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
 import MHeader from "base/MHeader";
 import { prefixStyle } from "common/js/dom";
-import ProgressBar from "base/progressBar";
+import ProgressBar from "base/ProgressBar";
 // import Grade from 'grade-js'
 const transform = prefixStyle("transform");
 
