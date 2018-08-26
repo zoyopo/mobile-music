@@ -111,7 +111,7 @@ export default {
     .rogress-bar-sttime {
       //display: inline-block;
       position: absolute;
-      top: -8px;
+      top: -0.5rem;
       left: -34px;
       font-size: 0.5rem;
       color: #fff;
@@ -119,7 +119,7 @@ export default {
     .rogress-bar-edtime {
       //display: inline-block;
       position: absolute;
-      top: -8px;
+      top: -0.5rem;
       right: -34px;
       font-size: 0.5rem;
       color: #fff;
