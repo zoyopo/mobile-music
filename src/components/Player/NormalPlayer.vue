@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="normal-player-option"></div>
-      <div class="normal-player-progress"></div>
+      <progress-bar @barOnChange="barOnChange" class="progress-bar-outer" :ratio="ratio" :sttime="sttime" :edtime="edtime"></progress-bar>
       <div class="normal-player-operation bottom">
         <div v-for="(item,index) in playerIcon" :key="index" @click="operate(index)"><img :src="item" alt=""></div>
 
@@ -31,13 +31,14 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
 import MHeader from "base/MHeader";
 import { prefixStyle } from "common/js/dom";
-
+import ProgressBar from "base/progressBar";
 // import Grade from 'grade-js'
 const transform = prefixStyle("transform");
 
 export default {
   components: {
-    MHeader
+    MHeader,
+    ProgressBar
   },
   data() {
     return {
@@ -57,6 +58,24 @@ export default {
     }
   },
   methods: {
+    barOnChange(finalRatio) {
+      //debugger
+      this.$parent.$refs.miniPlayer.$refs.audio.currentTime=this.playTime/1000*finalRatio;
+    },
+    format(totalSecond) {
+      totalSecond = totalSecond | 0;
+      const minute = (totalSecond / 60) | 0;
+      const second = this.pad(totalSecond % 60);
+      return `${minute}:${second}`;
+    },
+    pad(num, count = 2) {
+      let numStrLength = num.toString().length;
+      while (numStrLength < count) {
+        num = "0" + num;
+        numStrLength++;
+      }
+      return num;
+    },
     operate(index) {
       let currrentIndex = 0;
       if (index === 2) {
@@ -89,23 +108,6 @@ export default {
         this.setSongReady(false);
         return;
       }
-      // debugger
-      // switch (index) {
-      //   case 2:
-
-      //     break;
-      //   case 1:
-      //     let index = this.currentIndex - 1;
-      //     let song = this.playList[index];
-      //     this.nextOrPrevious(song, index);
-      //     break;
-      //   case 3:
-      //   debugger
-      //     let _index = this.currentIndex + 1;
-      //     let _song = this.playList[index];
-      //     this.nextOrPrevious(_song, _index);
-      //     break;
-      // }
     },
     back() {
       this.setFullScreen(false);
@@ -157,7 +159,7 @@ export default {
       const paddingLeft = 4.8;
       const paddingBottom = (64 - targetwidth) / 2;
       const headerHeight = 49;
-      const height = window.innerHeight * 0.8 * 0.5;
+      const height = window.innerHeight * 0.6 * 0.5;
 
       const width = window.innerWidth * 0.6;
       const scale = targetwidth / width;
@@ -185,9 +187,31 @@ export default {
       "playList",
       "songIsReady"
     ]),
+    sttime() {
+      return this.format(this.currentTime);
+    },
+    edtime() {
+      return this.format(this.playTime / 1000);
+    },
+    playTime() {
+      let music =
+        this.currentSong.hMusic ||
+        this.currentSong.bMusic ||
+        this.currentSong.lMusic ||
+        this.currentSong.mMusic;
+      if (music) {
+        return music.playTime;
+      } else {
+        return 1;
+      }
+    },
+    ratio() {
+      return this.currentTime / (this.playTime / 1000);
+    },
     backgroundUrl() {
       return this.currentSong.album.blurPicUrl || "../static/img/no-pic.png";
     },
+
     cdCls() {
       return this.playing ? "play" : "play pause";
     },
@@ -215,7 +239,6 @@ export default {
 <style lang="scss" scoped>
 .normal-player {
   background: #cfd0c6;
-
   width: 100%;
   height: 100%;
   .mask {
@@ -264,6 +287,10 @@ export default {
   }
 
   .normal-player-option {
+  }
+  .progress-bar-outer {
+    bottom: 10rem;
+    position: absolute;
   }
   .normal-player-progress {
   }
