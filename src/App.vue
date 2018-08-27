@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Skeleton from "base/Skeleton";
+
 import MiniPlayer from "components/Player/MiniPlayer";
 import NormalPlayer from "components/Player/NormalPlayer";
 import Loading from "base/Loading";
@@ -25,9 +25,7 @@ export default {
     NormalPlayer,
     Loading
   },
-  components: {
-    Skeleton
-  },
+ 
   mounted() {
     window.addEventListener("resize", this.refreshRem);
   },

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {debounce} from 'common/js/util'
 import store from '@/store/index.js'
+import {notLoadingUrl} from 'api/urls'
 import {SET_REQUEST_END} from '@/store/mutation-types'
 class Api {
   axios () {
@@ -10,7 +11,13 @@ class Api {
 
     axios.interceptors.request.use(function (config) {
       // Do something before request is sent
-      store.commit(SET_REQUEST_END, false) // 请求时加载loading
+      // debugger
+      // 为某些url不加loading
+      if (notLoadingUrl.indexOf(config.url) < 0) {
+      // 请求时加载loading
+          // debugger
+        store.commit(SET_REQUEST_END, false)
+      }
       config.params = Object.assign({
         xhrFields: '{ withCredentials: true }'
       }, config.params)

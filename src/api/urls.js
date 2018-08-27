@@ -11,7 +11,10 @@ const recomend = {
 const songsheet = {
   sheetdetail: '/playlist/detail'
 }
+
+const notLoadingUrl = ['/playlist/catlist', '/playlist/hot', '/top/playlist', '/personalized', '/banner', '/personalized/privatecontent', '/personalized/newsong']
 module.exports = {
   recomend: recomend,
-  songsheet: songsheet
+  songsheet: songsheet,
+  notLoadingUrl: notLoadingUrl
 }

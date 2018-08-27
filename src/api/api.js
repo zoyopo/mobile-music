@@ -44,12 +44,12 @@ export function getSongSheetsData (params, apiNames) {
     tagData: axios.get(recomend.hotplaylist),
     songCategoriesData: axios.get(recomend.catlist) // 歌单分类
   }
-  apiNames = apiNames || ['playlistData', 'tagData', 'songCategoriesData']
+  apiNames = apiNames || ['playlistData']
   let arr = apiNames.map(item => api[item])
   return axios.all(arr).then(
     // debugger
-    axios.spread(function (playlistData, tagData, songCategoriesData) {
-      return Promise.resolve([playlistData, tagData, songCategoriesData])
+    axios.spread(function (playlistData) {
+      return Promise.resolve([playlistData])
     })).catch(err => {
       return Promise.reject(err)
     })
