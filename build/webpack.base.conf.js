@@ -4,7 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const vuxLoader = require('vux-loader')
-
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -106,6 +106,12 @@ module.exports = vuxLoader.merge(webpackConfig, {
           }
         }
       }
-    }
+    },
+    new PrerenderSpaPlugin(
+      // Absolute path to compiled SPA
+      path.join(__dirname, '../dist'),
+      // List of routes to prerender
+      ['/']
+    )
   ]
 })

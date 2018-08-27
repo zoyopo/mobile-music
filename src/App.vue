@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
-    <Loading></Loading>
-    <normal-player class="normal-player" :currentTime="currentTime"></normal-player>
-    <mini-player class="mini-player" ref="miniPlayer"></mini-player>
-
-  </div>
+    <!-- <Skeleton v-if="!requestEnd"></Skeleton>
+    <div v-else> -->
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+      <Loading></Loading>
+      <normal-player class="normal-player" :currentTime="currentTime"></normal-player>
+      <mini-player class="mini-player" ref="miniPlayer"></mini-player>
+    </div>
+  <!-- </div> -->
 </template>
 
 <script>
+import Skeleton from "base/Skeleton";
 import MiniPlayer from "components/Player/MiniPlayer";
 import NormalPlayer from "components/Player/NormalPlayer";
 import Loading from "base/Loading";
@@ -22,16 +25,8 @@ export default {
     NormalPlayer,
     Loading
   },
-  created() {
-    // let currentSong={
-    //   name:'I Hate U, I Love U',
-    //   singer:`gnash/Olivia O'Brien`,
-    //   album:{
-    //     blurPicUrl:"http://p1.music.126.net/1Cg_SfvPnVLJm5_6JDdbzg==/18633423557738147.jpg"
-    //   },
-    //   id:2369438970
-    // }
-    // this.setCurrentSong(currentSong)
+  components: {
+    Skeleton
   },
   mounted() {
     window.addEventListener("resize", this.refreshRem);
@@ -45,9 +40,7 @@ export default {
     }
   },
   data() {
-    return {
-     
-    };
+    return {};
   },
   //2369438970
   methods: {
@@ -56,12 +49,11 @@ export default {
     })
   },
   computed: {
-    ...mapGetters(["playList"]),
+    ...mapGetters(["playList", "requestEnd"]),
     currentTime() {
-      if (this.playList.length>0) {
+      if (this.playList.length > 0) {
         return this.$refs.miniPlayer.currentTime;
-      }else{
-        
+      } else {
       }
     }
   }
