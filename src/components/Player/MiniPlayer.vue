@@ -14,7 +14,7 @@
         <div class="player-list">
           <img :src="listIcon" alt="">
         </div>
-        <audio ref="audio" @canplay="ready" @end="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`"></audio>
+        <audio ref="audio" @canplay="ready" @ended="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`"></audio>
       </div>
 
     </transition>
@@ -31,13 +31,24 @@ export default {
     return {
       listIcon: require("../../assets/player/music list_black.png"),
       playIcon: "../static/img/music_play_black.png",
-      currentTime:0
+      currentTime: 0
     };
   },
   mounted() {},
 
- 
   methods: {
+    next() {
+      if (!this.songIsReady) {
+        return;
+      }
+      //debugger
+      let currrentIndex = this.currentIndex + 1;
+      if (currrentIndex === this.playList.length) {
+        currrentIndex = 0;
+      }
+      this.setCurrentIndex(currrentIndex);
+      this.setSongReady(false);
+    },
     play() {
       this.setPlayState(!this.playing);
     },
@@ -49,33 +60,50 @@ export default {
       this.setSongReady(true);
     },
     end() {
-      this.setPlayState(!this.playing);
+      if (this.playerMode === 1) {
+        this.$refs.audio.currentTime = 0;
+        this.$refs.audio.play();
+      } else {
+        this.next();
+      }
     },
     error() {
       this.setSongReady(true);
     },
     updateTime(e) {
       //debugger
-      this.currentTime=e.target.currentTime;
+      this.currentTime = e.target.currentTime;
     },
     ...mapMutations({
       setFullScreen: "SET_FULL_SCREEN",
       setPlayState: "SET_PLAYING_STATE",
       setCurrentSong: "SET_CURRENT_SONG",
+      setSongReady: "SET_SONG_READY",
+      setCurrentIndex: "SET_CURRENT_INDEX",
       setSongReady: "SET_SONG_READY"
-      // setCurrentTime: "SET_CURRENT_TIME"
     })
   },
   computed: {
     ...mapGetters([
       "fullScreen",
       "playing",
-      "currentSong",
       "currentIndex",
-      "playList"
+      "playList",
+      "songIsReady",
+      "playerMode",
+      "songSequence"
     ]),
     cdCls() {
       return this.playing ? "play" : "play pause";
+    },
+    currentSong() {
+      //debugger
+      let song =this.playerMode===0?this.songSequence[this.currentIndex]:this.playList[this.currentIndex];
+      if(song){
+        //debugger
+      this.setCurrentSong(song);
+      }
+      return song;
     }
   },
   watch: {
@@ -88,8 +116,11 @@ export default {
       });
     },
 
-    currentIndex(val) {
-      this.setCurrentSong(this.playList[val]);
+    currentSong(oldVal, val) {
+      //debugger
+      if (val&&oldVal.id === val.id) {
+        return;
+      }
       this.setPlayState(true);
       this.$nextTick(() => {
         this.$refs.audio.play();

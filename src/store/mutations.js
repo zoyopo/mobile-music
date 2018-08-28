@@ -36,10 +36,14 @@ const mutations = {
   },
   [types.SET_SONG_READY] (state, isReady) {
     state.songIsReady = isReady
+  },
+  [types.SET_SONG_SEQUENCE] (state, sequence) {
+    state.songSequence = sequence
+  },
+
+  [types.SET_PLAYER_MODE] (state, playerMode) {
+    state.playerMode = playerMode
   }
-  // [types.SET_CURRENT_TIME] (state, currentTime) {
-  //   state.songIsReady = currentTime
-  // }
 
 }
 

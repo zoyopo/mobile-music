@@ -13,8 +13,9 @@ const state = {
   currentIndex: 0,
   playing: false,
   requestEnd: false,
-  songIsReady: false
-  // currentTime: 0
+  songIsReady: false,
+  playerMode: 0,
+  songSequence: []
 }
 
 export default state

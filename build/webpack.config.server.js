@@ -6,7 +6,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-  mode: 'none',
+ 
   target: 'node',
   entry: path.join(__dirname, '../src/skeleton.entry.js'),
   output: {

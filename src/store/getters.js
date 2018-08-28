@@ -23,4 +23,8 @@ export const requestEnd = state => state.requestEnd
 
 export const songIsReady = state => state.songIsReady
 
+export const playerMode = state => state.playerMode
+
+export const songSequence = state => state.songSequence
+
 // export const currentTime = state => state.currentTime

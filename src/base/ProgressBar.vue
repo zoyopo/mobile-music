@@ -95,7 +95,7 @@ export default {
     background-color: #a59c9c;
     .progress-bar-inner {
       background: #fff;
-      height: 1px;
+      height: 2px;
       width: 0px;
     }
     .progress-bar-btn {

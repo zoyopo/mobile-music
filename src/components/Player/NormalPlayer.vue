@@ -18,7 +18,7 @@
       <div class="normal-player-option"></div>
       <progress-bar @barOnChange="barOnChange" class="progress-bar-outer" :ratio="ratio" :sttime="sttime" :edtime="edtime"></progress-bar>
       <div class="normal-player-operation bottom">
-        <div v-for="(item,index) in playerIcon" :key="index" @click="operate(index)"><img :src="item" alt=""></div>
+        <div v-for="(item,index) in playerIcon" :key="index" @click="operate(index)"><img :src="item" alt="" :style="index===2?'width:60%':''"></div>
 
       </div>
     </div>
@@ -34,7 +34,8 @@ import { prefixStyle } from "common/js/dom";
 import ProgressBar from "base/ProgressBar";
 // import Grade from 'grade-js'
 const transform = prefixStyle("transform");
-
+import { playMode } from "common/js/config";
+import { shuffle } from "common/js/util";
 export default {
   components: {
     MHeader,
@@ -43,7 +44,7 @@ export default {
   data() {
     return {
       playerIcon: [
-        require("../../assets/player/music_list_loop.png"),
+        require("../../assets/player/sequence.png"),
         require("../../assets/player/music_previous.png"),
         require("../../assets/player/music_play.png"),
         require("../../assets/player/music_next.png"),
@@ -60,7 +61,8 @@ export default {
   methods: {
     barOnChange(finalRatio) {
       //debugger
-      this.$parent.$refs.miniPlayer.$refs.audio.currentTime=this.playTime/1000*finalRatio;
+      this.$parent.$refs.miniPlayer.$refs.audio.currentTime =
+        this.playTime / 1000 * finalRatio;
     },
     format(totalSecond) {
       totalSecond = totalSecond | 0;
@@ -78,6 +80,29 @@ export default {
     },
     operate(index) {
       let currrentIndex = 0;
+      if (index == 0) {
+        let mode = (this.playerMode + 1) % 3;
+        this.setPlayerMode(mode);
+        let imgName = playMode[mode.toString()];
+        //debugger
+        this.playerIcon[0] = require(`../../assets/player/${imgName}.png`);
+
+        if (imgName === "random") {
+          let newPlayList = shuffle(this.songSequence);
+          this.setPlayList(newPlayList);
+          let currentIndex = newPlayList.findIndex(item => {
+            return item.id == this.currentSong.id;
+          });
+          this.setCurrentIndex(currentIndex);
+        } 
+        else if (imgName === "sequence") {
+         let seqIndex=  this.songSequence.findIndex(item => {
+            return item.id == this.currentSong.id;
+          });
+          this.setCurrentIndex(seqIndex);
+        }
+      }
+
       if (index === 2) {
         this.setPlayState(!this.playing);
         return;
@@ -175,7 +200,9 @@ export default {
       setFullScreen: "SET_FULL_SCREEN",
       setPlayState: "SET_PLAYING_STATE",
       setCurrentIndex: "SET_CURRENT_INDEX",
-      setSongReady: "SET_SONG_READY"
+      setSongReady: "SET_SONG_READY",
+      setPlayerMode: "SET_PLAYER_MODE",
+      setPlayList: "SET_PLAY_LIST"
     })
   },
   computed: {
@@ -185,7 +212,9 @@ export default {
       "currentSong",
       "currentIndex",
       "playList",
-      "songIsReady"
+      "songIsReady",
+      "playerMode",
+      "songSequence"
     ]),
     sttime() {
       return this.format(this.currentTime);
@@ -298,6 +327,7 @@ export default {
     display: flex;
     text-align: center;
     position: absolute;
+    align-items: center;
     bottom: 3rem;
     div {
       width: 20%;
