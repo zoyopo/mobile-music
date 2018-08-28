@@ -2,10 +2,10 @@
   <div class="player" v-if="playList.length>0" v-show="!fullScreen" @click="open">
     <transition name="mini">
       <div class="mini-player">
-        <div class="player-pic"><img :src="currentSong.album.blurPicUrl||'../static/img/no-pic.png'" alt=""></div>
+        <div class="player-pic"><img :src="_currentSong.album.blurPicUrl||'../static/img/no-pic.png'" alt=""></div>
         <div class="music-content">
-          <div class="music-content-name">{{currentSong.name||"暂无歌曲"}}</div>
-          <div class="music-content-artist">{{currentSong.singer||"暂无歌者"}}</div>
+          <div class="music-content-name">{{_currentSong.name||"暂无歌曲"}}</div>
+          <div class="music-content-artist">{{_currentSong.singer||"暂无歌者"}}</div>
         </div>
         <div class="player-play">
           <!-- <i class="fa fa-play-circle-o play-icon"></i> -->
@@ -14,7 +14,7 @@
         <div class="player-list">
           <img :src="listIcon" alt="">
         </div>
-        <audio ref="audio" @canplay="ready" @ended="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${currentSong.id}.mp3`"></audio>
+        <audio ref="audio" @canplay="ready" @ended="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${_currentSong.id}.mp3`"></audio>
       </div>
 
     </transition>
@@ -91,17 +91,21 @@ export default {
       "playList",
       "songIsReady",
       "playerMode",
-      "songSequence"
+      "songSequence",
+      "currentSong"
     ]),
     cdCls() {
       return this.playing ? "play" : "play pause";
     },
-    currentSong() {
+    _currentSong() {
       //debugger
-      let song =this.playerMode===0?this.songSequence[this.currentIndex]:this.playList[this.currentIndex];
-      if(song){
+      let song =
+        this.playerMode === 0
+          ? this.songSequence[this.currentIndex]
+          :this.playerMode === 2? this.playList[this.currentIndex]:this.currentSong;
+      if (song) {
         //debugger
-      this.setCurrentSong(song);
+        this.setCurrentSong(song);
       }
       return song;
     }
@@ -116,9 +120,9 @@ export default {
       });
     },
 
-    currentSong(oldVal, val) {
+    _currentSong(oldVal, val) {
       //debugger
-      if (val&&oldVal.id === val.id) {
+      if (val && oldVal.id === val.id) {
         return;
       }
       this.setPlayState(true);

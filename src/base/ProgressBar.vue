@@ -70,6 +70,7 @@ export default {
     }
   },
   watch: {
+    // 百分比变化使得小球，进度条变化
     ratio(newRatio) {
       if (!this.touchState.isInit && newRatio >= 0) {
         let currentWidth = window.innerWidth * 0.7 * newRatio - 9;

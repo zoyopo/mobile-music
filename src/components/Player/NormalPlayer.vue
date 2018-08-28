@@ -94,9 +94,8 @@ export default {
             return item.id == this.currentSong.id;
           });
           this.setCurrentIndex(currentIndex);
-        } 
-        else if (imgName === "sequence") {
-         let seqIndex=  this.songSequence.findIndex(item => {
+        } else if (imgName === "sequence") {
+          let seqIndex = this.songSequence.findIndex(item => {
             return item.id == this.currentSong.id;
           });
           this.setCurrentIndex(seqIndex);
@@ -111,7 +110,12 @@ export default {
         if (!this.songIsReady) {
           return;
         }
-        currrentIndex = this.currentIndex - 1;
+        if (this.playerMode === 1) {
+          this.$parent.$refs.miniPlayer.$refs.audio.currentTime=0;
+          currrentIndex = this.currentIndex;
+        } else {
+          currrentIndex = this.currentIndex - 1;
+        }
 
         if (currrentIndex === -1) {
           currrentIndex = this.playList.length - 1;
@@ -124,9 +128,15 @@ export default {
         if (!this.songIsReady) {
           return;
         }
-        //debugger
-        currrentIndex = this.currentIndex + 1;
+        // debugger
+        if (this.playerMode === 1) {
+           this.$parent.$refs.miniPlayer.$refs.audio.currentTime=0;
+           currrentIndex = this.currentIndex;
+        } else {
+          currrentIndex = this.currentIndex + 1;
+        }
         if (currrentIndex === this.playList.length) {
+          //debugger
           currrentIndex = 0;
         }
         this.setCurrentIndex(currrentIndex);
@@ -321,8 +331,7 @@ export default {
     bottom: 10rem;
     position: absolute;
   }
-  .normal-player-progress {
-  }
+
   .bottom {
     display: flex;
     text-align: center;
