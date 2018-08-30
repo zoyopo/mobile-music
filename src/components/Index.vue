@@ -10,7 +10,7 @@
             <div class="main">
                 <x-header>
                     <div slot="overwrite-left">
-                        <i class="fa fa-reorder" @click="showDrawer"></i>
+                        <i :class="headerIcon" @click="showDrawer"></i>
                     </div>
                     <!--title区域-->
                     <span class="title-icon">
@@ -24,7 +24,7 @@
                 </x-header>
                 <tab>
                     <tab-item selected @on-item-click="onItemClick">推荐</tab-item>
-                    <tab-item @on-item-click="onItemClick">我的</tab-item>
+                    <tab-item @on-item-click="onItemClick">朋友</tab-item>
                     <tab-item @on-item-click="onItemClick">电台</tab-item>
                 </tab>
                 <router-view></router-view>
@@ -39,7 +39,7 @@ import { Drawer } from "vux";
 import { XHeader } from "vux";
 import { Tab, TabItem } from "vux";
 import Menu from "components/Index/Menu";
-
+import {mapGetters} from 'vuex'
 export default {
   name: "index",
   components: {
@@ -61,12 +61,27 @@ export default {
   },
   methods: {
     showDrawer() {
-      console.log("click show drawer");
+      //console.log("click show drawer");
+      if(Object.keys(this.userInfo).length>0){
       this.drawerVisibility = true;
+      }else{
+        //todo login... 
+      }
     },
     onItemClick(index) {
       console.log("on item click:", index);
     }
+  },
+  computed:{
+
+   headerIcon(){
+     const hasLogin=Object.keys(this.userInfo).length>0;
+     return hasLogin?'fa fa-reorder':'fa fa-user-o'
+
+   }, 
+
+    ...mapGetters(['userInfo'])
+
   }
 };
 </script>
@@ -84,6 +99,11 @@ export default {
   .fa-reorder {
     font-size: 2rem;
     vertical-align: middle;
+  }
+  .fa-user-o{
+    font-size: 2rem;
+    vertical-align: middle;
+    color: #ddd;
   }
   .right {
     font-size: 2rem;
