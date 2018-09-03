@@ -19,5 +19,5 @@
 
 * vue-lazyLoad
 
-* <a href='https://github.com/Binaryify/NeteaseCloudMusicApi'>NeteaseCloudMusicApi</a>
+* NeteaseCloudMusicApi
 
