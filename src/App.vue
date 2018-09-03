@@ -2,18 +2,21 @@
   <div id="app">
     <!-- <Skeleton v-if="!requestEnd"></Skeleton>
     <div v-else> -->
+    <transition name="slide">
       <keep-alive>
+
         <router-view></router-view>
+
       </keep-alive>
-      <Loading></Loading>
-      <normal-player class="normal-player" :currentTime="currentTime"></normal-player>
-      <mini-player class="mini-player" ref="miniPlayer"></mini-player>
-    </div>
+    </transition>
+    <Loading></Loading>
+    <normal-player class="normal-player" :currentTime="currentTime"></normal-player>
+    <mini-player class="mini-player" ref="miniPlayer"></mini-player>
+  </div>
   <!-- </div> -->
 </template>
 
 <script>
-
 import MiniPlayer from "components/Player/MiniPlayer";
 import NormalPlayer from "components/Player/NormalPlayer";
 import Loading from "base/Loading";
@@ -25,7 +28,7 @@ export default {
     NormalPlayer,
     Loading
   },
- 
+
   mounted() {
     window.addEventListener("resize", this.refreshRem);
   },
@@ -86,6 +89,14 @@ html {
       }
     }
   }
+}
+.slide-enter-active,
+.slide-leave-active {
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translate3d(100%, 0, 0);
 }
 </style>
 

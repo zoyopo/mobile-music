@@ -66,6 +66,7 @@ export default {
       this.drawerVisibility = true;
       }else{
         //todo login... 
+        this.$router.push('/login')
       }
     },
     onItemClick(index) {

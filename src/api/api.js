@@ -1,6 +1,7 @@
 
 import Api from './base'
-import {recomend, songsheet} from './urls'
+import {recomend, songsheet, login} from './urls'
+
 // var api = Api.axios()
 const axios = Api.axios()
 export function getFirstScreenData (apiNames) {
@@ -17,19 +18,6 @@ export function getFirstScreenData (apiNames) {
     axios.spread(function (personalized, banner, privateContent, newsongs) {
       return Promise.resolve([ personalized, banner, privateContent, newsongs ])
     })).catch(err => {
-      return Promise.reject(err)
-    })
-}
-
-export function getPlayList (userId) {
-  return axios
-    .get('/user/playlist', {
-      params: {
-        uid: userId
-      }
-    }).then(res => {
-      return Promise.resolve(res)
-    }).catch(err => {
       return Promise.reject(err)
     })
 }
@@ -63,7 +51,33 @@ export function getSheetDetail (id) {
       // debugger
       return Promise.resolve(res.data.result)
     } else {
-      return Promise.reject('获取数据出错')
+      return Promise.reject(new Error('获取数据出错'))
     }
-  }).catch(err => Promise.reject(err))
+  })
+}
+
+export function loginRequest (loginInfo) {
+  return axios.get(login.loginRequest, {
+    params: loginInfo
+  }).then(res => {
+    if (res && res.data.code === 200) {
+      return Promise.resolve(res.data)
+    } else {
+      return Promise.reject(new Error('获取数据出错'))
+    }
+  })
+}
+
+export function getUserPlayList (accountId) {
+  return axios.get(recomend.playlist, {
+    params: {
+      uid: accountId
+    }
+  }).then(res => {
+    if (res && res.data.code === 200) {
+      return Promise.resolve(res.data.playlist)
+    } else {
+      return Promise.reject(new Error('获取数据出错'))
+    }
+  })
 }

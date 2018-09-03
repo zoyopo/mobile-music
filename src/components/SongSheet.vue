@@ -1,6 +1,6 @@
 <!--歌单-->
 <template>
-  <transition name="slide">
+  
     <div class="song-sheet">
       <!--头部-->
       <div class='header'>
@@ -51,7 +51,7 @@
       </main>
 
     </div>
-  </transition>
+  <!-- </transition> -->
 </template>
 
 <script>
@@ -255,13 +255,6 @@ export default {
     }
   }
 }
-.slide-enter-active,
-.slide-leave-active {
-  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-}
-.slide-enter,
-.slide-leave-to {
-  transform: translate3d(100%, 0, 0);
-}
+
 </style>
 

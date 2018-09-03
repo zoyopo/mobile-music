@@ -12,9 +12,13 @@ const songsheet = {
   sheetdetail: '/playlist/detail'
 }
 
+const login = {
+  loginRequest: '/login/cellphone'
+}
 const notLoadingUrl = ['/playlist/catlist', '/playlist/hot', '/top/playlist', '/personalized', '/banner', '/personalized/privatecontent', '/personalized/newsong']
 module.exports = {
   recomend: recomend,
   songsheet: songsheet,
-  notLoadingUrl: notLoadingUrl
+  notLoadingUrl: notLoadingUrl,
+  login: login
 }
