@@ -60,8 +60,10 @@ export default {
       this.touchState.finalRatio = progressWidth / barWidth;
       this.setOffSetWidth(progressWidth);
     },
+    
     btnOnTouchEnd(e) {
       this.touchState.isInit = false;
+      //将比例传给父页面，改变歌曲进度
       this.$emit("barOnChange", this.touchState.finalRatio);
     },
     setOffSetWidth(width) {
