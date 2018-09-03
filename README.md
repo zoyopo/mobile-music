@@ -1,21 +1,23 @@
-# cloud-music-for-mobile
+### 项目介绍
 
->  cloud-music-for-mobile
+> 网易云音乐接口+vue全家桶开发一款移动端音乐webApp
+> 项目还在develop中，感兴趣想要参与的小伙伴可以私我，最新版本是在dev分支下面
 
-## Build Setup
+### 详细信息
 
-``` bash
-# install dependencies
-npm install
+* <a href='http://u-to-world.com:8080/static/index.html#/'>线上地址</a>
 
-# serve with hot reload at localhost:8080
-npm run dev
+### 感谢
 
-# build for production with minification
-npm run build
+* vue
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+* vuex
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+* vue-router
+
+* vux
+
+* vue-lazyLoad
+
+* <a href='https://github.com/Binaryify/NeteaseCloudMusicApi'>NeteaseCloudMusicApi</a>
+
