@@ -22,13 +22,14 @@ export default {
 
 <style lang="scss" scoped>
 .circle {
-  display: inline-block;
-  width: 26px;
-  // border:solid 1px;
-  //border-radius: 50%;
-  border-radius: 50%;
-  padding: 20%;
-  background: #94c540;
+    display: inline-block;
+    width: 42px;
+    border-radius: 50%;
+    padding: 12%;
+    background: #b0d86b;
+    i{
+      font-size: 26px;
+    }
 }
 
 .wrapper{

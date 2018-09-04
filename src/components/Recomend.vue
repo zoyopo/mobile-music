@@ -67,10 +67,10 @@ export default {
       // its initial state.
       // msg: "Hello World!",
       icons: [
-        { name: "fa fa-book", text: "私人FM" },
-        { name: "fa fa-book", text: "每日推荐" },
-        { name: "fa fa-book", text: "歌单" },
-        { name: "fa fa-book", text: "排行榜" }
+        { name: "iconfont icon-FM", text: "私人FM" },
+        { name: "iconfont icon-meirituijian-", text: "每日推荐" },
+        { name: "iconfont icon-yinle1", text: "歌单" },
+        { name: "iconfont icon-paihangbang", text: "排行榜" }
       ],
       loop: true,
       autoPlay: true,
@@ -139,6 +139,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 // 播放器出现，高度重新设置
 .playerRstHeight{
   height:calc(100% - 155px)!important;

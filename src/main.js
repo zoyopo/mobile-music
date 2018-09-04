@@ -20,7 +20,7 @@ import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: '../static/img/no-pic.png',
-  // loading: '../static/img/loading.gif',
+  loading: require('./assets/imgLoading.png'),
   attempt: 1
 })
 FastClick.attach(document.body)

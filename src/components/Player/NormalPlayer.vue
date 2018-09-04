@@ -11,7 +11,7 @@
           <div class="cd-wrapper" ref="cdWrapper">
 
             <img class="image" :src="backgroundUrl" ref='img' :class="cdCls">
-
+            <img :src="cdBackgroundUrl" class="bgimage">
           </div>
         </div>
       </div>
@@ -43,6 +43,7 @@ export default {
   },
   data() {
     return {
+      cdBackgroundUrl: require("../../assets/player/disc.png"),
       playerIcon: [
         require("../../assets/player/sequence.png"),
         require("../../assets/player/music_previous.png"),
@@ -61,6 +62,7 @@ export default {
   methods: {
     barOnChange(finalRatio) {
       //debugger
+      // 拖动小球=>改变音乐播放
       this.$parent.$refs.miniPlayer.$refs.audio.currentTime =
         this.playTime / 1000 * finalRatio;
     },
@@ -110,8 +112,12 @@ export default {
         if (!this.songIsReady) {
           return;
         }
+        //修正下一曲、上一曲的进度条未重置的问题
+        //this.currentTime=0;
+        //循环播放=>置位0
+  //this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
         if (this.playerMode === 1) {
-          this.$parent.$refs.miniPlayer.$refs.audio.currentTime=0;
+          this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
           currrentIndex = this.currentIndex;
         } else {
           currrentIndex = this.currentIndex - 1;
@@ -128,10 +134,12 @@ export default {
         if (!this.songIsReady) {
           return;
         }
+         //修正下一曲、上一曲的进度条未重置的问题
+       // this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
         // debugger
         if (this.playerMode === 1) {
-           this.$parent.$refs.miniPlayer.$refs.audio.currentTime=0;
-           currrentIndex = this.currentIndex;
+          this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
+          currrentIndex = this.currentIndex;
         } else {
           currrentIndex = this.currentIndex + 1;
         }
@@ -310,6 +318,13 @@ export default {
         width: 60%;
         border-radius: 50%;
         border: double #9c9999 10px;
+        position: relative;
+        .bgimage {
+          position: absolute;
+          left: -3rem;
+          top: -3rem;
+          width: 140%;
+        }
         .image {
           display: block;
           width: 100%;

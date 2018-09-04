@@ -14,9 +14,9 @@
                     </div>
                     <!--title区域-->
                     <span class="title-icon">
-                        <i class="fa fa-play-circle-o"></i>
-                        <i class="fa fa-play-circle-o"></i>
-                        <i class="fa fa-play-circle-o"></i>
+                        <i class="iconfont icon-yinle"></i>
+                        <i class="iconfont icon-music"></i>
+                        <i class="iconfont icon-video"></i>
                     </span>
                     <div slot="right" class="right">
                         <i class="fa fa-search"></i>
@@ -88,6 +88,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/recommend/iconfont.scss';
 .vux-header{
   background: #9bca4f !important;
 }
@@ -132,6 +133,12 @@ export default {
     font-size: 2rem;
     vertical-align: middle;
     padding-left: 30px;
+    &:first-child{
+      font-size: 1.5rem;
+    }
+    &:last-child{
+      font-size: 1.9rem;
+    }
   }
 }
 </style>

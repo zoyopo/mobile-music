@@ -9,7 +9,7 @@
             </div>
             <div class="item-option">
                 <slot></slot>
-                <i class="fa fa-reorder"></i>
+                <i class="fa fa-play-circle-o" style="font-size:1.5rem;"></i>
             </div>
         </div>
 

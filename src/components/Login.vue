@@ -7,11 +7,13 @@
             <div class="form">
 
                 <div class="mobile">
-                    <i class="fa fa-mobile-phone"></i>&nbsp;<input v-focus class="input" type="text" v-model="loginInfo.phone" placeholder="请输入手机号" /></div>
+                    <i class="fa fa-mobile-phone"></i>&nbsp;<input class="input" type="text" v-model="loginInfo.phone" placeholder="请输入手机号" /></div>
                 <div class="key">
                     <i class="fa fa-key fa-fw"></i><input v-model="loginInfo.password" class="input" type="password" placeholder="请输入密码" /></div>
 
                 <div class="phone-login-button" @click="phoneLoginClick">登录</div>
+
+                
             </div>
         </div>
         <div class="copyright">Copyright@小笼包</div>

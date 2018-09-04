@@ -74,8 +74,12 @@ export default {
   watch: {
     // 百分比变化使得小球，进度条变化
     ratio(newRatio) {
+      //debugger
+      // if(newRatio==0){
+      //    this.$refs.inner.style.width = 0 + "px";
+      // }
       if (!this.touchState.isInit && newRatio >= 0) {
-        let currentWidth = window.innerWidth * 0.7 * newRatio - 9;
+        let currentWidth = window.innerWidth * 0.7 * newRatio;
         this.setOffSetWidth(currentWidth);
       }
     }
@@ -91,19 +95,19 @@ export default {
   .progress-bar-wrapper {
     //display: inline-block;
     width: 70%;
-    height: 2px;
+    height: 4px;
     margin: 0 auto;
     position: relative;
     border-radius: 50px;
     background-color: #a59c9c;
     .progress-bar-inner {
       background: #fff;
-      height: 2px;
+      height: 4px;
       width: 0px;
     }
     .progress-bar-btn {
-      height: 16px;
-      width: 16px;
+      height: 18px;
+      width: 18px;
       border-radius: 50%;
       position: absolute;
       border: solid 6px #9bca4f;
@@ -120,7 +124,7 @@ export default {
     font-size: 0.5rem;
     color: #fff;
     position: absolute;
-    left: 1.6rem;
+    left: 1.2rem;
   }
   .rogress-bar-edtime {
     //display: inline-block;
@@ -128,7 +132,7 @@ export default {
     font-size: 0.5rem;
     color: #fff;
     position: absolute;
-    right: 1.6rem;
+    right: 1.2rem;
   }
 }
 </style>
