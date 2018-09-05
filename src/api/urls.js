@@ -15,10 +15,15 @@ const songsheet = {
 const login = {
   loginRequest: '/login/cellphone'
 }
+
+const dailySongs = {
+  songsRequest: '/recommend/songs'
+}
 const notLoadingUrl = ['/playlist/catlist', '/playlist/hot', '/top/playlist', '/personalized', '/banner', '/personalized/privatecontent', '/personalized/newsong']
 module.exports = {
   recomend: recomend,
   songsheet: songsheet,
   notLoadingUrl: notLoadingUrl,
-  login: login
+  login: login,
+  dailySongs: dailySongs
 }

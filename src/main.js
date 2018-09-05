@@ -11,12 +11,15 @@ import store from './store'
 // const routes = [{
 //   path: '/',
 //   component: Home
-// }]
+// }]import  { ToastPlugin } from 'vux'
+// })
+import VueLazyload from 'vue-lazyload'
+import { ToastPlugin } from 'vux'
+Vue.use(ToastPlugin)
 
 // const router = new VueRouter({
 //   routes
-// })
-import VueLazyload from 'vue-lazyload'
+
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: '../static/img/no-pic.png',

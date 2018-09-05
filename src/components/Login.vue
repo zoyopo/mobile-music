@@ -1,23 +1,22 @@
 <template>
-    <div class="login">
-        <div class="logo">
-            <img src="../assets/login/music-logo.png" alt="">
-        </div>
-        <div class="form-wrapper">
-            <div class="form">
-
-                <div class="mobile">
-                    <i class="fa fa-mobile-phone"></i>&nbsp;<input class="input" type="text" v-model="loginInfo.phone" placeholder="请输入手机号" /></div>
-                <div class="key">
-                    <i class="fa fa-key fa-fw"></i><input v-model="loginInfo.password" class="input" type="password" placeholder="请输入密码" /></div>
-
-                <div class="phone-login-button" @click="phoneLoginClick">登录</div>
-
-                
-            </div>
-        </div>
-        <div class="copyright">Copyright@小笼包</div>
+  <div class="login">
+    <div class="logo">
+      <img src="../assets/login/music-logo.png" alt="">
     </div>
+    <div class="form-wrapper">
+      <div class="form">
+
+        <div class="mobile">
+          <i class="fa fa-mobile-phone"></i>&nbsp;<input class="input" type="text" v-model="loginInfo.phone" placeholder="请输入手机号" /></div>
+        <div class="key">
+          <i class="fa fa-key fa-fw"></i><input v-model="loginInfo.password" class="input" type="password" placeholder="请输入密码" /></div>
+
+        <div class="phone-login-button" @click="phoneLoginClick">登录</div>
+
+      </div>
+    </div>
+    <div class="copyright">Copyright@小笼包</div>
+  </div>
 </template>
 
 <script>
@@ -35,9 +34,17 @@ export default {
   },
   methods: {
     async phoneLoginClick() {
-      let data = await loginRequest();
-      let playList = await getUserPlayList(data.account.id);
-      thatstoreUserInfo(res.data);
+      let data = await loginRequest(this.loginInfo);
+      //let playList = await getUserPlayList(data.account.id);
+      if (Object.prototype.toString.call(data) === "[object Object]") {
+        this.storeUserInfo(data);
+        this.$vux.toast.text("登录成功", "bottom");
+        setTimeout(() => {
+          this.$router.go(-1);
+        }, 1500);
+      }else{
+         this.$vux.toast.text("登录失败", "bottom");
+      }
     },
     ...mapMutations(["storeUserInfo"])
   },
@@ -84,6 +91,7 @@ export default {
           outline: none;
           width: 85%;
           height: 2rem;
+          border:none;
         }
         margin-bottom: 1rem;
       }

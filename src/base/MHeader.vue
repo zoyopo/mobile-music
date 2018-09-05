@@ -5,10 +5,10 @@
         </div>
         <div class="header-title">
             <div class="header-title-title">{{info.title}}</div>
-            <div class="header-title-description">{{info.description}}</div>
+            <div v-if="info.description" class="header-title-description">{{info.description}}</div>
         </div>
-        <div class="header-search"><img id='header-search-icon' src="../assets/songsheet/search-sm.png" alt="暂无"></div>
-        <div class="header-share"><img id="header-share-icon" src="../assets/songsheet/Option.png" alt="暂无"></div>
+        <!-- <div class="header-search"><img id='header-search-icon' src="../assets/songsheet/search-sm.png" alt="暂无"></div>
+        <div class="header-share"><img id="header-share-icon" src="../assets/songsheet/Option.png" alt="暂无"></div> -->
     </div>
 </template>
 

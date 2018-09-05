@@ -29,7 +29,7 @@ export default {
     Loading
   },
 
-  mounted() {
+ created() {
     window.addEventListener("resize", this.refreshRem);
   },
   methods: {
