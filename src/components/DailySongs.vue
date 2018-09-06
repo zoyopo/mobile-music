@@ -34,13 +34,15 @@ export default {
     this.postionStore="";
   },
   methods: {
-    mListTm() {
+    mListTm(e) {
+      // console.log(e)
       //console.log(1)
       let listDom=this.$refs.mainList.$el;
       let picDom = this.$refs.topPic.getBoundingClientRect();
+      let topPicHeight=picDom.height;
       if (
         this.postionStore - picDom.y + 5 >=
-        window.innerHeight * 0.92 * 0.45
+        topPicHeight
       ) {
       //  if (listDom.style["overflow"] === "hidden") {
           listDom.style["overflow"] = "auto";
@@ -48,7 +50,7 @@ export default {
       } else {
         let ratio =
           (picDom.bottom - this.postionStore) /
-          (window.innerHeight * 0.92 * 0.45);
+          topPicHeight;
         this.$refs.topPic.style["opacity"] = parseFloat(ratio.toFixed(2));
        // debugger
         
