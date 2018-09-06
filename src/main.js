@@ -38,13 +38,25 @@ new Vue({
   store,
   mounted () {
     // console.log(this)
-    // window.addEventListener('resize', function () {
-    //   // debugger
-    //   let docEl = window.document.documentElement
-    //   let width = docEl.getBoundingClientRect().width
-    //   let rem = width / 10
-    //   docEl.style.fontSize = rem + 'px'
-    // })
+    window.addEventListener('DOMNodeInserted', function () {
+      // debugger
+      let docEl = window.document.documentElement
+      let width = docEl.getBoundingClientRect().width
+      let rem = width / 25
+      docEl.style.fontSize = rem + 'px'
+    }, false)
+    window.addEventListener('resize', function () {
+      // debugger
+      let docEl = window.document.documentElement
+      let width = docEl.getBoundingClientRect().width
+      let rem = width / 25
+      docEl.style.fontSize = rem + 'px'
+    }, false)
+  },
+
+  destroyed () {
+    window.removeEventListener('DOMNodeInserted')
+    window.removeEventListener('resize')
   },
   render: h => h(App)
 }).$mount('#app-box')

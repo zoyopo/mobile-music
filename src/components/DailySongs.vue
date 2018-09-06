@@ -1,13 +1,13 @@
 <template>
   <div class="dailysongs">
-    <m-header :info="info" @back="back"></m-header>
+    <m-header :info="info" @back="back" class="m-header"></m-header>
     <main>
-      <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}">
+      <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}" ref="topPic">
         <div class="main-top-tips">根据你的口味每天6：00生成</div>
         <div></div>
       </div>
-      <div class="main-list" @touchstart="mListTs" @touchend="mListTd" ref="mainList">
-        <List :list="songList" @select="selectItem"></List>
+      <div class="main-list" @touchstart="mListTs" @touchend="mListTd" ref="mainList" @touchmove="throttle(mListTm,500)()">
+        <List :list="songList" showPic='true' @select="selectItem"></List>
       </div>
     </main>
   </div>
@@ -18,21 +18,40 @@ import MHeader from "base/MHeader";
 import List from "base/List";
 import { getDailySongs } from "api/api";
 import { mapActions } from "vuex";
+import {throttle} from 'common/js/util'
+
 export default {
   data() {
     return {
-      songList: []
+      songList: [],
+      postionStore: ""
     };
   },
   created() {
     this.getDailySongs();
+    this.throttle=throttle;
   },
   methods: {
-    mListTs(){
-      this.$refs.mainList.style["overflow"]="hidden";
+    mListTm() {
+      //console.log(1)
+      let picDom = this.$refs.topPic.getBoundingClientRect();
+      if (this.postionStore - picDom.y >= window.innerHeight * 0.92 * 0.45) {
+        this.$refs.mainList.style["overflow"] = "auto";
+      } else {
+         this.$refs.topPic.style['opacity']=(picDom.bottom-this.postionStore)/(window.innerHeight * 0.92 * 0.45)
+        this.$refs.mainList.style["overflow"] = "hidden";
+      }
     },
-    mListTd(){
-       this.$refs.mainList.style["overflow"]="auto";
+    mListTs() {
+      let picDom = this.$refs.topPic.getBoundingClientRect();
+      if (this.postionStore === "") {
+        this.postionStore = picDom.y;
+      }
+     
+    },
+    mListTd() {
+     // let picDom = this.$refs.topPic.getBoundingClientRect();
+      //this.$refs.topPic.style['opacity']=(picDom.bottom-this.postionStore)/window.innerHeight * 0.92 * 0.45
     },
     back() {
       this.$router.go(-1);
@@ -79,26 +98,31 @@ export default {
 <style lang="scss" scoped>
 .dailysongs {
   height: 100%;
+  .m-header {
+    height: 8%;
+  }
   main {
     background: #ddd;
-    height: calc(100% - 56px);
+    height: 92%;
     overflow: auto;
 
     .main-top {
-      height: 18rem;
+      height: 45%;
       /* width: 100%; */
-      opacity: .8;
+      opacity: 0.8;
       background-position: center;
       background-size: cover;
       text-align: center;
       color: #fff;
+      position: relative;
       .main-top-tips {
         position: absolute;
-        top: 19rem;
-        left: 1rem;
+        top: 16.8rem;
+        left: 0.5rem;
+        font-size: 0.8rem;
       }
     }
-    .main-list{
+    .main-list {
       height: 100%;
       overflow: auto;
     }
