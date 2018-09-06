@@ -41,15 +41,20 @@ export default {
       this.mark = false;
     },
     async phoneLoginClick() {
-      let data = await loginRequest(this.loginInfo,this);
+      let data = await loginRequest(this.loginInfo, this);
       //let playList = await getUserPlayList(data.account.id);
       if (Object.prototype.toString.call(data) === "[object Object]") {
         this.storeUserInfo(data);
         this.$vux.toast.text("登录成功", "bottom");
         setTimeout(() => {
-          this.$router.go(-1);
+          // if(this.routers)
+          if (this.$route.query.backrouter) {
+            this.$router.push(this.$route.query.backrouter);
+          } else {
+            this.$router.go(-1);
+          }
         }, 1500);
-      } 
+      }
     },
     ...mapMutations(["storeUserInfo"])
   },
