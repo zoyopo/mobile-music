@@ -18,7 +18,7 @@ import MHeader from "base/MHeader";
 import List from "base/List";
 import { getDailySongs } from "api/api";
 import { mapActions } from "vuex";
-import {throttle} from 'common/js/util'
+import { throttle } from "common/js/util";
 
 export default {
   data() {
@@ -29,16 +29,24 @@ export default {
   },
   created() {
     this.getDailySongs();
-    this.throttle=throttle;
+    this.throttle = throttle;
   },
   methods: {
     mListTm() {
       //console.log(1)
       let picDom = this.$refs.topPic.getBoundingClientRect();
-      if (this.postionStore - picDom.y+1 >= window.innerHeight * 0.92 * 0.45) {
-        this.$refs.mainList.style["overflow"] = "auto";
+      if (
+        this.postionStore - picDom.y + 5 >=
+        window.innerHeight * 0.92 * 0.45
+      ) {
+        if (this.$refs.mainList.style["overflow"] === "hidden") {
+          this.$refs.mainList.style["overflow"] = "auto";
+        }
       } else {
-         this.$refs.topPic.style['opacity']=(picDom.bottom-this.postionStore)/(window.innerHeight * 0.92 * 0.45)
+        let ratio =
+          (picDom.bottom - this.postionStore) /
+          (window.innerHeight * 0.92 * 0.45);
+        this.$refs.topPic.style["opacity"] = parseFloat(ratio.toFixed(2));
         this.$refs.mainList.style["overflow"] = "hidden";
       }
     },
@@ -47,10 +55,9 @@ export default {
       if (this.postionStore === "") {
         this.postionStore = picDom.y;
       }
-     
     },
     mListTd() {
-     // let picDom = this.$refs.topPic.getBoundingClientRect();
+      // let picDom = this.$refs.topPic.getBoundingClientRect();
       //this.$refs.topPic.style['opacity']=(picDom.bottom-this.postionStore)/window.innerHeight * 0.92 * 0.45
     },
     back() {
