@@ -3,7 +3,7 @@
     <m-header :info="info" @back="back" class="m-header"></m-header>
     <main>
       <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}" ref="topPic">
-        <div class="main-top-tips">根据你的口味每天6：00生成</div>
+        <div class="main-top-tips">根据你的口味每天6:00生成</div>
         <div></div>
       </div>
       <div class="main-list" @touchstart="mListTs" @touchend="mListTd" ref="mainList" @touchmove="throttle(mListTm,500)()">
@@ -117,7 +117,7 @@ export default {
       position: relative;
       .main-top-tips {
         position: absolute;
-        top: 16.8rem;
+        bottom: 0;
         left: 0.5rem;
         font-size: 0.8rem;
       }
