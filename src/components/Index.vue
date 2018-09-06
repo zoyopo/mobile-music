@@ -14,7 +14,7 @@
                     </div>
                     <!--title区域-->
                     <span class="title-icon">
-                        <i class="iconfont icon-yinle"></i>
+                        <!-- <i class="iconfont icon-yinle"></i> -->
                         <i class="iconfont icon-music"></i>
                         <i class="iconfont icon-video"></i>
                     </span>
@@ -133,12 +133,7 @@ export default {
     font-size: 2rem;
     vertical-align: middle;
     padding-left: 30px;
-    &:first-child{
-      font-size: 1.5rem;
-    }
-    &:last-child{
-      font-size: 1.9rem;
-    }
+    font-size: 2rem;
   }
 }
 </style>

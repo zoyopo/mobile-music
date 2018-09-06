@@ -33,6 +33,12 @@ const router = new Router({
       name: 'Login',
       component: view('', 'Login'),
       meta: {requireAuth: false}
+    },
+    {
+      path: '/dailysongs',
+      name: 'dailysongs',
+      component: view('', 'DailySongs'),
+      meta: {requireAuth: true}
     }
   ]
 })

@@ -8,7 +8,7 @@ class Api {
     axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
     axios.defaults.baseURL = '//u-to-world.com:3000'
     // let axiosDate = new Date()
-
+    axios.defaults.withCredentials = true
     axios.interceptors.request.use(function (config) {
       // Do something before request is sent
       // debugger
@@ -18,9 +18,9 @@ class Api {
           // debugger
         store.commit(SET_REQUEST_END, false)
       }
-      config.params = Object.assign({
-        xhrFields: '{ withCredentials: true }'
-      }, config.params)
+      // config.params = Object.assign({
+      //   xhrFields: '{ withCredentials: true }'
+      // }, config.params)
 
       return config
     }, function (error) {

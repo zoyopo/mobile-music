@@ -29,7 +29,7 @@
           </div>
         </div>
         <!-- 操作-->
-        <div class="main-options">
+        <!-- <div class="main-options">
           <div class="main-options-icon">
             <i class="fa fa-commenting-o"></i>
           </div>
@@ -42,7 +42,7 @@
           <div class="main-options-icon">
             <i class="fa fa-check-square-o"></i>
           </div>
-        </div>
+        </div> -->
         <!-- 歌曲列表-->
         <div class="main-list">
           <List :list="songList" @select="selectItem"></List>

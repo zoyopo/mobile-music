@@ -6,7 +6,7 @@
 
       </slide>
     </div>
-    <circle-icon v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
+    <circle-icon @click.native="operate(index)"  v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
       <!--去掉第一个元素的margin-->
       <div>{{item.text}}</div>
     </circle-icon>
@@ -94,6 +94,11 @@ export default {
     ...mapGetters(['playList'])
   },
   methods: {
+     operate(index){
+     let maps=['','/dailysongs']
+     //debugger
+       this.$router.push(maps[1]);
+     }, 
     async getAllData() {
       //let vm = this;
       let res = await getFirstScreenData();

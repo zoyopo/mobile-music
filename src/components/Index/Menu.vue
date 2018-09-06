@@ -1,30 +1,19 @@
 <template>
   <div class="menu">
     <div class="menu-top">
-      <img id='menu-top-pic' v-lazy="this.userInfo.profile.backgroundUrl" alt="">
-      <img id="menu-top-avatar" v-lazy="this.userInfo.profile.avatarUrl" alt="">
+      <img id='menu-top-pic' v-lazy="getInfoByisLogin('backgroundUrl')" alt="">
+      <img id="menu-top-avatar" v-lazy="getInfoByisLogin('avatarUrl')" alt="">
       <span id="menu-top-nickname">
-        <strong>{{'欢迎你~'+this.userInfo.profile.nickname}}</strong>
+        <strong>{{'欢迎你~'+getInfoByisLogin('nickname')}}</strong>
       </span>
     </div>
     <group style="margin-top: -19px;">
-      <cell title="我的消息" value=""></cell>
-      <cell title="会员中心" value=""></cell>
-      <cell title="商城" value=""></cell>
-      <cell title="在线听歌免流量" value=""></cell>
+      <cell title="最近播放" value=""></cell>
+      <cell title="我的电台" value=""></cell>
+      <cell title="我的收藏" value=""></cell>     
     </group>
-    <group>
-      <cell title="我的消息" value=""></cell>
-      <cell title="会员中心" value=""></cell>
-      <cell title="商城" value=""></cell>
-      <cell title="在线听歌免流量" value=""></cell>
-    </group>
-    <group>
-      <cell title="我的消息" value=""></cell>
-      <cell title="会员中心" value=""></cell>
-      <cell title="商城" value=""></cell>
-      <cell title="在线听歌免流量" value=""></cell>
-    </group>
+   
+   
     <div class="menu-bottom">
       <!-- <div class="menu-bottom-item">夜间模式</div> -->
       <!-- <div class="menu-bottom-item">设置</div> -->
@@ -45,11 +34,36 @@ export default {
   },
   data() {
     return {
-      topPic: topPic
+     // topPic: topPic
     };
   },
+  methods:{
+    getInfoByisLogin(key){
+      let _property=this.isLogin?this.userInfo.profile[key]:""
+      // this.userInfo.profile.backgroundUrl:"";
+       return  _property;
+    }
+  },
   computed: {
-    ...mapGetters(["userInfo"])
+    ...mapGetters(["userInfo"]),
+    isLogin(){
+      return Object.keys(this.userInfo).length>0;
+    },
+    backgroundUrl(){
+      let bgUrl=Object.keys(this.userInfo).length>0?
+       this.userInfo.profile.backgroundUrl:"";
+       return bgUrl;
+    },
+    avatarUrl(){
+        let avUrl=Object.keys(this.userInfo).length>0?
+       this.userInfo.profile.avatarUrl:"";
+       return avUrl;
+    },
+    nickname(){
+       let nkname=Object.keys(this.userInfo).length>0?
+       this.userInfo.profile.nickname:"";
+       return nkname;
+    }
   }
 };
 </script>
