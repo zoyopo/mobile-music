@@ -7,15 +7,15 @@
       <div class="form">
 
         <div class="mobile">
-          <i class="fa fa-mobile-phone"></i>&nbsp;<input class="input" type="text" v-model="loginInfo.phone" placeholder="请输入手机号" /></div>
+          <i class="fa fa-mobile-phone"></i>&nbsp;<input class="input" type="text" v-model="loginInfo.phone" placeholder="请输入手机号" @focus="focusRst" @blur="blurRst" /></div>
         <div class="key">
-          <i class="fa fa-key fa-fw"></i><input v-model="loginInfo.password" class="input" type="password" placeholder="请输入密码" /></div>
+          <i class="fa fa-key fa-fw"></i><input v-model="loginInfo.password" class="input" type="password" placeholder="请输入密码" @focus="focusRst" @blur="blurRst" /></div>
 
         <div class="phone-login-button" @click="phoneLoginClick">登录</div>
 
       </div>
     </div>
-    <div class="copyright">Copyright@小笼包</div>
+    <div class="copyright" v-show="mark">Copyright@小笼包</div>
   </div>
 </template>
 
@@ -29,12 +29,19 @@ export default {
       loginInfo: {
         phone: "",
         password: ""
-      }
+      },
+      mark: true
     };
   },
   methods: {
+    blurRst() {
+      this.mark = true;
+    },
+    focusRst() {
+      this.mark = false;
+    },
     async phoneLoginClick() {
-      let data = await loginRequest(this.loginInfo);
+      let data = await loginRequest(this.loginInfo,this);
       //let playList = await getUserPlayList(data.account.id);
       if (Object.prototype.toString.call(data) === "[object Object]") {
         this.storeUserInfo(data);
@@ -42,9 +49,7 @@ export default {
         setTimeout(() => {
           this.$router.go(-1);
         }, 1500);
-      }else{
-         this.$vux.toast.text("登录失败", "bottom");
-      }
+      } 
     },
     ...mapMutations(["storeUserInfo"])
   },
@@ -91,7 +96,7 @@ export default {
           outline: none;
           width: 85%;
           height: 2rem;
-          border:none;
+          border: none;
         }
         margin-bottom: 1rem;
       }

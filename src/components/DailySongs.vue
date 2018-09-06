@@ -1,13 +1,16 @@
 <template>
-    <div class="dailysongs">
-        <m-header :info="info" @back="back"></m-header>
-        <main>
-          <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}"></div>
-            <div class="main-list">
-                <List :list="songList" @select="selectItem"></List>
-            </div>
-        </main>
-    </div>
+  <div class="dailysongs">
+    <m-header :info="info" @back="back"></m-header>
+    <main>
+      <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}">
+        <div class="main-top-tips">根据你的口味每天6：00生成</div>
+        <div></div>
+      </div>
+      <div class="main-list" @touchstart="mListTs" @touchend="mListTd" ref="mainList">
+        <List :list="songList" @select="selectItem"></List>
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -25,6 +28,12 @@ export default {
     this.getDailySongs();
   },
   methods: {
+    mListTs(){
+      this.$refs.mainList.style["overflow"]="hidden";
+    },
+    mListTd(){
+       this.$refs.mainList.style["overflow"]="auto";
+    },
     back() {
       this.$router.go(-1);
     },
@@ -49,9 +58,9 @@ export default {
   },
   computed: {
     backgroundUrl() {
-      return songList.length>0? 
-      this.songList[0].album.blurPicUrl 
-      : "../static/img/no-pic.png";
+      return this.songList.length > 0
+        ? this.songList[0].album.blurPicUrl
+        : "../static/img/no-pic.png";
     },
     info() {
       return {
@@ -72,8 +81,27 @@ export default {
   height: 100%;
   main {
     background: #ddd;
-    height: calc(100% - 49px);
+    height: calc(100% - 56px);
     overflow: auto;
+
+    .main-top {
+      height: 18rem;
+      /* width: 100%; */
+      opacity: .8;
+      background-position: center;
+      background-size: cover;
+      text-align: center;
+      color: #fff;
+      .main-top-tips {
+        position: absolute;
+        top: 19rem;
+        left: 1rem;
+      }
+    }
+    .main-list{
+      height: 100%;
+      overflow: auto;
+    }
   }
 }
 </style>

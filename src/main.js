@@ -14,7 +14,9 @@ import store from './store'
 // }]import  { ToastPlugin } from 'vux'
 // })
 import VueLazyload from 'vue-lazyload'
-import { ToastPlugin } from 'vux'
+import {
+  ToastPlugin
+} from 'vux'
 Vue.use(ToastPlugin)
 
 // const router = new VueRouter({
@@ -35,7 +37,14 @@ new Vue({
   router,
   store,
   mounted () {
-    console.log(this)
+    // console.log(this)
+    // window.addEventListener('resize', function () {
+    //   // debugger
+    //   let docEl = window.document.documentElement
+    //   let width = docEl.getBoundingClientRect().width
+    //   let rem = width / 10
+    //   docEl.style.fontSize = rem + 'px'
+    // })
   },
   render: h => h(App)
 }).$mount('#app-box')

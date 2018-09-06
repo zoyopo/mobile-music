@@ -30,15 +30,16 @@ export default {
   },
 
  created() {
-    window.addEventListener("resize", this.refreshRem);
+  
   },
   methods: {
-    refreshRem() {
-      let docEl = window.document.documentElement;
-      let width = docEl.getBoundingClientRect().width;
-      let rem = width / 10;
-      docEl.style.fontSize = rem + "px";
-    }
+    // refreshRem() {
+    //   debugger
+    //   let docEl = window.document.documentElement;
+    //   let width = docEl.getBoundingClientRect().width;
+    //   let rem = width / 10;
+    //   docEl.style.fontSize = rem + "px";
+    // }
   },
   data() {
     return {};

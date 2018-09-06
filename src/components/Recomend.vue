@@ -95,6 +95,7 @@ export default {
   },
   methods: {
      operate(index){
+     //  debugger
      let maps=['','/dailysongs']
      //debugger
        this.$router.push(maps[1]);

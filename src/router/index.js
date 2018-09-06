@@ -46,7 +46,7 @@ const router = new Router({
 router.beforeEach(async (to, from, next) => {
   const token = await sessionStorage.getItem('userInfo')
   // const tokenExpire = await sessionStorage.getItem('token_expire')
-
+ // debugger
   // console.log('router', to.fullPath, to.path)
   // console.log(token)
   if (token) {
