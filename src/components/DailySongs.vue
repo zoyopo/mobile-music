@@ -6,8 +6,8 @@
         <div class="main-top-tips">根据你的口味每天6:00生成</div>
         <div></div>
       </div>
-      <div class="main-list" @touchstart="mListTs" @touchend="mListTd" ref="mainList" @touchmove="mListTm">
-        <List :list="songList" :showPic="true" @select="selectItem"></List>
+      <div class="main-list" @touchstart="mListTs" @touchend="mListTd"  @touchmove="throttle(mListTm,500)()">
+        <List :list="songList" :showPic="true" @select="selectItem" ref="mainList" style="height:100%;"></List>
       </div>
     </main>
   </div>
@@ -18,36 +18,42 @@ import MHeader from "base/MHeader";
 import List from "base/List";
 import { getDailySongs } from "api/api";
 import { mapActions } from "vuex";
-// import { throttle } from "common/js/util";
+import { throttle } from "common/js/util";
+
 
 export default {
   data() {
     return {
-      songList: [],
-      postionStore: ""
+      songList: []
+     // postionStore: ""
     };
   },
   created() {
     this.getDailySongs();
     this.throttle = throttle;
+    this.postionStore="";
   },
   methods: {
     mListTm() {
       //console.log(1)
+      let listDom=this.$refs.mainList.$el;
       let picDom = this.$refs.topPic.getBoundingClientRect();
       if (
         this.postionStore - picDom.y + 5 >=
         window.innerHeight * 0.92 * 0.45
       ) {
-        if (this.$refs.mainList.style["overflow"] === "hidden") {
-          this.$refs.mainList.style["overflow"] = "auto";
-        }
+      //  if (listDom.style["overflow"] === "hidden") {
+          listDom.style["overflow"] = "auto";
+        //}
       } else {
         let ratio =
           (picDom.bottom - this.postionStore) /
           (window.innerHeight * 0.92 * 0.45);
         this.$refs.topPic.style["opacity"] = parseFloat(ratio.toFixed(2));
-        this.$refs.mainList.style["overflow"] = "hidden";
+       // debugger
+        
+          listDom.style["overflow"] = "hidden";
+        
       }
     },
     mListTs() {
@@ -131,7 +137,7 @@ export default {
     }
     .main-list {
       height: 100%;
-      overflow: auto;
+      overflow: hidden;
     }
   }
 }
