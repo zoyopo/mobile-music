@@ -6,7 +6,7 @@
         <div class="main-top-tips">根据你的口味每天6:00生成</div>
         <div></div>
       </div>
-      <div class="main-list" @touchstart="mListTs" @touchend="mListTd" ref="mainList" @touchmove="throttle(mListTm,500)()">
+      <div class="main-list" @touchstart="mListTs" @touchend="mListTd" ref="mainList" @touchmove="mListTm">
         <List :list="songList" :showPic="true" @select="selectItem"></List>
       </div>
     </main>
@@ -18,7 +18,7 @@ import MHeader from "base/MHeader";
 import List from "base/List";
 import { getDailySongs } from "api/api";
 import { mapActions } from "vuex";
-import { throttle } from "common/js/util";
+// import { throttle } from "common/js/util";
 
 export default {
   data() {
