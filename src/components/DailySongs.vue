@@ -7,7 +7,7 @@
         <div></div>
       </div>
       <div class="main-list" @touchstart="mListTs" @touchend="mListTd" ref="mainList" @touchmove="throttle(mListTm,500)()">
-        <List :list="songList" showPic='true' @select="selectItem"></List>
+        <List :list="songList" :showPic="true" @select="selectItem"></List>
       </div>
     </main>
   </div>
@@ -35,7 +35,7 @@ export default {
     mListTm() {
       //console.log(1)
       let picDom = this.$refs.topPic.getBoundingClientRect();
-      if (this.postionStore - picDom.y >= window.innerHeight * 0.92 * 0.45) {
+      if (this.postionStore - picDom.y+1 >= window.innerHeight * 0.92 * 0.45) {
         this.$refs.mainList.style["overflow"] = "auto";
       } else {
          this.$refs.topPic.style['opacity']=(picDom.bottom-this.postionStore)/(window.innerHeight * 0.92 * 0.45)
