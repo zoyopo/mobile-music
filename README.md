@@ -32,14 +32,14 @@
  新增目录如下：
 
  ---src </br>
- ------api&nbsp;&nbsp;// 放置api的目录 </br>
+ ------api&nbsp;&nbsp;&nbsp;&nbsp;// 放置api的目录 </br>
  ---------base.js&nbsp;&nbsp;  // 放置axios的一些配置，接口域名地址，以及公共参数配置，与后台约定跨域的配置，全局loading配置等 </br>
  ---------urls.js&nbsp;&nbsp;  // 放置接口url </br>
  ---------api.js&nbsp;&nbsp;   // 放置封装的promise请求 </br>
  ------base&nbsp; &nbsp;       // 放置一些基础组件 </br>
  ------common  </br>
- ---------js&nbsp;&nbsp;      // 公共js </br>
- ---------sass&nbsp;&nbsp;    // 公共样式 </br>
+ ---------js&nbsp;&nbsp;&nbsp;      // 公共js </br>
+ ---------sass&nbsp;&nbsp;&nbsp;    // 公共样式 </br>
 
 
 #### 类库使用
