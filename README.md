@@ -18,19 +18,19 @@
 效果图：
 
 <img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/skeleton.png" width='200'>
-
+**骨架屏**
 <img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/index.png"  width='200'/>
-
+**首页**
 <img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/nav.png"  width='200'/>
-
+**侧边栏**
 <img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/recommend.png"  width='200'/>
-
+**每日推荐**
 <img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/songsheet.png"  width='200'/>
-
+**歌单**
 <img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/miniplayer.png"  width='200'/>
-
+**小播放器**
 <img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/normalplayer.png"  width='200'/>
-
+**大播放器**
 
 
 ### 详细信息
