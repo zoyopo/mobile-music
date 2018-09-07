@@ -11,12 +11,23 @@ import store from './store'
 // const routes = [{
 //   path: '/',
 //   component: Home
-// }]
+// }]import  { ToastPlugin } from 'vux'
+// })
+import VueLazyload from 'vue-lazyload'
+import {
+  ToastPlugin
+} from 'vux'
+Vue.use(ToastPlugin)
 
 // const router = new VueRouter({
 //   routes
-// })
 
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: '../static/img/no-pic.png',
+  loading: require('./assets/imgLoading.png'),
+  attempt: 1
+})
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
@@ -25,5 +36,27 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  mounted () {
+    // console.log(this)
+    window.addEventListener('DOMNodeInserted', function () {
+      // debugger
+      let docEl = window.document.documentElement
+      let width = docEl.getBoundingClientRect().width
+      let rem = width / 25
+      docEl.style.fontSize = rem + 'px'
+    }, false)
+    window.addEventListener('resize', function () {
+      // debugger
+      let docEl = window.document.documentElement
+      let width = docEl.getBoundingClientRect().width
+      let rem = width / 25
+      docEl.style.fontSize = rem + 'px'
+    }, false)
+  },
+
+  destroyed () {
+    window.removeEventListener('DOMNodeInserted')
+    window.removeEventListener('resize')
+  },
   render: h => h(App)
 }).$mount('#app-box')

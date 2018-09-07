@@ -1,32 +1,40 @@
 <template>
-   <div class="circle">
-       <i :class="icon"></i>
-   </div>
+    <div class="wrapper"> 
+        <div class="circle">
+            <i :class="icon"></i>
+
+        </div>
+        <slot></slot>
+    </div>
 </template>
 
 <script>
 export default {
-
-props:{
-    icon:{
-        type:String,
-        default:"",
-        required:true
+  props: {
+    icon: {
+      type: String,
+      default: "",
+      required: true
     }
-}
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-
-.circle{
+.circle {
     display: inline-block;
-    width: 26px;
-    border:solid 1px;
-    //border-radius: 50%;
+    width: 42px;
     border-radius: 50%;
-    padding: 3%;
+    padding: 12%;
+    background: #b0d86b;
+    i{
+      font-size: 26px;
+    }
 }
 
+.wrapper{
+   width: 20%;
+    display: inline-block;
+}
 </style>
 

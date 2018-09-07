@@ -8,7 +8,22 @@ const recomend = {
   catlist: '/playlist/catlist',
   newsongs: '/personalized/newsong'
 }
+const songsheet = {
+  sheetdetail: '/playlist/detail'
+}
 
+const login = {
+  loginRequest: '/login/cellphone'
+}
+
+const dailySongs = {
+  songsRequest: '/recommend/songs'
+}
+const notLoadingUrl = ['/playlist/catlist', '/playlist/hot', '/top/playlist', '/personalized', '/banner', '/personalized/privatecontent', '/personalized/newsong']
 module.exports = {
-  recomend: recomend
+  recomend: recomend,
+  songsheet: songsheet,
+  notLoadingUrl: notLoadingUrl,
+  login: login,
+  dailySongs: dailySongs
 }

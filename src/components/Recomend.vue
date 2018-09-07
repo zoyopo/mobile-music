@@ -1,19 +1,20 @@
 <template>
 
-  <div class="vux-demo">
+  <div class="rec-content" :class="{playerRstHeight:playList.length>0}">
     <div v-if="picArray.length>0">
       <slide :loop='loop' :autoPlay='autoPlay' :picArray="picArray" :style="{'margin-top':'10px'}">
 
       </slide>
     </div>
-    <circle-icon v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
+    <circle-icon @click.native="operate(index)"  v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
       <!--去掉第一个元素的margin-->
+      <div>{{item.text}}</div>
     </circle-icon>
     <div class="song-sheets">
       <sheet-label :title="'推荐歌单'"></sheet-label>
       <grid :col=2 :cols=3>
-        <grid-item :classes="classes" label="Grid" v-for="item in contentArray" :key="item.id">
-          <img slot="icon" :src="item.picUrl">
+        <grid-item label="Grid" v-for="item in contentArray" :key="item.id" :link="{ path: `/songsheets/${item.id}`}">
+          <img slot="icon" v-lazy="item.picUrl">
           <div slot="label">{{item.name}}</div>
           <div class="right-top">
             <i class="fa fa-headphones"></i>
@@ -24,14 +25,14 @@
 
       </grid>
     </div>
-      <div class="song-sheets">
+    <div class="song-sheets">
       <sheet-label :title="'最新音乐'"></sheet-label>
       <grid :col=2 :cols=3>
-        <grid-item :classes="classes" label="Grid" v-for="item in newsongs" :key="item.id">
-          <img slot="icon" :src="item.coverImgUrl">
+        <grid-item label="Grid" v-for="item in newsongs" :key="item.id" @click.native="goToSongSheet(item.id)">
+          <img slot="icon" v-lazy="item.coverImgUrl">
           <div slot="label">{{item.name}}</div>
           <div class="right-top">
-            <i class="fa fa-headphones"></i>
+            <!-- <i class="fa fa-headphones"></i> -->
             <!-- <span>{{(item.playCount/10000).toFixed(2)+"W" }}
             </span> -->
           </div>
@@ -45,11 +46,11 @@
 <script>
 // import { Group, Cell } from 'vux'
 import Slide from "components/Index/Slider.vue";
-import { getFirstScreenData,getSongSheetsData} from "api/api.js";
+import { getFirstScreenData, getSongSheetsData } from "api/api.js";
 import { Grid, GridItem } from "vux";
 import CircleIcon from "components/Recomend/CircleIcon";
 import SheetLabel from "components/Recomend/SheetLabel";
-
+import{mapGetters, mapActions} from 'vuex'
 export default {
   components: {
     Slide,
@@ -66,10 +67,10 @@ export default {
       // its initial state.
       // msg: "Hello World!",
       icons: [
-        { name: "fa fa-book" },
-        { name: "fa fa-book" },
-        { name: "fa fa-book" },
-        { name: "fa fa-book" }
+        { name: "iconfont icon-FM", text: "私人FM" },
+        { name: "iconfont icon-meirituijian-", text: "每日推荐" },
+        { name: "iconfont icon-yinle1", text: "歌单" },
+        { name: "iconfont icon-paihangbang", text: "排行榜" }
       ],
       loop: true,
       autoPlay: true,
@@ -77,30 +78,41 @@ export default {
       videoArray: [],
       partTitle: "推荐歌单",
       contentArray: [],
-      classes: {
-        weui_grid__icon: {
-          width: "auto",
-          height: "auto"
-        }
-      },
-      newsongs:[]
+      // classes: {
+      //   weui_grid__icon: {
+      //     width: "auto",
+      //     height: "auto"
+      //   }
+      // },
+      newsongs: []
     };
   },
+   created() {
+    this.getAllData();
+  },
+  computed:{
+    ...mapGetters(['playList'])
+  },
   methods: {
+     operate(index){
+     //  debugger
+     let maps=['','/dailysongs']
+     //debugger
+       this.$router.push(maps[1]);
+     }, 
     async getAllData() {
       //let vm = this;
       let res = await getFirstScreenData();
-      let opts={
-       order:'new',
-       limit:6
-      }
-      let newsongs=await getSongSheetsData(opts,['playlistData'])
+      let opts = {
+        order: "new",
+        limit: 6
+      };
+      let newsongs = await getSongSheetsData(opts, ["playlistData"]);
       console.log(res);
-      console.log(newsongs)
-      let newsong=newsongs[0];
-      if(newsong.data.code==200){
-
-        this.newsongs=newsong.data.playlists;
+      console.log(newsongs);
+      let newsong = newsongs[0];
+      if (newsong.data.code == 200) {
+        this.newsongs = newsong.data.playlists;
       }
       //封装了获取数据的方法
       // .then(function(res) {
@@ -121,18 +133,27 @@ export default {
         });
         this.videoArray = privateContent.data.result;
       }
+    },
+    goToSongSheet(id) {
+      //this.$router.push({name:"SongSheet",params: {id}})=>这种写法无效
+      //debugger
+      this.$router.push(`/songsheets/${id}`);
     }
-    
-  },
-  mounted() {
-    this.getAllData();
   }
+ 
 };
 </script>
 
-<style lang="scss" scoped>
-.vux-demo {
+<style lang="scss">
+
+// 播放器出现，高度重新设置
+.playerRstHeight{
+  height:calc(100% - 155px)!important;
+}
+.rec-content {
   text-align: center;
+  height: calc(100% - 90px);
+  overflow: auto;
 }
 .logo {
   width: 100px;
@@ -149,10 +170,13 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.weui_grid__icon {
-  width: auto;
-  height: auto;
-  margin: 0 auto;
+.weui-grid {
+  height: 10.5rem;
+}
+.weui-grid__icon {
+  width: auto !important;
+  height: auto !important;
+  margin: 0 auto !important;
 }
 .right-top {
   position: absolute;
