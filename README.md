@@ -80,64 +80,64 @@ new Vue({
 * 隐藏显示 通过vuex进行管理
 
 * 动画 
-
+  
    1. 头部下坠和底部的上浮
 
-```
+      ```
 
- <transition name="example">
+       <transition name="example">
 
-</transition>
+      </transition>
 
-/*css 样式*/
-// 给 transition下第一个元素显示或隐藏时添加的样式
- //这两个类名都是定义开始到结束的持续时间 方式 以及延迟
-.example-enter-active{
-  transition:all 0.4s linear  对所有属性执行0.4s的动画 匀速
-}
-.example-leave-active{
-  transition:all 0.4s linear  对所有属性执行0.4s的动画 匀速
-}
-// 进入过度的开始状态 触发时机 元素被插入前 插入后下一帧移除
-.example-enter{
-
- 
-}
-// 离开过度的结束状态 触发时机 example-leave下一帧  动画过度完成被移除
-.example-leave-to{
+      /*css 样式*/
+      // 给 transition下第一个元素显示或隐藏时添加的样式
+       //这两个类名都是定义开始到结束的持续时间 方式 以及延迟
+      .example-enter-active{
+        transition:all 0.4s linear  对所有属性执行0.4s的动画 匀速
+      }
+      .example-leave-active{
+        transition:all 0.4s linear  对所有属性执行0.4s的动画 匀速
+      }
+      // 进入过度的开始状态 触发时机 元素被插入前 插入后下一帧移除
+      .example-enter{
 
 
-}
-```
-```
- 可以使用碟中谍6中的halo跳伞来理解
+      }
+      // 离开过度的结束状态 触发时机 example-leave下一帧  动画过度完成被移除
+      .example-leave-to{
 
- .example-enter-active就是从飞机上离开到开伞的时间
 
- .example-enter 下坠前在飞机上的最后一刻
+      }
+      ```
+      ```
+       可以使用碟中谍6中的halo跳伞来理解
 
- .example-enter-to  开始下坠，具备加速度的那一刻 
+       .example-enter-active就是从飞机上离开到开伞的时间
 
- .example-leave-active 开伞到着陆的时间
+       .example-enter 下坠前在飞机上的最后一刻
 
- .example-leave 开伞命令发出时
+       .example-enter-to  开始下坠，具备加速度的那一刻 
 
- .example-leave-to 伞开下一刻
-```
+       .example-leave-active 开伞到着陆的时间
+
+       .example-leave 开伞命令发出时
+
+       .example-leave-to 伞开下一刻
+      ```
 
    2. 播放器的cd的位移及缩放
 
- 先计算出小播放器图片离最终大播放器cd的x,y轴上的距离
+     先计算出小播放器图片离最终大播放器cd的x,y轴上的距离
 
- 使用 `create-keyframe-animation` 进行一个`css3`动画状态的注册
+     使用 `create-keyframe-animation` 进行一个`css3`动画状态的注册
 
- 再利用transition的动画方法钩子
+     再利用transition的动画方法钩子
 
- 在`enter`时`run`动画,`afterEnter`时清除动画 `leave`同理
+     在`enter`时`run`动画,`afterEnter`时清除动画 `leave`同理
 
-  3. 播放器的旋转
+   3. 播放器的旋转
 
- 定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
+     定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
 
 
  #### audio的使用
