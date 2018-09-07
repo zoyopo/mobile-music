@@ -17,39 +17,44 @@
 
 效果图：
 
-<center>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/skeleton.png" width="25%" height="25%" />
-骨架屏
-</center>
-<center>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/index.png" width="25%" height="25%" />
-首页
-</center>
 
-<center>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/nav.png" width="25%" height="25%" />
-侧边栏
-</center>
+<div style="width:100px;margin:0 auto;">骨架屏</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/skeleton.png" width="25%" height="25%" /></div>
 
-<center>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/recommend.png" width="25%" height="25%" />
-每日推荐
-</center>
 
-<center>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/songsheet.png" width="25%" height="25%" />
-歌单
-</center>
 
-<center>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/miniplayer.png" width="25%" height="25%" />
-播放器（小）
-</center>
+ 
+<div style="width:100px;margin:0 auto;">首页</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/index.png" width="25%" height="25%" /></div>
 
-<center>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/normalplayer.png" width="25%" height="25%" />
-播放器（大）
-</center>
+
+
+
+<div style="width:100px;margin:0 auto;"> 侧边栏</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/nav.png" width="25%" height="25%" /></div>
+
+
+
+
+<div style="width:100px;margin:0 auto;">每日推荐</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/recommend.png" width="25%" height="25%" /></div>
+
+
+
+<div style="width:100px;margin:0 auto;">歌单</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/songsheet.png" width="25%" height="25%" /></div>
+
+
+
+<div style="width:100px;margin:0 auto;">播放器（小）</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/miniplayer.png" width="25%" height="25%" /></div>
+
+
+
+<div style="width:100px;margin:0 auto;">播放器（大）</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/normalplayer.png" width="25%" height="25%" /></div>
+
+
 
 ### 详细信息
 
