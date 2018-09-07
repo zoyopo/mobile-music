@@ -111,20 +111,21 @@ new Vue({
 
 }
 ```
-> 可以使用碟中谍6中的halo跳伞来理解
+```
+ 可以使用碟中谍6中的halo跳伞来理解
 
-> .example-enter-active就是从飞机上离开到开伞的时间
+ .example-enter-active就是从飞机上离开到开伞的时间
 
-> .example-enter 下坠前在飞机上的最后一刻
+ .example-enter 下坠前在飞机上的最后一刻
 
-> .example-enter-to  开始下坠，具备加速度的那一刻 
+ .example-enter-to  开始下坠，具备加速度的那一刻 
 
-> .example-leave-active 开伞到着陆的时间
+ .example-leave-active 开伞到着陆的时间
 
-> .example-leave 开伞命令发出时
+ .example-leave 开伞命令发出时
 
-> .example-leave-to 伞开下一刻
-
+ .example-leave-to 伞开下一刻
+```
 2. 播放器的cd的位移及缩放
 
  先计算出小播放器图片离最终大播放器cd的x,y轴上的距离
@@ -135,7 +136,7 @@ new Vue({
 
  在`enter`时`run`动画,`afterEnter`时清除动画 `leave`同理
 
- 3. 播放器的旋转
+3. 播放器的旋转
 
  定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
 
