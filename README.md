@@ -29,7 +29,7 @@
 
  新增目录如下：
  
-    ```
+   
      ---src 
      ------api        // 放置api的目录
      ---------base.js // 放置axios的一些配置，接口域名地址，以及公共参数配置，与后台约定跨域的配置，全局loading配置等
@@ -39,7 +39,7 @@
      ------common  
      ---------js      // 公共js 
      ---------sass    // 公共样式 
-    ```
+   
 
 #### 类库使用
 
@@ -57,7 +57,7 @@
 
  #### 路由按需加载
 
-    ```
+   
     const view = (path, name) => () => import(`@/components/${path}${name}`)// 路由按需加载
     //这边用的是vue异步组件的方式实现路由的按需加载
     new Vue({
@@ -67,7 +67,7 @@
       }
     })
 
-    ```
+   
     > 路由加载时用了transition动画组件添加了一个切换动画
     > 注意如果你希望在 Vue Router 的路由组件中使用上述语法的话，你必须使用 Vue Router 2.4.0+ 版本。
 
@@ -81,7 +81,7 @@
   
    1. 头部下坠和底部的上浮
 
-      ```
+     
 
        <transition name="example">
 
@@ -106,8 +106,7 @@
 
 
       }
-      ```
-      ```
+     
        可以使用碟中谍6中的halo跳伞来理解
 
        .example-enter-active就是从飞机上离开到开伞的时间
@@ -121,7 +120,7 @@
        .example-leave 开伞命令发出时
 
        .example-leave-to 伞开下一刻
-      ```
+     
 
    2. 播放器的cd的位移及缩放
 
@@ -135,12 +134,12 @@
 
    3. 播放器的旋转
 
-       定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
+    定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
 
 
  #### audio的使用
 
-     使用`html5`的 `audio`结合`vuex`来进行播放器功能的实现，包括进度条，播放，暂停，上一曲，下一曲，播放模式等
+   使用`html5`的 `audio`结合`vuex`来进行播放器功能的实现，包括进度条，播放，暂停，上一曲，下一曲，播放模式等
 
  #### 布局
 
