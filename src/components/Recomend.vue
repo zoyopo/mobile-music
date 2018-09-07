@@ -171,7 +171,7 @@ export default {
   overflow: hidden;
 }
 .weui-grid {
-  height: 10.5rem;
+ 
 }
 .weui-grid__icon {
   width: auto !important;
