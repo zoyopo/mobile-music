@@ -16,23 +16,14 @@
 > 项目还在develop中，感兴趣想要参与的小伙伴可以私我
 
 效果图：
-<div>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/skeleton.png" width='200'>
- 骨架屏
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/index.png"  width='200'/>
-  首页
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/nav.png"  width='200'/>
-  侧边栏
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/recommend.png"  width='200'/>
-  每日推荐
-  </div>
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/songsheet.png"  width='200'/>
-  歌单
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/miniplayer.png"  width='200'/>
- 小播放器 
-<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/normalplayer.png"  width='200'/>
- 大播放器 
 
+![骨架屏](https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/skeleton.png =200x)
+![首页](https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/index.png =200x)
+![侧边栏](https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/nav.png =200x)
+![每日推荐](https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/recommend.png =200x)
+![歌单](https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/songsheet.png =200x)
+![播放器小](https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/miniplayer.png =200x)
+![播放器大](https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/normalplayer.png =200x) 
 
 ### 详细信息
 
