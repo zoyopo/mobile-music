@@ -111,11 +111,11 @@ new Vue({
 > 可以使用碟中谍6中的halo跳伞来理解
 
 > .example-enter-active就是从飞机上离开到开伞的时间
- .example-enter 下坠前在飞机上的最后一刻
- .example-enter-to  开始下坠，具备加速度的那一刻 
- .example-leave-active 开伞到着陆的时间
- .example-leave 开伞命令发出时
- .example-leave-to 伞开下一刻
+> .example-enter 下坠前在飞机上的最后一刻
+> .example-enter-to  开始下坠，具备加速度的那一刻 
+> .example-leave-active 开伞到着陆的时间
+> .example-leave 开伞命令发出时
+> .example-leave-to 伞开下一刻
 
 2. 播放器的cd的位移及缩放
 
