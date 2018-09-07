@@ -139,7 +139,7 @@
 
  #### audio的使用
 
-   使用`html5`的 `audio`结合`vuex`来进行播放器功能的实现，包括进度条，播放，暂停，上一曲，下一曲，播放模式等
+    使用`html5`的 `audio`结合`vuex`来进行播放器功能的实现，包括进度条，播放，暂停，上一曲，下一曲，播放模式等
 
  #### 布局
 
@@ -158,15 +158,15 @@
 
 ### 感谢:blush:
 
-    * vue
+  * vue
 
-    * vuex
+  * vuex
 
-    * vue-router
+  * vue-router
 
-    * vux
+  * vux
 
-    * vue-lazyLoad
+  * vue-lazyLoad
 
-    * NeteaseCloudMusicApi
+  * NeteaseCloudMusicApi
 
