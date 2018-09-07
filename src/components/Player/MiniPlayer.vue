@@ -102,7 +102,9 @@ export default {
       let song =
         this.playerMode === 0
           ? this.songSequence[this.currentIndex]
-          :this.playerMode === 2? this.playList[this.currentIndex]:this.currentSong;
+          : this.playerMode === 2
+            ? this.playList[this.currentIndex]
+            : this.currentSong;
       if (song) {
         //debugger
         this.setCurrentSong(song);
@@ -155,14 +157,14 @@ export default {
     align-items: center;
     .player-pic {
       padding-left: 0.3rem;
-      width: 10%;
+      width: 3rem;
       img {
         width: 100%;
         display: block;
       }
     }
     .music-content {
-      width: 62%;
+      width: 45rem;
       padding-left: 3%;
       .music-content-name {
       }
@@ -175,7 +177,7 @@ export default {
     .player-play {
       // color: #a9a2a2;
       // font-size: 1.8rem;
-      width: 12%;
+      width: 6rem;
       img {
         width: 65%;
 
