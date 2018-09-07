@@ -19,17 +19,19 @@
 
 ![骨架图](http://u-to-world.com:8081/wp-content/uploads/2018/09/QQ截图20180907173310.png "骨架图")
 
-![首页](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-30-43-526_com.tencent.mo_.png "首页")
+<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-30-43-526_com.tencent.mo_.png"  width='200'/>
 
-![登录后侧边栏](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-31-00-822_com.tencent.mo_.png "登录后侧边栏")
+<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-31-00-822_com.tencent.mo_.png"  width='200'/>
 
-![每日推荐](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-31-41-811_com.tencent.mo_.png "每日推荐")
+<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-31-41-811_com.tencent.mo_.png"  width='200'/>
 
-![歌单页](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-03-492_com.tencent.mo_.png "歌单页")
+<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-03-492_com.tencent.mo_.png"  width='200'/>
 
-![小播放器](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-20-307_com.tencent.mo_.png "小播放器")
+<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-20-307_com.tencent.mo_.png"  width='200'/>
 
-![大播放器](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-27-759_com.tencent.mo_.png "大播放器")
+<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-27-759_com.tencent.mo_.png"  width='200'/>
+
+
 
 ### 详细信息
 
