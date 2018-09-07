@@ -17,19 +17,19 @@
 
 效果图：
 
-![骨架图](http://u-to-world.com:8081/wp-content/uploads/2018/09/QQ截图20180907173310.png "骨架图")
+<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/skeleton.png" width='200'>
 
-<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-30-43-526_com.tencent.mo_.png"  width='200'/>
+<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/index.png"  width='200'/>
 
-<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-31-00-822_com.tencent.mo_.png"  width='200'/>
+<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/nav.png"  width='200'/>
 
-<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-31-41-811_com.tencent.mo_.png"  width='200'/>
+<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/recommend.png"  width='200'/>
 
-<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-03-492_com.tencent.mo_.png"  width='200'/>
+<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/songsheet.png"  width='200'/>
 
-<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-20-307_com.tencent.mo_.png"  width='200'/>
+<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/miniplayer.png"  width='200'/>
 
-<img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-27-759_com.tencent.mo_.png"  width='200'/>
+<img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/normalplayer.png"  width='200'/>
 
 
 
