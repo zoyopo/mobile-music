@@ -1,7 +1,3 @@
-### 项目介绍:blush:
-
-> 网易云音乐接口+vue全家桶开发一款移动端音乐webApp
-> 项目还在develop中，感兴趣想要参与的小伙伴可以私我
 
 ### 运行
 
@@ -13,6 +9,15 @@
  npm run dev
 
 ```
+### 项目介绍:blush:
+
+> 网易云音乐接口+vue全家桶开发一款移动端音乐webApp
+
+> 项目还在develop中，感兴趣想要参与的小伙伴可以私我
+
+效果图：
+
+ <img src="http://u-to-world.com:8081/wp-content/uploads/2018/09/QQ截图20180907173310.png"></img>
 
 ### 详细信息
 
