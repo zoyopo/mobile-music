@@ -81,7 +81,7 @@ new Vue({
 
 * 动画 
 
-  1. 头部下坠和底部的上浮
+   1. 头部下坠和底部的上浮
 
 ```
 
@@ -124,7 +124,8 @@ new Vue({
 
  .example-leave-to 伞开下一刻
 ```
- 2. 播放器的cd的位移及缩放
+
+   2. 播放器的cd的位移及缩放
 
  先计算出小播放器图片离最终大播放器cd的x,y轴上的距离
 
@@ -134,7 +135,7 @@ new Vue({
 
  在`enter`时`run`动画,`afterEnter`时清除动画 `leave`同理
 
- 3. 播放器的旋转
+  3. 播放器的旋转
 
  定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
 
