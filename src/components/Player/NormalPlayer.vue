@@ -299,8 +299,8 @@ export default {
     filter: blur(10px);
     -webkit-filter: blur(10px);
   }
-  .normal-player-header {
-  }
+  // .normal-player-header {
+  // }
   .normal-player-cd {
     // position: absolute;
     // left: calc(50% - 125px);
@@ -340,8 +340,8 @@ export default {
     }
   }
 
-  .normal-player-option {
-  }
+  // .normal-player-option {
+  // }
   .progress-bar-outer {
     bottom: 10rem;
     position: absolute;

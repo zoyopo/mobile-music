@@ -120,14 +120,14 @@ export default {
       let personalized = res[0];
       let privateContent = res[2];
 
-      if (banner.data.code == "200") {
+      if (banner.data.code === 200) {
         this.picArray = banner.data.banners;
       }
 
-      if (personalized.data.code == "200") {
-        this.contentArray = personalized.data.result.slice(0, 6); //土鳖法，截取前八
+      if (personalized.data.code === 200) {
+        this.contentArray = personalized.data.result.slice(0, 6); //土鳖法，截取前6
       }
-      if (privateContent.data.code == "200") {
+      if (privateContent.data.code === 200) {
         privateContent.data.result.forEach(element => {
           element.picUrl = element.sPicUrl;
         });
@@ -170,9 +170,9 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.weui-grid {
+// .weui-grid {
  
-}
+// }
 .weui-grid__icon {
   width: auto !important;
   height: auto !important;

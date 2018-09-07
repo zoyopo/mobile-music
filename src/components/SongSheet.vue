@@ -251,8 +251,8 @@ export default {
         text-align: center;
       }
     }
-    .main-list {
-    }
+    // .main-list {
+    // }
   }
 }
 

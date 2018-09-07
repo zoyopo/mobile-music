@@ -166,8 +166,8 @@ export default {
     .music-content {
       width: 45rem;
       padding-left: 3%;
-      .music-content-name {
-      }
+      // .music-content-name {
+      // }
       .music-content-artist {
         font-size: 0.5rem;
         color: #ddd;
