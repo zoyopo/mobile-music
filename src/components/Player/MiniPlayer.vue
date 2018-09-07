@@ -157,7 +157,7 @@ export default {
     align-items: center;
     .player-pic {
       padding-left: 0.3rem;
-      width: 3rem;
+      width: 6rem;
       img {
         width: 100%;
         display: block;
@@ -184,6 +184,16 @@ export default {
         display: block;
       }
     }
+  }
+}
+@media screen and (min-width: 888px) {
+  .player .mini-player .music-content {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 690px) {
+  .player .mini-player .player-pic {
+    width: 3rem;
   }
 }
 </style>
