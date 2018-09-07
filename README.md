@@ -32,14 +32,14 @@
  新增目录如下：
 
  ---src </br>
- ------api         // 放置api的目录 </br>
- ---------base.js  // 放置axios的一些配置，接口域名地址，以及公共参数配置，与后台约定跨域的配置，全局loading配置等 </br>
- ---------urls.js  // 放置接口url </br>
- ---------api.js   // 放置封装的promise请求 </br>
- ------base        // 放置一些基础组件 </br>
+ ------api&nbsp;&nbsp;// 放置api的目录 </br>
+ ---------base.js&nbsp;&nbsp;  // 放置axios的一些配置，接口域名地址，以及公共参数配置，与后台约定跨域的配置，全局loading配置等 </br>
+ ---------urls.js&nbsp;&nbsp;  // 放置接口url </br>
+ ---------api.js&nbsp;&nbsp;   // 放置封装的promise请求 </br>
+ ------base&nbsp; &nbsp;       // 放置一些基础组件 </br>
  ------common  </br>
- ---------js      // 公共js </br>
- ---------sass    // 公共样式 </br>
+ ---------js&nbsp;&nbsp;      // 公共js </br>
+ ---------sass&nbsp;&nbsp;    // 公共样式 </br>
 
 
 #### 类库使用
@@ -137,7 +137,7 @@ new Vue({
  定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
 
 
- #### html5 audio
+ #### audio的使用
 
  使用`html5`的 `audio`结合`vuex`来进行播放器功能的实现，包括进度条，播放，暂停，上一曲，下一曲，播放模式等
 
