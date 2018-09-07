@@ -130,3 +130,19 @@ export default {
 }
 </style>
 
+<style scoped>
+@media screen and(min-width: 768px) {
+  .login .form-wrapper {
+    padding-top: 13rem;
+  }
+  .login .logo img {
+    width: 280px;
+  }
+  .login .form-wrapper .form .mobile,
+  .login .form-wrapper .form .key {
+    width: 710px;
+  }
+}
+</style>
+
+

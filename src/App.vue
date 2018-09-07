@@ -79,9 +79,6 @@ html {
     height: 100%;
     #app {
       height: 100%;
-<<<<<<< HEAD
-     overflow-x: hidden;
-=======
       .mini-player {
         position: absolute;
         bottom: 0;
@@ -91,7 +88,6 @@ html {
         bottom: 0;
         height: 100%;
       }
->>>>>>> dev
     }
   }
 }
