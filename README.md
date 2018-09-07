@@ -134,12 +134,12 @@
 
    3. 播放器的旋转
 
-    定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
+       定义一个旋转的`css`动画，在一个`class`中进行调用，在`play`的状态下给它`addClss`,`pause`时加上`animation-play-state: paused`
 
 
  #### audio的使用
 
-    使用`html5`的 `audio`结合`vuex`来进行播放器功能的实现，包括进度条，播放，暂停，上一曲，下一曲，播放模式等
+  使用`html5`的 `audio`结合`vuex`来进行播放器功能的实现，包括进度条，播放，暂停，上一曲，下一曲，播放模式等
 
  #### 布局
 
