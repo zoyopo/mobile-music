@@ -6,7 +6,7 @@
 
       </slide>
     </div>
-    <circle-icon @click.native="operate(index)"  v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
+    <circle-icon @click.native="operate(index)" v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
       <!--去掉第一个元素的margin-->
       <div>{{item.text}}</div>
     </circle-icon>
@@ -50,7 +50,7 @@ import { getFirstScreenData, getSongSheetsData } from "api/api.js";
 import { Grid, GridItem } from "vux";
 import CircleIcon from "components/Recomend/CircleIcon";
 import SheetLabel from "components/Recomend/SheetLabel";
-import{mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 export default {
   components: {
     Slide,
@@ -87,19 +87,20 @@ export default {
       newsongs: []
     };
   },
-   created() {
+  created() {
     this.getAllData();
+    Object.freeze(this.icons);
   },
-  computed:{
-    ...mapGetters(['playList'])
+  computed: {
+    ...mapGetters(["playList"])
   },
   methods: {
-     operate(index){
-     //  debugger
-     let maps=['','/dailysongs']
-     //debugger
-       this.$router.push(maps[1]);
-     }, 
+    operate(index) {
+      //  debugger
+      let maps = ["", "/dailysongs"];
+      //debugger
+      this.$router.push(maps[1]);
+    },
     async getAllData() {
       //let vm = this;
       let res = await getFirstScreenData();
@@ -140,15 +141,13 @@ export default {
       this.$router.push(`/songsheets/${id}`);
     }
   }
- 
 };
 </script>
 
 <style lang="scss">
-
 // 播放器出现，高度重新设置
-.playerRstHeight{
-  height:calc(100% - 155px)!important;
+.playerRstHeight {
+  height: calc(100% - 155px) !important;
 }
 .rec-content {
   text-align: center;
@@ -171,12 +170,19 @@ export default {
   overflow: hidden;
 }
 // .weui-grid {
- 
+
 // }
 .weui-grid__icon {
   width: auto !important;
-  height: auto !important;
+  height: 7.5rem !important;
   margin: 0 auto !important;
+}
+/*兼容768px以上的grid高度*/
+@media screen and(min-width: 768px) {
+  .weui-grid__icon {
+    height: 20rem !important;
+    width: 20rem !important;
+  }
 }
 .right-top {
   position: absolute;
