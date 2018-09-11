@@ -38,27 +38,28 @@ export default {
   methods: {
     btnOnTouchStart(e) {
       //debugger
-      this.touchState.isInit = true;
-      this.touchState.startX = e.touches[0].pageX;
-      const progressLength = this.$refs.inner.style.width;
-      this.touchState.progessWidth =
+      this.touchState.isInit = true; // touch状态设置为truw
+      this.touchState.startX = e.touches[0].pageX; // 手指开始位置
+      const progressLength = this.$refs.inner.style.width; // 已经播放的长度
+      this.touchState.progessWidth = // 由于width取出来是含有px的，处理一下 =>得到数值
         progressLength.length > 2
           ? progressLength.substring(0, progressLength.length - 2) * 1
           : 0;
     },
     btnOnTouchMove(e) {
       //debugger;
+      // 判断有没有touchStart
       if (!this.touchState.isInit) {
         return;
       }
-      const offSetX = e.touches[0].pageX - this.touchState.startX;
-      const barWidth = window.innerWidth * 0.7;
+      const offSetX = e.touches[0].pageX - this.touchState.startX; // 手指在水平方向移动的距离
+      const barWidth = window.innerWidth * 0.7; // 整个进度条的长度
       const progressWidth = Math.min(
         barWidth,
-        Math.max(0, this.touchState.progessWidth + offSetX)
+        Math.max(0, this.touchState.progessWidth + offSetX) // 最小为0 最大为整个进度条长度
       );
-      this.touchState.finalRatio = progressWidth / barWidth;
-      this.setOffSetWidth(progressWidth);
+      this.touchState.finalRatio = progressWidth / barWidth;// 比例
+      this.setOffSetWidth(progressWidth); // 设置进度条
     },
     
     btnOnTouchEnd(e) {
@@ -79,6 +80,8 @@ export default {
       //    this.$refs.inner.style.width = 0 + "px";
       // }
       if (!this.touchState.isInit && newRatio >= 0) {
+        // 之前设置-值=>为了使得小球在前面一点，但是宽度设-就会导致已经播放进度条不会重置
+        //这里还是恢复0作为起点
         let currentWidth = window.innerWidth * 0.7 * newRatio;
         this.setOffSetWidth(currentWidth);
       }

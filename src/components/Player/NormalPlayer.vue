@@ -288,7 +288,7 @@ export default {
   background: #cfd0c6;
   width: 100%;
   height: 100%;
-  .mask {
+  .mask { // 遮罩=> 模糊效果
     position: absolute;
     height: 100%;
     background-size: cover;
@@ -330,10 +330,10 @@ export default {
           width: 100%;
           border-radius: 50%;
           &.play {
-            animation: rotate 20s linear infinite;
+            animation: rotate 20s linear infinite;/*cd旋转*/
           }
           &.pause {
-            animation-play-state: paused;
+            animation-play-state: paused;/*cd停止旋转*/
           }
         }
       }

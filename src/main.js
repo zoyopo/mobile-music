@@ -8,11 +8,8 @@ import App from './App'
 import router from './router'
 // Vue.use(VueRouter)
 import store from './store'
-// const routes = [{
-//   path: '/',
-//   component: Home
-// }]import  { ToastPlugin } from 'vux'
-// })
+import {commonMixin} from './mixin/common'
+
 import VueLazyload from 'vue-lazyload'
 import {
   ToastPlugin
@@ -31,18 +28,18 @@ Vue.use(VueLazyload, {
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
-
+Vue.mixin(commonMixin)
 /* eslint-disable no-new */
 new Vue({
   router,
   store,
   mounted () {
-    // console.log(this)
+   // console.log(this.$children[0].$data)
 
     window.addEventListener('DOMNodeInserted', function () {
       // debugger
       let docEl = window.document.documentElement
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 768) { // 在768宽度以下使用rem
         let width = docEl.getBoundingClientRect().width
         let rem = width / 25
         docEl.style.fontSize = rem + 'px'
