@@ -5,8 +5,7 @@ import {notLoadingUrl} from 'api/urls'
 import {SET_REQUEST_END} from '@/store/mutation-types'
 class Api {
   axios () {
-    axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-    axios.defaults.baseURL = '//u-to-world.com:3000'
+    axios.defaults.baseURL = 'localhost:3000'
     // let axiosDate = new Date()
     axios.defaults.withCredentials = true
     axios.interceptors.request.use(function (config) {
