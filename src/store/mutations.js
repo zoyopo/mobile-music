@@ -42,6 +42,14 @@ const mutations = {
 
   [types.SET_PLAYER_MODE] (state, playerMode) {
     state.playerMode = playerMode
+  },
+
+  [types.REMOVE_STORAGE_USER_INFO] (state, userInfo) {
+    state.userInfo = userInfo
+    localStorage.removeItem('userInfo')
+  },
+  [types.SET_DRAWER_VIS] (state, drawerVis) {
+    state.drawerVis = drawerVis
   }
 
 }
