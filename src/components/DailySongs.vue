@@ -41,7 +41,7 @@ export default {
       let picDom = this.$refs.topPic.getBoundingClientRect();
       let topPicHeight=picDom.height;
       if (
-        this.postionStore - picDom.y + 5 >=
+        this.postionStore - picDom.top+ 5 >=
         topPicHeight
       ) {
       //  if (listDom.style["overflow"] === "hidden") {
@@ -61,7 +61,7 @@ export default {
     mListTs() {
       let picDom = this.$refs.topPic.getBoundingClientRect();
       if (this.postionStore === "") {
-        this.postionStore = picDom.y;
+        this.postionStore = picDom.top; //y在手机端微信qq浏览器不兼容
       }
     },
     mListTd() {

@@ -38,19 +38,28 @@ new Vue({
   store,
   mounted () {
     // console.log(this)
+
     window.addEventListener('DOMNodeInserted', function () {
       // debugger
       let docEl = window.document.documentElement
-      let width = docEl.getBoundingClientRect().width
-      let rem = width / 25
-      docEl.style.fontSize = rem + 'px'
+      if (window.innerWidth < 768) {
+        let width = docEl.getBoundingClientRect().width
+        let rem = width / 25
+        docEl.style.fontSize = rem + 'px'
+      } else {
+        docEl.style.fontSize = ''
+      }
     }, false)
     window.addEventListener('resize', function () {
       // debugger
       let docEl = window.document.documentElement
-      let width = docEl.getBoundingClientRect().width
-      let rem = width / 25
-      docEl.style.fontSize = rem + 'px'
+      if (window.innerWidth < 768) {
+        let width = docEl.getBoundingClientRect().width
+        let rem = width / 25
+        docEl.style.fontSize = rem + 'px'
+      } else {
+        docEl.style.fontSize = ''
+      }
     }, false)
   },
 

@@ -37,10 +37,12 @@ export default {
   display: flex;
 
   .header-arrow {
-    align-self: flex-end;
+    // align-self: flex-end;
     flex: 0.2;
+    align-self: center;
     #header-arrow-arrow {
       width: 60%;
+      display: block;
     }
   }
   .header-title {

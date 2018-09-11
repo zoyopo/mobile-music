@@ -115,7 +115,7 @@ export default {
         //修正下一曲、上一曲的进度条未重置的问题
         //this.currentTime=0;
         //循环播放=>置位0
-  //this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
+        //this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
         if (this.playerMode === 1) {
           this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
           currrentIndex = this.currentIndex;
@@ -134,8 +134,8 @@ export default {
         if (!this.songIsReady) {
           return;
         }
-         //修正下一曲、上一曲的进度条未重置的问题
-       // this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
+        //修正下一曲、上一曲的进度条未重置的问题
+        // this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
         // debugger
         if (this.playerMode === 1) {
           this.$parent.$refs.miniPlayer.$refs.audio.currentTime = 0;
@@ -299,8 +299,8 @@ export default {
     filter: blur(10px);
     -webkit-filter: blur(10px);
   }
-  .normal-player-header {
-  }
+  // .normal-player-header {
+  // }
   .normal-player-cd {
     // position: absolute;
     // left: calc(50% - 125px);
@@ -340,8 +340,8 @@ export default {
     }
   }
 
-  .normal-player-option {
-  }
+  // .normal-player-option {
+  // }
   .progress-bar-outer {
     bottom: 10rem;
     position: absolute;
@@ -385,6 +385,22 @@ export default {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+/*媒体查询部分*/
+@media screen and (min-width: 768px) {
+  .normal-player .normal-player-cd .cd .cd-wrapper {
+    width: 200px;
+    .bgimage {
+      position: absolute;
+      left: -4.1rem;
+      top: -4.1rem;
+      width: 165%;
+
+      .image {
+        width: 200px;
+      }
+    }
   }
 }
 </style>

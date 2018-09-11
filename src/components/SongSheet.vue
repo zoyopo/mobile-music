@@ -221,6 +221,7 @@ export default {
         padding-left: 0.5rem;
         .main-top-title {
           height: 60px;
+           width: 92%;
         }
         .main-top-author {
           font-size: 0.5rem;
@@ -251,8 +252,8 @@ export default {
         text-align: center;
       }
     }
-    .main-list {
-    }
+    // .main-list {
+    // }
   }
 }
 
