@@ -17,7 +17,7 @@
     <div class="menu-bottom">
       <!-- <div class="menu-bottom-item">夜间模式</div> -->
       <!-- <div class="menu-bottom-item">设置</div> -->
-      <div class="menu-bottom-item">退出</div>
+      <div class="menu-bottom-item" @click="logOut">退出</div>
     </div>
   </div>
 </template>
@@ -42,28 +42,18 @@ export default {
       let _property=this.isLogin?this.userInfo.profile[key]:""
       // this.userInfo.profile.backgroundUrl:"";
        return  _property;
+    },
+    // 登出
+    logOut(){
+      localStorage.removeItem('userInfo')
+      this.$router.push('/login')
     }
   },
   computed: {
     ...mapGetters(["userInfo"]),
     isLogin(){
       return Object.keys(this.userInfo).length>0;
-    },
-    backgroundUrl(){
-      let bgUrl=Object.keys(this.userInfo).length>0?
-       this.userInfo.profile.backgroundUrl:"";
-       return bgUrl;
-    },
-    avatarUrl(){
-        let avUrl=Object.keys(this.userInfo).length>0?
-       this.userInfo.profile.avatarUrl:"";
-       return avUrl;
-    },
-    nickname(){
-       let nkname=Object.keys(this.userInfo).length>0?
-       this.userInfo.profile.nickname:"";
-       return nkname;
-    }
+    }   
   }
 };
 </script>
