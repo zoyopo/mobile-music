@@ -59,6 +59,12 @@ export default {
       showPlacementValue: "left"
     };
   },
+  activated(){
+    // 如果展开则关闭drawer
+    if(this.drawerVisibility){
+    this.drawerVisibility=false
+    }
+  },
   methods: {
     showDrawer() {
       //console.log("click show drawer");

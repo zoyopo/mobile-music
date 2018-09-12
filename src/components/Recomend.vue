@@ -91,6 +91,7 @@ export default {
     this.getAllData();
     Object.freeze(this.icons);
   },
+ 
   computed: {
     ...mapGetters(["playList"])
   },
