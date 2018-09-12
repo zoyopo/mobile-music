@@ -21,7 +21,7 @@ import MiniPlayer from "components/Player/MiniPlayer";
 import NormalPlayer from "components/Player/NormalPlayer";
 import Loading from "base/Loading";
 import { mapMutations, mapGetters } from "vuex";
-import {commonMixin} from './mixin/common'
+// import {commonMixin} from './mixin/common'
 export default {
   name: "app",
   components: {
@@ -29,7 +29,7 @@ export default {
     NormalPlayer,
     Loading
   },
-  mixins: [commonMixin],
+  //mixins: [commonMixin],
   created() {},
   methods: {
     // refreshRem() {

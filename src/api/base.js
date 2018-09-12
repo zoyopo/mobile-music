@@ -19,7 +19,7 @@ class Api {
         store.commit(SET_REQUEST_END, false)
       }
       // config.params = Object.assign({
-      //   xhrFields: '{ withCredentials: true }'
+      //   proxy: 'http://www.u-to-world.com'
       // }, config.params)
 
       return config

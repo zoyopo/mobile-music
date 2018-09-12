@@ -39,7 +39,7 @@ import { Drawer } from "vux";
 import { XHeader } from "vux";
 import { Tab, TabItem } from "vux";
 import Menu from "components/Index/Menu";
-import {mapGetters} from 'vuex'
+import {mapGetters,mapMutations} from 'vuex'
 export default {
   name: "index",
   components: {
@@ -69,7 +69,8 @@ export default {
     showDrawer() {
       //console.log("click show drawer");
       if(Object.keys(this.userInfo).length>0){
-      this.drawerVisibility = true;
+      this.drawerVisibility=true;
+     // this.setDrawerVis()
       }else{
         //todo login... 
         this.$router.push('/login')
@@ -77,7 +78,10 @@ export default {
     },
     onItemClick(index) {
       console.log("on item click:", index);
-    }
+    },
+    ...mapMutations({
+      setDrawerVis:'SET_DRAWER_VIS'
+    })
   },
   computed:{
 
@@ -89,6 +93,11 @@ export default {
 
     ...mapGetters(['userInfo'])
 
+  },
+  watch:{
+    drawerVisibility(val){
+      this.setDrawerVis(val)
+    }
   }
 };
 </script>
