@@ -2,6 +2,13 @@
 ### 运行
 
 ```
+// 先将node接口运行起来
+ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
+
+ npm install
+
+ node app.js
+
  git clone git@github.com:godlikedeveloper/mobile-music.git
 
  npm install
