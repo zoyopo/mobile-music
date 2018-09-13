@@ -6,7 +6,7 @@ import {SET_REQUEST_END} from '@/store/mutation-types'
 class Api {
   axios () {
     axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-    axios.defaults.baseURL = '//u-to-world.com:3000'
+    axios.defaults.baseURL = process.env === 'development' ? '/api' : '//u-to-world.com:3000'
     // let axiosDate = new Date()
     axios.defaults.withCredentials = true
     axios.interceptors.request.use(function (config) {
@@ -35,7 +35,7 @@ class Api {
 export default new Api()
 
 axios.interceptors.response.use(function (response) {
-  debounce(store.commit(SET_REQUEST_END, true), 100)  // 完成隐藏loading
+  debounce(store.commit(SET_REQUEST_END, true), 1000)  // 完成隐藏loading
 
   // store.dispatch('FETCH_LOADING', false)
   return response
