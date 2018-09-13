@@ -1,44 +1,52 @@
+
+
 <template>
 
   <div class="rec-content" :class="{playerRstHeight:playList.length>0}">
+   <Skeleton :navShow="false" :itemNum="4" v-show="skeletonShow"></Skeleton>
+    
     <div v-if="picArray.length>0">
       <slide :loop='loop' :autoPlay='autoPlay' :picArray="picArray" :style="{'margin-top':'10px'}">
 
       </slide>
     </div>
+    <div v-show="!skeletonShow">
     <circle-icon @click.native="operate(index)" v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
       <!--去掉第一个元素的margin-->
       <div>{{item.text}}</div>
     </circle-icon>
-    <div class="song-sheets">
-      <sheet-label :title="'推荐歌单'"></sheet-label>
-      <grid :col=2 :cols=3>
-        <grid-item label="Grid" v-for="item in contentArray" :key="item.id" :link="{ path: `/songsheets/${item.id}`}">
-          <img slot="icon" v-lazy="item.picUrl">
-          <div slot="label">{{item.name}}</div>
-          <div class="right-top">
-            <i class="fa fa-headphones"></i>
-            <span>{{(item.playCount/10000).toFixed(2)+"W" }}
-            </span>
-          </div>
-        </grid-item>
 
-      </grid>
-    </div>
-    <div class="song-sheets">
-      <sheet-label :title="'最新音乐'"></sheet-label>
-      <grid :col=2 :cols=3>
-        <grid-item label="Grid" v-for="item in newsongs" :key="item.id" @click.native="goToSongSheet(item.id)">
-          <img slot="icon" v-lazy="item.coverImgUrl">
-          <div slot="label">{{item.name}}</div>
-          <div class="right-top">
-            <!-- <i class="fa fa-headphones"></i> -->
-            <!-- <span>{{(item.playCount/10000).toFixed(2)+"W" }}
+    
+      <div class="song-sheets">
+        <sheet-label :title="'推荐歌单'"></sheet-label>
+        <grid :col=2 :cols=3>
+          <grid-item label="Grid" v-for="item in contentArray" :key="item.id" :link="{ path: `/songsheets/${item.id}`}">
+            <img slot="icon" v-lazy="item.picUrl">
+            <div slot="label">{{item.name}}</div>
+            <div class="right-top">
+              <i class="fa fa-headphones"></i>
+              <span>{{(item.playCount/10000).toFixed(2)+"W" }}
+              </span>
+            </div>
+          </grid-item>
+
+        </grid>
+      </div>
+      <div class="song-sheets">
+        <sheet-label :title="'最新音乐'"></sheet-label>
+        <grid :col=2 :cols=3>
+          <grid-item label="Grid" v-for="item in newsongs" :key="item.id" @click.native="goToSongSheet(item.id)">
+            <img slot="icon" v-lazy="item.coverImgUrl">
+            <div slot="label">{{item.name}}</div>
+            <div class="right-top">
+              <!-- <i class="fa fa-headphones"></i> -->
+              <!-- <span>{{(item.playCount/10000).toFixed(2)+"W" }}
             </span> -->
-          </div>
-        </grid-item>
+            </div>
+          </grid-item>
 
-      </grid>
+        </grid>
+      </div>
     </div>
   </div>
 </template>
@@ -47,6 +55,7 @@
 // import { Group, Cell } from 'vux'
 import Slide from "components/Index/Slider.vue";
 import { getFirstScreenData, getSongSheetsData } from "api/api.js";
+import Skeleton from "base/Skeleton"
 import { Grid, GridItem } from "vux";
 import CircleIcon from "components/Recomend/CircleIcon";
 import SheetLabel from "components/Recomend/SheetLabel";
@@ -57,10 +66,12 @@ export default {
     CircleIcon,
     SheetLabel,
     Grid,
-    GridItem
+    GridItem,
+    Skeleton
   },
   data() {
     return {
+      
       // note: changing this line won't causes changes
       // with hot-reload because the reloaded component
       // preserves its current state and we are modifying
@@ -91,7 +102,7 @@ export default {
     this.getAllData();
     Object.freeze(this.icons);
   },
- 
+
   computed: {
     ...mapGetters(["playList"])
   },

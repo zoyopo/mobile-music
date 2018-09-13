@@ -1,7 +1,10 @@
-<!--歌单-->
+
+
 <template>
-  
-    <div class="song-sheet">
+
+  <div class="song-sheet">
+    <Skeleton :itemShow="false"  v-show="skeletonShow"></Skeleton>
+    <div class="vis-wrapper" v-show="!skeletonShow">
       <!--头部-->
       <div class='header'>
         <div class="header-arrow">
@@ -49,19 +52,21 @@
         </div>
 
       </main>
-
     </div>
+  </div>
   <!-- </transition> -->
 </template>
 
 <script>
 import { getSheetDetail } from "api/api.js";
 import List from "base/List";
+import Skeleton from "base/Skeleton";
 // import MHeader from 'base/MHeader'
 import { mapMutations, mapActions } from "vuex";
 export default {
   components: {
-    List
+    List,
+    Skeleton
     // MHeader
   },
   name: "SongSheet",
@@ -93,7 +98,7 @@ export default {
   methods: {
     selectItem(index, item) {
       // debugger
-      this.selectSong({ list:this.songList,song: item, index });
+      this.selectSong({ list: this.songList, song: item, index });
     },
     scorll() {
       if (this.$refs.main && this.$refs.main.scrollTop > 50) {
@@ -221,7 +226,7 @@ export default {
         padding-left: 0.5rem;
         .main-top-title {
           height: 60px;
-           width: 92%;
+          width: 92%;
         }
         .main-top-author {
           font-size: 0.5rem;
@@ -256,6 +261,5 @@ export default {
     // }
   }
 }
-
 </style>
 
