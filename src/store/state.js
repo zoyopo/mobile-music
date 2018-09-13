@@ -15,7 +15,8 @@ const state = {
   requestEnd: false,
   songIsReady: false,
   playerMode: 0,
-  songSequence: []
+  songSequence: [],
+  drawerVis: false
 }
 
 export default state

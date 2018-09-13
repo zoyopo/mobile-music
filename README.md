@@ -17,19 +17,53 @@
 
 效果图：
 
-![骨架图](http://u-to-world.com:8081/wp-content/uploads/2018/09/QQ截图20180907173310.png "骨架图")
 
-![首页](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-30-43-526_com.tencent.mo_.png "首页")
+<div style="width:100px;margin:0 auto;">骨架屏</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/skeleton.png" width="25%" height="25%" /></div>
 
-![登录后侧边栏](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-31-00-822_com.tencent.mo_.png "登录后侧边栏")
 
-![每日推荐](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-31-41-811_com.tencent.mo_.png "每日推荐")
 
-![歌单页](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-03-492_com.tencent.mo_.png "歌单页")
+ 
+<div style="width:100px;margin:0 auto;">首页</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/index.png" width="25%" height="25%" /></div>
 
-![小播放器](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-20-307_com.tencent.mo_.png "小播放器")
 
-![大播放器](http://u-to-world.com:8081/wp-content/uploads/2018/09/Screenshot_2018-09-07-17-32-27-759_com.tencent.mo_.png "大播放器")
+
+
+<div style="width:100px;margin:0 auto;"> 侧边栏</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/nav.png" width="25%" height="25%" /></div>
+
+
+
+
+<div style="width:100px;margin:0 auto;">每日推荐</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/recommend.png" width="25%" height="25%" /></div>
+
+
+
+<div style="width:100px;margin:0 auto;">歌单</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/songsheet.png" width="25%" height="25%" /></div>
+
+
+
+<div style="width:100px;margin:0 auto;">播放器（小）</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/miniplayer.png" width="25%" height="25%" /></div>
+
+
+
+<div style="width:100px;margin:0 auto;">播放器（大）</div>
+<div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/normalplayer.png" width="25%" height="25%" /></div>
+
+### 问题
+
+#### 骨架屏移除未渲染完全问题
+
+描述： 2018-09-13  骨架屏被移除之后，客户端渲染还没有完成，故将骨架屏作为占位放入客户端还没渲染完成的内容中
+
+解决：将骨架屏封装成一个子组件，在需要的父组件里引用，在每一个渲染数据页面的`updated`钩子里，`this.$nextTick`里将骨架屏幕的隐藏，原页面内容显示，由于用到的页面现在且将来可能比较普遍，就直接用注册全局mixin 来实现这个逻辑。
+
+
+
 
 ### 详细信息
 

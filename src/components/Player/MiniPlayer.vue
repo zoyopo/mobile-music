@@ -1,5 +1,5 @@
 <template>
-  <div class="player" v-if="playList.length>0" v-show="!fullScreen" @click="open">
+  <div class="player" v-if="playList.length>0" v-show="!fullScreen&&!drawerVis" @click="open">
     <transition name="mini">
       <div class="mini-player">
         <div class="player-pic"><img :src="_currentSong.album.blurPicUrl||'../static/img/no-pic.png'" alt=""></div>
@@ -15,7 +15,7 @@
           <img :src="listIcon" alt="">
         </div>
         <audio ref="audio" @canplay="ready" @ended="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${_currentSong.id}.mp3`"></audio>
-      </div>
+      </div> 
 
     </transition>
   </div>
@@ -92,7 +92,8 @@ export default {
       "songIsReady",
       "playerMode",
       "songSequence",
-      "currentSong"
+      "currentSong",
+      "drawerVis"
     ]),
     cdCls() {
       return this.playing ? "play" : "play pause";
@@ -143,11 +144,15 @@ export default {
   .mini-player {
     &.mini-enter-active,
     &.mini-leave-active {
-      transition: all 0.4s;
+      transition: all 0.8s;
     }
     &.mini-enter,
     &.mini-leave-to {
       opacity: 0;
+    }
+    &.mini-enter-to,
+    &.mini-leave{
+      opacity: 0.4;
     }
     height: 4rem;
     display: flex;
