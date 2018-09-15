@@ -3,6 +3,7 @@
 <template>
 
   <div class="song-sheet">
+
     <Skeleton :itemShow="false" v-show="skeletonShow"></Skeleton>
     <div class="vis-wrapper" v-show="!skeletonShow">
       <!--头部-->
@@ -18,21 +19,22 @@
         <div class="header-share"><img id="header-share-icon" src="../assets/songsheet/Option.png" alt="暂无"></div> -->
       </div>
       <!--主体-->
-      <main ref='main'>
-        <!--主体上-->
-        <div class="main-top">
+      <main ref='wrapper'>
+        <div class="wrapper-container" ref="container">
+          <!--主体上-->
+          <div class="main-top">
 
-          <img class="main-top-image" :src="info.coverImgUrl" alt="">
-          <div class="main-top-right">
-            <div class="main-top-title">{{info.name}}</div>
-            <div class="main-top-author">
-              <div class="avatar-div"><img id="ct-avatar" :src="info.creator.avatarUrl" /></div>
-              <div class="ct-nickname">{{info.creator.nickname}}</div>
+            <img class="main-top-image" :src="info.coverImgUrl" alt="">
+            <div class="main-top-right">
+              <div class="main-top-title">{{info.name}}</div>
+              <div class="main-top-author">
+                <div class="avatar-div"><img id="ct-avatar" :src="info.creator.avatarUrl" /></div>
+                <div class="ct-nickname">{{info.creator.nickname}}</div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- 操作-->
-        <!-- <div class="main-options">
+          <!-- 操作-->
+          <!-- <div class="main-options">
           <div class="main-options-icon">
             <i class="fa fa-commenting-o"></i>
           </div>
@@ -46,24 +48,28 @@
             <i class="fa fa-check-square-o"></i>
           </div>
         </div> -->
-        <!-- 歌曲列表-->
-        <div class="main-list">
-          <List :list="songList" @select="selectItem"></List>
+          <!-- 歌曲列表-->
+          <div class="main-list">
+            <List :list="songList" @select="selectItem"></List>
+          </div>
         </div>
-
       </main>
+
     </div>
   </div>
   <!-- </transition> -->
 </template>
 
 <script>
+import BScroll from "better-scroll";
 import { getSheetDetail } from "api/api.js";
 import List from "base/List";
 import Skeleton from "base/Skeleton";
 // import MHeader from 'base/MHeader'
 import { mapMutations, mapActions } from "vuex";
+ import scrollMixin from "@/mixin/scrollMixin"
 export default {
+  mixins:[scrollMixin],
   components: {
     List,
     Skeleton
@@ -78,6 +84,9 @@ export default {
       },
       songList: []
     };
+  },
+  created() {
+    this.transformDelta=49
   },
   mounted() {
     window.addEventListener("touchmove", this.scorll);
@@ -101,7 +110,7 @@ export default {
       this.selectSong({ list: this.songList, song: item, index });
     },
     scorll() {
-      if (this.$refs.main && this.$refs.main.scrollTop > 50) {
+      if (this.$refs.wrapper && this.$refs.wrapper.scrollTop > 50) {
         // debugger
         this.title = this.info.name;
       } else {
@@ -214,6 +223,9 @@ export default {
     background: #ddd;
     height: calc(100% - 49px);
     overflow: auto;
+    .wrapper-container{
+      // padding-top: 49px;
+    }
     .main-top {
       padding-left: 1rem;
       padding-top: 0.5rem;
@@ -221,7 +233,6 @@ export default {
       padding-bottom: 1rem;
       .main-top-image {
         float: left;
-
         width: 35%;
       }
       .main-top-right {

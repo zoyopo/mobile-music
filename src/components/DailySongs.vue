@@ -3,13 +3,15 @@
     <Skeleton :itemShow="false" v-show="skeletonShow"></Skeleton>
     <div class="vis-wrapper" v-show="!skeletonShow">
       <m-header :info="info" @back="back" class="m-header"></m-header>
-      <main>
-        <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}" ref="topPic">
-          <div class="main-top-tips">根据你的口味每天6:00生成</div>
-          <div></div>
-        </div>
-        <div class="main-list" @touchstart="mListTs" @touchend="mListTd" @touchmove="throttle(mListTm,500)()">
-          <List :list="songList" :showPic="true" @select="selectItem" ref="mainList" style="height:100%;"></List>
+      <main ref="wrapper">
+        <div class="wrapper-container" ref="container">
+          <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}" ref="topPic">
+            <div class="main-top-tips">根据你的口味每天6:00生成</div>
+            <div></div>
+          </div>
+          <div class="main-list" @touchstart="mListTs" @touchend="mListTd" @touchmove="throttle(mListTm,500)()">
+            <List :list="songList" :showPic="true" @select="selectItem" ref="mainList" style="height:100%;"></List>
+          </div>
         </div>
       </main>
     </div>
@@ -23,6 +25,7 @@ import { getDailySongs } from "api/api";
 import { mapActions } from "vuex";
 import { throttle } from "common/js/util";
 import Skeleton from "base/Skeleton";
+import scrollMixin from "@/mixin/scrollMixin";
 export default {
   data() {
     return {
@@ -30,10 +33,12 @@ export default {
       // postionStore: ""
     };
   },
+  mixins: [scrollMixin],
   created() {
     this.getDailySongs();
     this.throttle = throttle;
     this.postionStore = "";
+     this.transformDelta=window.innerHeight*0.08
   },
   methods: {
     mListTm(e) {
@@ -121,7 +126,7 @@ export default {
       overflow: auto;
 
       .main-top {
-        height: 45%;
+        height: 18rem;
         /* width: 100%; */
         opacity: 0.8;
         background-position: center;

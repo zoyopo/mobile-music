@@ -2,50 +2,51 @@
 
 <template>
 
-  <div class="rec-content" :class="{playerRstHeight:playList.length>0}">
-   <Skeleton :navShow="false" :itemNum="4" v-show="skeletonShow"></Skeleton>
-    
-    <div v-if="picArray.length>0">
-      <slide :loop='loop' :autoPlay='autoPlay' :picArray="picArray" :style="{'margin-top':'10px'}">
+  <div class="rec-content" :class="{playerRstHeight:playList.length>0}" ref="wrapper">
+    <div class="wrapper-container" ref="container">
+      <Skeleton :navShow="false" :itemNum="4" v-show="skeletonShow"></Skeleton>
 
-      </slide>
-    </div>
-    <div v-show="!skeletonShow">
-    <circle-icon @click.native="operate(index)" v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
-      <!--去掉第一个元素的margin-->
-      <div>{{item.text}}</div>
-    </circle-icon>
+      <div v-if="picArray.length>0">
+        <slide :loop='loop' :autoPlay='autoPlay' :picArray="picArray" :style="{'margin-top':'10px'}">
 
-    
-      <div class="song-sheets">
-        <sheet-label :title="'推荐歌单'"></sheet-label>
-        <grid :col=2 :cols=3>
-          <grid-item label="Grid" v-for="item in contentArray" :key="item.id" :link="{ path: `/songsheets/${item.id}`}">
-            <img slot="icon" v-lazy="item.picUrl">
-            <div slot="label">{{item.name}}</div>
-            <div class="right-top">
-              <i class="fa fa-headphones"></i>
-              <span>{{(item.playCount/10000).toFixed(2)+"W" }}
-              </span>
-            </div>
-          </grid-item>
-
-        </grid>
+        </slide>
       </div>
-      <div class="song-sheets">
-        <sheet-label :title="'最新音乐'"></sheet-label>
-        <grid :col=2 :cols=3>
-          <grid-item label="Grid" v-for="item in newsongs" :key="item.id" @click.native="goToSongSheet(item.id)">
-            <img slot="icon" v-lazy="item.coverImgUrl">
-            <div slot="label">{{item.name}}</div>
-            <div class="right-top">
-              <!-- <i class="fa fa-headphones"></i> -->
-              <!-- <span>{{(item.playCount/10000).toFixed(2)+"W" }}
-            </span> -->
-            </div>
-          </grid-item>
+      <div v-show="!skeletonShow">
+        <circle-icon @click.native="operate(index)" v-for="(item,index) in icons" :icon="item.name" :key="index" :class="'distance'" :style="index===0?{'margin-left':0}:''">
+          <!--去掉第一个元素的margin-->
+          <div>{{item.text}}</div>
+        </circle-icon>
 
-        </grid>
+        <div class="song-sheets">
+          <sheet-label :title="'推荐歌单'"></sheet-label>
+          <grid :col=2 :cols=3>
+            <grid-item label="Grid" v-for="item in contentArray" :key="item.id" :link="{ path: `/songsheets/${item.id}`}">
+              <img slot="icon" v-lazy="item.picUrl">
+              <div slot="label">{{item.name}}</div>
+              <div class="right-top">
+                <i class="fa fa-headphones"></i>
+                <span>{{(item.playCount/10000).toFixed(2)+"W" }}
+                </span>
+              </div>
+            </grid-item>
+
+          </grid>
+        </div>
+        <div class="song-sheets">
+          <sheet-label :title="'最新音乐'"></sheet-label>
+          <grid :col=2 :cols=3>
+            <grid-item label="Grid" v-for="item in newsongs" :key="item.id" @click.native="goToSongSheet(item.id)">
+              <img slot="icon" v-lazy="item.coverImgUrl">
+              <div slot="label">{{item.name}}</div>
+              <div class="right-top">
+                <!-- <i class="fa fa-headphones"></i> -->
+                <!-- <span>{{(item.playCount/10000).toFixed(2)+"W" }}
+            </span> -->
+              </div>
+            </grid-item>
+
+          </grid>
+        </div>
       </div>
     </div>
   </div>
@@ -55,11 +56,13 @@
 // import { Group, Cell } from 'vux'
 import Slide from "components/Index/Slider.vue";
 import { getFirstScreenData, getSongSheetsData } from "api/api.js";
-import Skeleton from "base/Skeleton"
+import Skeleton from "base/Skeleton";
 import { Grid, GridItem } from "vux";
 import CircleIcon from "components/Recomend/CircleIcon";
 import SheetLabel from "components/Recomend/SheetLabel";
 import { mapGetters, mapActions } from "vuex";
+import scrollMixin from "@/mixin/scrollMixin"
+import BScroll from "better-scroll";
 export default {
   components: {
     Slide,
@@ -69,9 +72,9 @@ export default {
     GridItem,
     Skeleton
   },
+
   data() {
     return {
-      
       // note: changing this line won't causes changes
       // with hot-reload because the reloaded component
       // preserves its current state and we are modifying
@@ -99,6 +102,7 @@ export default {
     };
   },
   created() {
+    this.transformDelta = 100;
     this.getAllData();
     Object.freeze(this.icons);
   },
@@ -146,13 +150,16 @@ export default {
         });
         this.videoArray = privateContent.data.result;
       }
+      //this.ldDataFinished = true;
+     
     },
     goToSongSheet(id) {
       //this.$router.push({name:"SongSheet",params: {id}})=>这种写法无效
       //debugger
       this.$router.push(`/songsheets/${id}`);
     }
-  }
+  },
+  mixins:[scrollMixin]
 };
 </script>
 
@@ -164,7 +171,10 @@ export default {
 .rec-content {
   text-align: center;
   height: calc(100% - 90px);
-  overflow: auto;
+  overflow: hidden;
+  .wrapper-container {
+    //  padding-top: 90px;
+  }
 }
 .logo {
   width: 100px;
