@@ -21,7 +21,7 @@ const mixinScroll = {
 //   }
   updated () {
     this.scroll = new BScroll(this.$refs.wrapper, {
-
+      click: true
     })
     // this.$nextTick(() => {
     // //   debugger
