@@ -15,15 +15,18 @@
           <img :src="listIcon" alt="">
         </div>
         <audio ref="audio" @canplay="ready" @ended="end" @error="error" @timeupdate="updateTime" :src="`http://music.163.com/song/media/outer/url?id=${_currentSong.id}.mp3`"></audio>
-      </div> 
+      </div>
 
     </transition>
   </div>
 </template>
 
 <script>
+
+
 import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
+
 
 export default {
   name: "player",
@@ -34,9 +37,21 @@ export default {
       currentTime: 0
     };
   },
-  mounted() {},
+  mounted() {
+   
+  },
 
   methods: {
+    awPlay() {
+       let auidoDom = this.$refs.audio.play();
+      if (this.auidoDom !== undefined) {
+        promise.catch(error => {
+          this.$refs.audio.play();
+        }).then(() => {
+          this.$refs.audio.play();
+        });
+      }
+    },
     next() {
       if (!this.songIsReady) {
         return;
@@ -62,7 +77,7 @@ export default {
     end() {
       if (this.playerMode === 1) {
         this.$refs.audio.currentTime = 0;
-        this.$refs.audio.play();
+        this.awPlay();
       } else {
         this.next();
       }
@@ -119,7 +134,7 @@ export default {
         this.playIcon = val
           ? "../static/img/music_pause_black.png"
           : "../static/img/music_play_black.png";
-        val ? this.$refs.audio.play() : this.$refs.audio.pause();
+        val ? this.awPlay() : this.$refs.audio.pause();
       });
     },
 
@@ -130,7 +145,7 @@ export default {
       }
       this.setPlayState(true);
       this.$nextTick(() => {
-        this.$refs.audio.play();
+        this.awPlay();
       });
     }
   }
@@ -151,7 +166,7 @@ export default {
       opacity: 0;
     }
     &.mini-enter-to,
-    &.mini-leave{
+    &.mini-leave {
       opacity: 0.4;
     }
     height: 4rem;

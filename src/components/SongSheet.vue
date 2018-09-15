@@ -3,7 +3,7 @@
 <template>
 
   <div class="song-sheet">
-    <Skeleton :itemShow="false"  v-show="skeletonShow"></Skeleton>
+    <Skeleton :itemShow="false" v-show="skeletonShow"></Skeleton>
     <div class="vis-wrapper" v-show="!skeletonShow">
       <!--头部-->
       <div class='header'>
@@ -158,6 +158,9 @@ export default {
 <style lang="scss" scoped>
 .song-sheet {
   height: 100%;
+  .vis-wrapper {
+    height: 100%;
+  }
   .header {
     background: #ddd;
     color: #fff;
