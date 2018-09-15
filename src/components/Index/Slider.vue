@@ -229,7 +229,7 @@ export default {
   //min-height: 1px;
   // position: relative;
   // margin: 0 5%;
- 
+  height: 10.5rem;
   position: relative;
 }
 .slide-group {
@@ -281,6 +281,11 @@ export default {
       border-radius: 5px;
       background: #fff;
     }
+  }
+}
+@media screen and(min-width:768px) {
+  .slide{
+    height: auto;
   }
 }
 </style>

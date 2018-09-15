@@ -61,6 +61,15 @@
 <div style="width:100px;margin:0 auto;">播放器（大）</div>
 <div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/normalplayer.png" width="25%" height="25%" /></div>
 
+### 问题
+
+#### 骨架屏移除未渲染完全问题
+
+描述： 2018-09-13  骨架屏被移除之后，客户端渲染还没有完成，故将骨架屏作为占位放入客户端还没渲染完成的内容中
+
+解决：将骨架屏封装成一个子组件，在需要的父组件里引用，在每一个渲染数据页面的`updated`钩子里，`this.$nextTick`里将骨架屏幕的隐藏，原页面内容显示，由于用到的页面现在且将来可能比较普遍，就直接用注册全局mixin 来实现这个逻辑。
+
+
 
 
 ### 详细信息

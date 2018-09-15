@@ -1,15 +1,18 @@
 <template>
   <div class="dailysongs">
-    <m-header :info="info" @back="back" class="m-header"></m-header>
-    <main>
-      <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}" ref="topPic">
-        <div class="main-top-tips">根据你的口味每天6:00生成</div>
-        <div></div>
-      </div>
-      <div class="main-list" @touchstart="mListTs" @touchend="mListTd"  @touchmove="throttle(mListTm,500)()">
-        <List :list="songList" :showPic="true" @select="selectItem" ref="mainList" style="height:100%;"></List>
-      </div>
-    </main>
+    <Skeleton :itemShow="false" v-show="skeletonShow"></Skeleton>
+    <div class="vis-wrapper" v-show="!skeletonShow">
+      <m-header :info="info" @back="back" class="m-header"></m-header>
+      <main>
+        <div class="main-top" :style="{'background-image':`url(${backgroundUrl})`}" ref="topPic">
+          <div class="main-top-tips">根据你的口味每天6:00生成</div>
+          <div></div>
+        </div>
+        <div class="main-list" @touchstart="mListTs" @touchend="mListTd" @touchmove="throttle(mListTm,500)()">
+          <List :list="songList" :showPic="true" @select="selectItem" ref="mainList" style="height:100%;"></List>
+        </div>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -19,43 +22,36 @@ import List from "base/List";
 import { getDailySongs } from "api/api";
 import { mapActions } from "vuex";
 import { throttle } from "common/js/util";
-
-
+import Skeleton from "base/Skeleton";
 export default {
   data() {
     return {
       songList: []
-     // postionStore: ""
+      // postionStore: ""
     };
   },
   created() {
     this.getDailySongs();
     this.throttle = throttle;
-    this.postionStore="";
+    this.postionStore = "";
   },
   methods: {
     mListTm(e) {
       // console.log(e)
       //console.log(1)
-      let listDom=this.$refs.mainList.$el;
+      let listDom = this.$refs.mainList.$el;
       let picDom = this.$refs.topPic.getBoundingClientRect();
-      let topPicHeight=picDom.height;
-      if (
-        this.postionStore - picDom.top+ 5 >=
-        topPicHeight
-      ) {
-      //  if (listDom.style["overflow"] === "hidden") {
-          listDom.style["overflow"] = "auto";
+      let topPicHeight = picDom.height;
+      if (this.postionStore - picDom.top + 15 >= topPicHeight) {
+        //  if (listDom.style["overflow"] === "hidden") {
+        listDom.style["overflow"] = "auto";
         //}
       } else {
-        let ratio =
-          (picDom.bottom - this.postionStore) /
-          topPicHeight;
+        let ratio = (picDom.bottom - this.postionStore) / topPicHeight;
         this.$refs.topPic.style["opacity"] = parseFloat(ratio.toFixed(2));
-       // debugger
-        
-          listDom.style["overflow"] = "hidden";
-        
+        // debugger
+
+        listDom.style["overflow"] = "hidden";
       }
     },
     mListTs() {
@@ -105,7 +101,8 @@ export default {
   },
   components: {
     MHeader,
-    List
+    List,
+    Skeleton
   }
 };
 </script>
@@ -113,33 +110,36 @@ export default {
 <style lang="scss" scoped>
 .dailysongs {
   height: 100%;
-  .m-header {
-    height: 8%;
-  }
-  main {
-    background: #ddd;
-    height: 92%;
-    overflow: auto;
-
-    .main-top {
-      height: 45%;
-      /* width: 100%; */
-      opacity: 0.8;
-      background-position: center;
-      background-size: cover;
-      text-align: center;
-      color: #fff;
-      position: relative;
-      .main-top-tips {
-        position: absolute;
-        bottom: 0;
-        left: 0.5rem;
-        font-size: 0.8rem;
-      }
+  .vis-wrapper {
+    height: 100%;
+    .m-header {
+      height: 8%;
     }
-    .main-list {
-      height: 100%;
-      overflow: hidden;
+    main {
+      background: #ddd;
+      height: 92%;
+      overflow: auto;
+
+      .main-top {
+        height: 45%;
+        /* width: 100%; */
+        opacity: 0.8;
+        background-position: center;
+        background-size: cover;
+        text-align: center;
+        color: #fff;
+        position: relative;
+        .main-top-tips {
+          position: absolute;
+          bottom: 0;
+          left: 0.5rem;
+          font-size: 0.8rem;
+        }
+      }
+      .main-list {
+        height: 100%;
+        overflow: hidden;
+      }
     }
   }
 }

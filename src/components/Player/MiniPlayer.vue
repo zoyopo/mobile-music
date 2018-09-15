@@ -1,5 +1,5 @@
 <template>
-  <div class="player" v-if="playList.length>0" v-show="!fullScreen" @click="open">
+  <div class="player" v-if="playList.length>0" v-show="!fullScreen&&!drawerVis" @click="open">
     <transition name="mini">
       <div class="mini-player">
         <div class="player-pic"><img :src="_currentSong.album.blurPicUrl||'../static/img/no-pic.png'" alt=""></div>
@@ -22,8 +22,11 @@
 </template>
 
 <script>
+
+
 import { mapGetters, mapMutations, mapActions } from "vuex";
 import animations from "create-keyframe-animation";
+
 
 export default {
   name: "player",
@@ -34,9 +37,21 @@ export default {
       currentTime: 0
     };
   },
-  mounted() {},
+  mounted() {
+   
+  },
 
   methods: {
+    awPlay() {
+       let auidoDom = this.$refs.audio.play();
+      if (this.auidoDom !== undefined) {
+        promise.catch(error => {
+          this.$refs.audio.play();
+        }).then(() => {
+          this.$refs.audio.play();
+        });
+      }
+    },
     next() {
       if (!this.songIsReady) {
         return;
@@ -62,7 +77,7 @@ export default {
     end() {
       if (this.playerMode === 1) {
         this.$refs.audio.currentTime = 0;
-        this.$refs.audio.play();
+        this.awPlay();
       } else {
         this.next();
       }
@@ -92,7 +107,8 @@ export default {
       "songIsReady",
       "playerMode",
       "songSequence",
-      "currentSong"
+      "currentSong",
+      "drawerVis"
     ]),
     cdCls() {
       return this.playing ? "play" : "play pause";
@@ -118,7 +134,7 @@ export default {
         this.playIcon = val
           ? "../static/img/music_pause_black.png"
           : "../static/img/music_play_black.png";
-        val ? this.$refs.audio.play() : this.$refs.audio.pause();
+        val ? this.awPlay() : this.$refs.audio.pause();
       });
     },
 
@@ -129,7 +145,7 @@ export default {
       }
       this.setPlayState(true);
       this.$nextTick(() => {
-        this.$refs.audio.play();
+        this.awPlay();
       });
     }
   }
@@ -143,11 +159,15 @@ export default {
   .mini-player {
     &.mini-enter-active,
     &.mini-leave-active {
-      transition: all 0.4s;
+      transition: all 0.8s;
     }
     &.mini-enter,
     &.mini-leave-to {
       opacity: 0;
+    }
+    &.mini-enter-to,
+    &.mini-leave {
+      opacity: 0.4;
     }
     height: 4rem;
     display: flex;

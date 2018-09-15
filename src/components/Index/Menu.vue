@@ -24,7 +24,7 @@
 
 <script>
 import { Cell, Group } from "vux";
-import { mapGetters } from "vuex";
+import { mapGetters,mapMutations } from "vuex";
 //const topPic = require("../../assets/logo.png");
 export default {
   name: "Menu",
@@ -45,9 +45,13 @@ export default {
     },
     // 登出
     logOut(){
-      localStorage.removeItem('userInfo')
+     this.rmUserInfo({});
       this.$router.push('/login')
-    }
+    },
+    ...mapMutations({
+     rmUserInfo: 'REMOVE_STORAGE_USER_INFO'
+     
+    })
   },
   computed: {
     ...mapGetters(["userInfo"]),

@@ -34,6 +34,10 @@ export default {
     };
   },
   methods: {
+    activated() {
+      this.loginInfo.phone="";
+      this.loginInfo.password="";
+    },
     blurRst() {
       this.mark = true;
     },

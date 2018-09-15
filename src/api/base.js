@@ -18,7 +18,7 @@ class Api {
         store.commit(SET_REQUEST_END, false)
       }
       // config.params = Object.assign({
-      //   xhrFields: '{ withCredentials: true }'
+      //   proxy: 'http://www.u-to-world.com'
       // }, config.params)
 
       return config
@@ -34,7 +34,7 @@ class Api {
 export default new Api()
 
 axios.interceptors.response.use(function (response) {
-  debounce(store.commit(SET_REQUEST_END, true), 100)  // 完成隐藏loading
+  debounce(store.commit(SET_REQUEST_END, true), 1000)  // 完成隐藏loading
 
   // store.dispatch('FETCH_LOADING', false)
   return response
