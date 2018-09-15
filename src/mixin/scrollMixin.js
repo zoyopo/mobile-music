@@ -1,12 +1,12 @@
 import BScroll from 'better-scroll'
 const mixinScroll = {
   mounted () {
-    this.$refs.container.addEventListener('touchend', () => {
-      this.$refs.container.style['padding-top'] = this.transformDelta + 'px'
-    }, false)
-    this.$refs.container.addEventListener('click', (e) => {
-      e.preventDefault()
-    }, false)
+    // this.$refs.container.addEventListener('touchend', () => {
+    //   this.$refs.container.style['padding-top'] = this.transformDelta + 'px'
+    // }, false)
+    // this.$refs.container.addEventListener('click', (e) => {
+    //   e.preventDefault()
+    // }, false)
   },
 //   watch: {
 //     ldDataFinished () {
