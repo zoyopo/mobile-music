@@ -69,8 +69,11 @@
 
 解决：将骨架屏封装成一个子组件，在需要的父组件里引用，在每一个渲染数据页面的`updated`钩子里，`this.$nextTick`里将骨架屏幕的隐藏，原页面内容显示，由于用到的页面现在且将来可能比较普遍，就直接用注册全局mixin 来实现这个逻辑。
 
+#### vue2.5+版本导致 `$nextTick`无法正常在 `safari`中播放音乐。
+描述： 2018-09-15 vue2.5+版本对于`$nextTick`的实现的有一些改动，引入了`setImmediate`和`MessageChannel`采用向下兼容的方式代替`setTimeout`，详情见
+<a href="https://github.com/DDFE/DDFE-blog/issues/24">issues</a>
 
-
+解决:hack方式，将`setImmediate`和`MessageChannel`在`vue.js`加载前设为null,降级到`setTimeOut`
 
 ### 详细信息
 
