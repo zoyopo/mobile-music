@@ -75,6 +75,19 @@
 
 解决:hack方式，将`setImmediate`和`MessageChannel`在`vue.js`加载前设为null,降级到`setTimeOut`
 
+#### 滚动比较生硬，性能不是很好
+
+描述：2018-09-15 滚动比较生硬，性能不是很好
+
+解决：使用`better-scroll`对涉及到滚动的统一优化，在`updated`钩子里对`dom`进行包装。
+
+#### ios端播放器暂停了cd还在旋转
+
+描述：2018-09-16 ios端播放器暂停了cd还在旋转，ios端`animation-play-state`失效导致无法停止动画
+
+解决：采用其他方式，<a href="https://segmentfault.com/q/1010000009884033">segmentFault上的一个思路</a>
+简单说就是停止的时候给外层一个`transform`来记录当前旋转位置信息，然后通过外层的旋转来叠加覆盖
+
 ### 详细信息
 
 > <a href='http://u-to-world.com:8080/static/index.html#/' style="text-decoration: underline;">测试地址</a>
