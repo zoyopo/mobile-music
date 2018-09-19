@@ -106,3 +106,9 @@ export function getDailySongs () {
     }
   })
 }
+
+export function serchHotInfo(){
+
+  return axios.get()
+
+}
