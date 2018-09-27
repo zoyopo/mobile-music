@@ -21,9 +21,9 @@ const dailySongs = {
 }
 
 const songsSearch = {
+  _search: '/search', // rst
   searchHot: '/search/hot',
   searchSuggest: '/search/suggest'
-
 }
 const notLoadingUrl = ['/playlist/catlist', '/playlist/hot', '/top/playlist', '/personalized', '/banner', '/personalized/privatecontent', '/personalized/newsong']
 module.exports = {

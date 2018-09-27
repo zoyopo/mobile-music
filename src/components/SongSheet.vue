@@ -62,7 +62,7 @@
 
 <script>
 import BScroll from "better-scroll";
-import { getSheetDetail } from "api/api.js";
+import { getSheetDetail } from "api/api_songsheet.js";
 import List from "base/List";
 import Skeleton from "base/Skeleton";
 // import MHeader from 'base/MHeader'

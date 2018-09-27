@@ -21,7 +21,7 @@
 <script>
 import MHeader from "base/MHeader";
 import List from "base/List";
-import { getDailySongs } from "api/api";
+import { getDailySongs } from "api/api_dailysongs";
 import { mapActions } from "vuex";
 import { throttle } from "common/js/util";
 import Skeleton from "base/Skeleton";

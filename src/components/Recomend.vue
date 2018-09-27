@@ -55,7 +55,7 @@
 <script>
 // import { Group, Cell } from 'vux'
 import Slide from "components/Index/Slider.vue";
-import { getFirstScreenData, getSongSheetsData } from "api/api.js";
+import { getFirstScreenData, getSongSheetsData } from "api/api_recommend.js";
 import Skeleton from "base/Skeleton";
 import { Grid, GridItem } from "vux";
 import CircleIcon from "components/Recomend/CircleIcon";
