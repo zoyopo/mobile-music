@@ -43,6 +43,12 @@ const router = new Router({
       name: 'dailysongs',
       component: view('', 'DailySongs'),
       meta: {requireAuth: true}
+    },
+    {
+      path: '/search',
+      name: 'searchPage',
+      component: view('', 'SearchPage'),
+      meta: {requireAuth: false}
     }
   ]
 })

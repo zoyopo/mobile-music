@@ -7,13 +7,8 @@
         <!-- 菜单内容 -->
         <Menu></Menu>
       </div>
-      <div class="main">
-       <div class="input-header">
-         <input type="text" class="search-input" v-show="searchIptVis" />
-        <button class="cancel-btn" v-show="searchIptVis">取消</button>
-        </div>
-        
-        <x-header v-show="!searchIptVis" @on-click-title="searchOnClick">
+      <div class="main">        
+        <x-header @on-click-title="searchOnClick">
           <div slot="overwrite-left">
             <i :class="headerIcon" @click="showDrawer"></i>
           </div>
@@ -56,7 +51,7 @@ export default {
   },
   data() {
     return {
-      searchIptVis: false,
+    
       drawerVisibility: false,
       // drawerVisibility: false,
       showMode: "push",
@@ -87,7 +82,8 @@ export default {
     },
     searchOnClick() {
       console.log("search icon clicked");
-      this.searchIptVis = true;
+     // this.searchIptVis = true;
+     this.$router.push('/search')
     },
     ...mapMutations({
       setDrawerVis: "SET_DRAWER_VIS"
@@ -158,14 +154,5 @@ export default {
     font-size: 2rem;
   }
 }
-.search-input {
-  width: 80%;
-  height: 2rem;
-  border: 1px solid #1cd833;
-  /* color: black; */
-  border-radius: 14px;
-}
-.cancel-btn{
-  width: 15%;  
-}
+
 </style>
