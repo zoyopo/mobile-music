@@ -19,7 +19,7 @@
                         <i class="iconfont icon-video"></i>
                     </span>
                     <div slot="right" class="right">
-                        <i class="fa fa-search"></i>
+                        <i class="fa fa-search" @click="search"></i>
                     </div>
                 </x-header>
                 <tab>
