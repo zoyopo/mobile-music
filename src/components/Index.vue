@@ -1,45 +1,50 @@
 <template>
-    <div class="index">
+  <div class="index">
 
-        <drawer width="340px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#fff', width: '340px'}">
+    <drawer width="340px;" :show.sync="drawerVisibility" :show-mode="showModeValue" :placement="showPlacementValue" :drawer-style="{'background-color':'#fff', width: '340px'}">
 
-            <div slot="drawer" class="menu-container">
-                <!-- 菜单内容 -->
-                <Menu></Menu>
-            </div>
-            <div class="main">
-                <x-header>
-                    <div slot="overwrite-left">
-                        <i :class="headerIcon" @click="showDrawer"></i>
-                    </div>
-                    <!--title区域-->
-                    <span class="title-icon">
-                        <!-- <i class="iconfont icon-yinle"></i> -->
-                        <i class="iconfont icon-music"></i>
-                        <i class="iconfont icon-video"></i>
-                    </span>
-                    <div slot="right" class="right">
-                        <i class="fa fa-search"></i>
-                    </div>
-                </x-header>
-                <tab>
-                    <tab-item selected @on-item-click="onItemClick">推荐</tab-item>
-                    <tab-item @on-item-click="onItemClick">朋友</tab-item>
-                    <tab-item @on-item-click="onItemClick">电台</tab-item>
-                </tab>
-                <router-view></router-view>
-            </div>
-        </drawer>
+      <div slot="drawer" class="menu-container">
+        <!-- 菜单内容 -->
+        <Menu></Menu>
+      </div>
+      <div class="main">
+       <div class="input-header">
+         <input type="text" class="search-input" v-show="searchIptVis" />
+        <button class="cancel-btn" v-show="searchIptVis">取消</button>
+        </div>
+        
+        <x-header v-show="!searchIptVis" @on-click-title="searchOnClick">
+          <div slot="overwrite-left">
+            <i :class="headerIcon" @click="showDrawer"></i>
+          </div>
+          <!--title区域-->
+          <span class="title-icon">
+            <!-- <i class="iconfont icon-yinle"></i> -->
+            <i class="iconfont icon-music"></i>
+            <i class="iconfont icon-video"></i>
+          </span>
+          <div slot="right" class="right">
+            <i class="fa fa-search" @click.stop="searchOnClick"></i>
+          </div>
+        </x-header>
+        <tab>
+          <tab-item selected @on-item-click="onItemClick">推荐</tab-item>
+          <tab-item @on-item-click="onItemClick">朋友</tab-item>
+          <tab-item @on-item-click="onItemClick">电台</tab-item>
+        </tab>
+        <router-view></router-view>
+      </div>
+    </drawer>
 
-    </div>
+  </div>
 </template>
 
 <script>
-import { Drawer } from "vux";
-import { XHeader } from "vux";
-import { Tab, TabItem } from "vux";
+import { Drawer, XHeader, Tab, TabItem } from "vux";
+
 import Menu from "components/Index/Menu";
-import {mapGetters,mapMutations} from 'vuex'
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "index",
   components: {
@@ -51,6 +56,7 @@ export default {
   },
   data() {
     return {
+      searchIptVis: false,
       drawerVisibility: false,
       // drawerVisibility: false,
       showMode: "push",
@@ -59,65 +65,66 @@ export default {
       showPlacementValue: "left"
     };
   },
-  activated(){
+  activated() {
     // 如果展开则关闭drawer
-    if(this.drawerVisibility){
-    this.drawerVisibility=false
+    if (this.drawerVisibility) {
+      this.drawerVisibility = false;
     }
   },
   methods: {
     showDrawer() {
       //console.log("click show drawer");
-      if(Object.keys(this.userInfo).length>0){
-      this.drawerVisibility=true;
-     // this.setDrawerVis()
-      }else{
-        //todo login... 
-        this.$router.push('/login')
+      if (Object.keys(this.userInfo).length > 0) {
+        this.drawerVisibility = true;
+        // this.setDrawerVis()
+      } else {
+        //todo login...
+        this.$router.push("/login");
       }
     },
     onItemClick(index) {
       console.log("on item click:", index);
     },
+    searchOnClick() {
+      console.log("search icon clicked");
+      this.searchIptVis = true;
+    },
     ...mapMutations({
-      setDrawerVis:'SET_DRAWER_VIS'
+      setDrawerVis: "SET_DRAWER_VIS"
     })
   },
-  computed:{
+  computed: {
+    headerIcon() {
+      const hasLogin = Object.keys(this.userInfo).length > 0;
+      return hasLogin ? "fa fa-reorder" : "fa fa-user-o";
+    },
 
-   headerIcon(){
-     const hasLogin=Object.keys(this.userInfo).length>0;
-     return hasLogin?'fa fa-reorder':'fa fa-user-o'
-
-   }, 
-
-    ...mapGetters(['userInfo'])
-
+    ...mapGetters(["userInfo"])
   },
-  watch:{
-    drawerVisibility(val){
-      this.setDrawerVis(val)
+  watch: {
+    drawerVisibility(val) {
+      this.setDrawerVis(val);
     }
   }
 };
 </script>
 
 <style lang="scss">
-@import '../assets/recommend/iconfont.scss';
-.vux-header{
+@import "../assets/recommend/iconfont.scss";
+.vux-header {
   background: #9bca4f !important;
 }
 
 .index {
   height: 100%;
-  .main{
+  .main {
     height: 100%;
   }
   .fa-reorder {
     font-size: 2rem;
     vertical-align: middle;
   }
-  .fa-user-o{
+  .fa-user-o {
     font-size: 2rem;
     vertical-align: middle;
     color: #ddd;
@@ -138,7 +145,7 @@ export default {
   }
 }
 
-.menu-container{
+.menu-container {
   height: 100%;
 }
 
@@ -150,5 +157,16 @@ export default {
     padding-left: 30px;
     font-size: 2rem;
   }
+}
+.search-input {
+  width: 80%;
+  height: 2rem;
+  border: 1px solid #1cd833;
+  /* color: black; */
+  border-radius: 14px;
+}
+.cancel-btn{
+  width: 10%;
+  padding-left: 10%;
 }
 </style>
