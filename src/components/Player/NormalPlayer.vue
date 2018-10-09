@@ -140,6 +140,7 @@ export default {
         }
         this.setCurrentIndex(currrentIndex);
         this.setSongReady(false);
+         this.$refs.img.classList.add("play");//上一曲，下一曲的时候加上旋转样式
         return;
       }
       if (index === 3) {
@@ -161,6 +162,7 @@ export default {
         }
         this.setCurrentIndex(currrentIndex);
         this.setSongReady(false);
+         this.$refs.img.classList.add("play");//上一曲，下一曲的时候加上旋转样式
         return;
       }
     },
