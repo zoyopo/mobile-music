@@ -151,7 +151,7 @@ export default {
         this.videoArray = privateContent.data.result;
       }
       //this.ldDataFinished = true;
-     
+
     },
     goToSongSheet(id) {
       //this.$router.push({name:"SongSheet",params: {id}})=>这种写法无效
@@ -173,7 +173,7 @@ export default {
   height: calc(100% - 90px);
   overflow: hidden;
   .wrapper-container {
-    //  padding-top: 90px;
+    padding-top: 90px;
   }
 }
 .logo {

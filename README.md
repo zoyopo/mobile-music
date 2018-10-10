@@ -23,7 +23,7 @@
 
 
 
- 
+
 <div style="width:100px;margin:0 auto;">首页</div>
 <div style="width:200px;margin:0 auto;"><img src="https://github.com/godlikedeveloper/mobile-music/blob/master/static/rstImg/index.png" width="25%" height="25%" /></div>
 
@@ -62,7 +62,17 @@
 
 解决：将骨架屏封装成一个子组件，在需要的父组件里引用，在每一个渲染数据页面的`updated`钩子里，`this.$nextTick`里将骨架屏幕的隐藏，原页面内容显示，由于用到的页面现在且将来可能比较普遍，就直接用注册全局mixin 来实现这个逻辑。
 
+#### 主页面首次加载时，会出现loading时主页面划过的情况
 
+描述： 2018-10-10  App.vue中"<transition name="slide">" vue在创建created时期,DOM从生产的时候带有slide的效果属性
+
+解决：  通过animate.css中enter-active-class的属性进行设置,created时DOM的class为空,mounted时期添加效果
+
+#### 主页面滚动之后，需要点击两次才会进入歌单详情
+
+描述： 2018-10-10  添加 better-scroll 后, 通过回弹动画延迟时间加长,发现回弹时click为无效(即使click: true也无效)
+
+解决：  better-scroll设置中的bounceTime减少回弹的时间
 
 
 ### 详细信息
@@ -75,21 +85,21 @@
 
 
 #### 项目结构
- 
+
  vue-cli搭建
 
  新增目录如下：
- 
+
    ```
-     ---src 
+     ---src
      ------api        // 放置api的目录
      ---------base.js // 放置axios的一些配置，接口域名地址，以及公共参数配置，与后台约定跨域的配置，全局loading配置等
-     ---------urls.js // 放置接口url 
+     ---------urls.js // 放置接口url
      ---------api.js  // 放置封装的promise请求
-     ------base       // 放置一些基础组件 
-     ------common  
-     ---------js      // 公共js 
-     ---------sass    // 公共样式 
+     ------base       // 放置一些基础组件
+     ------common
+     ---------js      // 公共js
+     ---------sass    // 公共样式
   ```
 
 #### 类库使用
@@ -128,11 +138,11 @@
 
 * 隐藏显示 通过vuex进行管理
 
-* 动画 
-  
+* 动画
+
    1. 头部下坠和底部的上浮
 
-     
+
       ```
        <transition name="example">
 
@@ -157,14 +167,14 @@
 
 
       }
-     
+
        可以使用碟中谍6中的halo跳伞来理解
 
        .example-enter-active就是从飞机上离开到开伞的时间
 
        .example-enter 下坠前在飞机上的最后一刻
 
-       .example-enter-to  开始下坠，具备加速度的那一刻 
+       .example-enter-to  开始下坠，具备加速度的那一刻
 
        .example-leave-active 开伞到着陆的时间
 
@@ -172,7 +182,7 @@
 
        .example-leave-to 伞开下一刻
       ```
-     
+
    2. 播放器的cd的位移及缩放
 
        先计算出小播放器图片离最终大播放器cd的x,y轴上的距离
