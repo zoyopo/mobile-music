@@ -20,7 +20,7 @@
       </div>
       <!--主体-->
       <main ref='wrapper'>
-        <div class="wrapper-container" ref="container">
+        <div class="wrapper-container" ref="container" >
           <!--主体上-->
           <div class="main-top">
 
@@ -49,7 +49,7 @@
           </div>
         </div> -->
           <!-- 歌曲列表-->
-          <div class="main-list">
+          <div class="main-list"  >
             <List :list="songList" @select="selectItem"></List>
           </div>
         </div>

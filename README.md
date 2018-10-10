@@ -74,6 +74,13 @@
 
 解决：  better-scroll设置中的bounceTime减少回弹的时间
 
+#### 点击输入框时页面自动放大(苹果手机)
+
+描述： 2018-10-10  点击input搜索框时，苹果手机登录页面会自动放大。
+
+解决：  `<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">`
+        "user-scalable=no"是禁止手动缩放,添加此属性后便不可手动控制页面大小
+
 
 ### 详细信息
 
