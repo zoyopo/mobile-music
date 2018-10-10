@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { loginRequest, getUserPlayList } from "api/api";
+import { loginRequest } from "api/api_login";
+import {getUserPlayList} from "api/api_recommend"
 import { mapMutations } from "vuex";
 export default {
   name: "login",

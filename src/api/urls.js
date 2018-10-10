@@ -19,11 +19,18 @@ const login = {
 const dailySongs = {
   songsRequest: '/recommend/songs'
 }
+
+const songsSearch = {
+  _search: '/search', // rst
+  searchHot: '/search/hot',
+  searchSuggest: '/search/suggest'
+}
 const notLoadingUrl = ['/playlist/catlist', '/playlist/hot', '/top/playlist', '/personalized', '/banner', '/personalized/privatecontent', '/personalized/newsong']
 module.exports = {
   recomend: recomend,
   songsheet: songsheet,
   notLoadingUrl: notLoadingUrl,
   login: login,
-  dailySongs: dailySongs
+  dailySongs: dailySongs,
+  songsSearch: songsSearch
 }

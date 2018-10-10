@@ -13,7 +13,7 @@
 <script>
 // import { Group, Cell } from 'vux'
 import Slide from "components/Index/Slider.vue";
-import {getFirstScreenData} from "api/api.js"
+import {getFirstScreenData} from "api/api_recommend.js"
 export default {
   components: {
     Slide

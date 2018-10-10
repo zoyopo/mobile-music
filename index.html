@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>小笼包的云音乐</title>
+
   <style data-vue-ssr-id="cf7fd5a4:0">
     .skeleton {
       position: relative;
@@ -77,14 +78,30 @@
       <div class="skeleton-nav"></div>
       <div class="skeleton-swiper"></div>
       <ul class="skeleton-tabs">
-        <li class="skeleton-tabs-item"><span></span></li>
-        <li class="skeleton-tabs-item"><span></span></li>
-        <li class="skeleton-tabs-item"><span></span></li>
-        <li class="skeleton-tabs-item"><span></span></li>
-        <li class="skeleton-tabs-item"><span></span></li>
-        <li class="skeleton-tabs-item"><span></span></li>
-        <li class="skeleton-tabs-item"><span></span></li>
-        <li class="skeleton-tabs-item"><span></span></li>
+        <li class="skeleton-tabs-item">
+          <span></span>
+        </li>
+        <li class="skeleton-tabs-item">
+          <span></span>
+        </li>
+        <li class="skeleton-tabs-item">
+          <span></span>
+        </li>
+        <li class="skeleton-tabs-item">
+          <span></span>
+        </li>
+        <li class="skeleton-tabs-item">
+          <span></span>
+        </li>
+        <li class="skeleton-tabs-item">
+          <span></span>
+        </li>
+        <li class="skeleton-tabs-item">
+          <span></span>
+        </li>
+        <li class="skeleton-tabs-item">
+          <span></span>
+        </li>
       </ul>
       <div class="skeleton-banner"></div>
       <div class="skeleton-productions"></div>
@@ -95,7 +112,13 @@
       <div class="skeleton-productions"></div>
     </div>
   </div>
+  <script>
+     // hack for global nextTick
+    window.MessageChannel = undefined
+    window.setImmediate = undefined  
+  </script>
   <!-- built files will be auto injected -->
 </body>
+
 
 </html>

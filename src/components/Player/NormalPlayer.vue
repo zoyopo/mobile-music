@@ -106,6 +106,18 @@ export default {
 
       if (index === 2) {
         this.setPlayState(!this.playing);
+        // 修复ios上面滚动无法暂停
+        if (this.playing) {
+          this.$refs.img.classList.add("play");
+        } else {
+          let wrapperTrans = getComputedStyle(this.$refs.cdWrapper).transform;
+          let imgTrans = getComputedStyle(this.$refs.img).transform;
+          this.$refs.cdWrapper.style.transform =
+            wrapperTrans === "none"
+              ? imgTrans
+              : imgTrans.concat(" ", wrapperTrans);
+          this.$refs.img.classList.remove("play");
+        }
         return;
       }
       if (index === 1) {
@@ -128,6 +140,7 @@ export default {
         }
         this.setCurrentIndex(currrentIndex);
         this.setSongReady(false);
+         this.$refs.img.classList.add("play");//上一曲，下一曲的时候加上旋转样式
         return;
       }
       if (index === 3) {
@@ -149,6 +162,7 @@ export default {
         }
         this.setCurrentIndex(currrentIndex);
         this.setSongReady(false);
+         this.$refs.img.classList.add("play");//上一曲，下一曲的时候加上旋转样式
         return;
       }
     },
@@ -260,7 +274,7 @@ export default {
     },
 
     cdCls() {
-      return this.playing ? "play" : "play pause";
+      return "play";
     },
     info() {
       return {
@@ -288,7 +302,8 @@ export default {
   background: #cfd0c6;
   width: 100%;
   height: 100%;
-  .mask { // 遮罩=> 模糊效果
+  .mask {
+    // 遮罩=> 模糊效果
     position: absolute;
     height: 100%;
     background-size: cover;
@@ -330,10 +345,10 @@ export default {
           width: 100%;
           border-radius: 50%;
           &.play {
-            animation: rotate 20s linear infinite;/*cd旋转*/
+            animation: rotate 20s linear infinite; /*cd旋转*/
           }
           &.pause {
-            animation-play-state: paused;/*cd停止旋转*/
+            animation-play-state: paused; /*cd停止旋转*/
           }
         }
       }
