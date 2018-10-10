@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <Skeleton v-if="!requestEnd"></Skeleton>
     <div v-else> -->
-    <transition name="slide">
+    <transition name="slide" enter-active-class="FIRST_SLIDE">
       <keep-alive>
 
         <router-view></router-view>
@@ -41,7 +41,9 @@ export default {
     // }
   },
   data() {
-    return {};
+    return {
+      FIRST_SLIDE: ""
+    };
   },
   //2369438970
   methods: {
@@ -57,6 +59,13 @@ export default {
       } else {
       }
     }
+  },
+  mounted() {
+    /*
+     *  解决首次加载会出现loading时主页面划过的情况
+     *  添加className
+     */
+    this.FIRST_SLIDE = 'slide-enter-active'
   }
 };
 </script>
