@@ -9,7 +9,7 @@ const mixinScroll = {
     this.scroll = new BScroll(this.$refs.wrapper, {
       probeType: 3,
       bounceTime: 400,
-      startY: -90,
+      // startY: -90,
       taps: true,
       click: true
     })
