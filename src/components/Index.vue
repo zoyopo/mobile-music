@@ -13,7 +13,7 @@
         <button class="cancel-btn" v-show="searchIptVis">取消</button>
         </div>
         
-        <x-header v-show="!searchIptVis" @on-click-title="searchOnClick">
+        <x-header v-show="!searchIptVis">
           <div slot="overwrite-left">
             <i :class="headerIcon" @click="showDrawer"></i>
           </div>
@@ -24,7 +24,7 @@
             <i class="iconfont icon-video"></i>
           </span>
           <div slot="right" class="right">
-            <i class="fa fa-search" @click.stop="searchOnClick"></i>
+            <i class="fa fa-search"></i>
           </div>
         </x-header>
         <tab>
@@ -85,10 +85,7 @@ export default {
     onItemClick(index) {
       console.log("on item click:", index);
     },
-    searchOnClick() {
-      console.log("search icon clicked");
-      this.searchIptVis = true;
-    },
+  
     ...mapMutations({
       setDrawerVis: "SET_DRAWER_VIS"
     })

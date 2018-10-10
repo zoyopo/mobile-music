@@ -173,7 +173,7 @@ export default {
   height: calc(100% - 90px);
   overflow: hidden;
   .wrapper-container {
-    padding-top: 90px;
+   // padding-top: 90px;真机ok,不需要加
   }
 }
 .logo {
