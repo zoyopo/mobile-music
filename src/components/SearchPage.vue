@@ -5,7 +5,7 @@
             <input type="text" class="search-input" />
             <button class="cancel-btn" @click="back">取消</button>
         </div> -->
-        <search></search>
+        <search ref="searchCp"></search>
     </div>
 </template>
 
@@ -21,6 +21,10 @@ export default {
           results: [],
       value: 'test'
     };
+  },
+  mounted(){
+    // search组件直接进入输入模式
+    this.$refs.searchCp.touch();
   },
   methods: {
     back() {
