@@ -2,7 +2,7 @@
 ### 运行
 
 ```
- git clone git@github.com:godlikedeveloper/mobile-music.git
+ git clone git@github.com:zoyopo/mobile-music.git
 
  npm install
 
