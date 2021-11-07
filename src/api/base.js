@@ -5,7 +5,7 @@ import {notLoadingUrl} from 'api/urls'
 import {SET_REQUEST_END} from '@/store/mutation-types'
 class Api {
   axios () {
-    axios.defaults.baseURL = process.env === 'development' ? '/api' : '//u-to-world.com:3000'
+    axios.defaults.baseURL = process.env === 'development' ? '/api' : 'https://netease-cloud-music-api-4xrf4r81h-zoyopomusicapi.vercel.app'
     // let axiosDate = new Date()
     axios.defaults.withCredentials = true
     axios.interceptors.request.use(function (config) {
