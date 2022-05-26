@@ -9,7 +9,7 @@ export function getSheetDetail (id) {
   }}).then(res => {
     if (res && res.data.code === 200) {
         // debugger
-      return Promise.resolve(res.data.result)
+      return Promise.resolve(res.data.playlist)
     } else {
       return Promise.reject(new Error('获取数据出错'))
     }

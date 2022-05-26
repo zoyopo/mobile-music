@@ -255,13 +255,10 @@ export default {
       return this.format(this.playTime / 1000);
     },
     playTime() {
-      let music =
-        this.currentSong.hMusic ||
-        this.currentSong.bMusic ||
-        this.currentSong.lMusic ||
-        this.currentSong.mMusic;
-      if (music) {
-        return music.playTime;
+      let time =
+        this.currentSong.dt
+      if (time) {
+        return time;
       } else {
         return 1;
       }
@@ -270,7 +267,7 @@ export default {
       return this.currentTime / (this.playTime / 1000);
     },
     backgroundUrl() {
-      return this.currentSong.album.blurPicUrl || "../static/img/no-pic.png";
+      return (this.currentSong.al||{}).picUrl || "../static/img/no-pic.png";
     },
 
     cdCls() {

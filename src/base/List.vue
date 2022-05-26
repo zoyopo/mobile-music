@@ -3,7 +3,7 @@
 
     <div class="list-item" v-for="(item,index) in list" :key="item.id" @click="selectItem(index,item)">
       <div class="item-num">{{index+1}}</div>
-      <div v-if="showPic" class="item-img"><img class="item-img-img" v-lazy="item.album.blurPicUrl" alt=""></div>
+      <div v-if="showPic" class="item-img"><img class="item-img-img" v-lazy="item.al.pciUrl" alt=""></div>
       <div class="item-content">
         <div class="item-content-name">{{item.name}}
           <slot v-bind:item="item"></slot>

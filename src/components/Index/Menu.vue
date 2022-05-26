@@ -67,7 +67,7 @@ export default {
   width: 100%;
 }
 .menu {
-  height: calc(100% - 51px);
+  height: calc(100%);
   overflow: auto;
   .menu-top {
     position: relative;

@@ -2,7 +2,7 @@
   <div class="player" v-if="playList.length>0" v-show="!fullScreen&&!drawerVis" @click="open">
     <transition name="mini">
       <div class="mini-player">
-        <div class="player-pic"><img :src="_currentSong.album.blurPicUrl||'../static/img/no-pic.png'" alt=""></div>
+        <div class="player-pic"><img :src="(_currentSong.al||{}).picUrl||'../static/img/no-pic.png'" alt=""></div>
         <div class="music-content">
           <div class="music-content-name">{{_currentSong.name||"暂无歌曲"}}</div>
           <div class="music-content-artist">{{_currentSong.singer||"暂无歌者"}}</div>

@@ -119,6 +119,8 @@ export default {
     },
     async getDetail(id) {
       let data = await getSheetDetail(id);
+      console.log('result',data)
+
       //debugger
       // console.log(data);
       let info = {
@@ -139,18 +141,11 @@ export default {
       //this.info.title="歌单";
       data.tracks.forEach(element => {
         //let d = (element.duration / 1000).toFixed() * 1;
-        element.singer = element.artists.map(t => t.name).join("/"); //歌手
+        element.singer = element.ar.map(t => t.name).join("/"); //歌手
       });
       this.songList = data.tracks;
-      // let playList = this.songList.map(item => {
-      //   return {
-      //     name: item.name,
-      //     singer: item.singer,
-      //     picUrl: item.album.blurPicUrl,
-      //     id: item.id
-      //   };
-      // });
-      // this.setPlayList(playList);
+      console.log('data.tracks',data.tracks)
+
     },
     back() {
       this.$router.go(-1);
@@ -221,7 +216,7 @@ export default {
   }
   main {
     background: #ddd;
-    height: calc(100% - 49px);
+    height: calc(100%);
     overflow: auto;
     .wrapper-container{
       // padding-top: 49px;
