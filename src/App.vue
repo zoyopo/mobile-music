@@ -78,8 +78,8 @@ body {
 }
 </style>
 
-<style lang="scss">
-@import "common/sass/font-awesome.scss";
+<style lang="less">
+@import "common/sass/font-awesome.less";
 html {
   height: 100%;
   // font-size: 62.5%;

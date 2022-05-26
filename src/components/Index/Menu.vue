@@ -10,10 +10,10 @@
     <group style="margin-top: -19px;">
       <cell title="最近播放" value=""></cell>
       <cell title="我的电台" value=""></cell>
-      <cell title="我的收藏" value=""></cell>     
+      <cell title="我的收藏" value=""></cell>
     </group>
-   
-   
+
+
     <div class="menu-bottom">
       <!-- <div class="menu-bottom-item">夜间模式</div> -->
       <!-- <div class="menu-bottom-item">设置</div> -->
@@ -50,19 +50,19 @@ export default {
     },
     ...mapMutations({
      rmUserInfo: 'REMOVE_STORAGE_USER_INFO'
-     
+
     })
   },
   computed: {
     ...mapGetters(["userInfo"]),
     isLogin(){
       return Object.keys(this.userInfo).length>0;
-    }   
+    }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 #menu-top-pic {
   width: 100%;
 }

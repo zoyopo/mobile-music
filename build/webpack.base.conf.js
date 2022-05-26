@@ -79,8 +79,8 @@ let webpackConfig = {
         }
       },
       {
-        test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        test: /\.less$/,
+        loaders: ["style", "css", "less"]
       }
     ]
   }
@@ -106,6 +106,6 @@ module.exports = vuxLoader.merge(webpackConfig, {
           }
         }
       }
-    }  
+    }
   ]
 })

@@ -163,7 +163,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="less">
 // 播放器出现，高度重新设置
 .playerRstHeight {
   height: calc(100% - 155px) !important;

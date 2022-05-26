@@ -56,7 +56,7 @@ export default {
     };
   },
   mounted() {
-   
+
     this.update();
     window.addEventListener("resize", () => {
       if (!this.slide || !this.slide.enabled) {
@@ -200,7 +200,7 @@ export default {
   watch: {
     // //添加图片数据的监视 //这他妈也太坑了
     // picArray() {
-    //   //debugger;      
+    //   //debugger;
     //   this.$nextTick(() => {
     //     //dom渲染完毕的回调之中，进行更新操作
     //     this.update();
@@ -221,7 +221,7 @@ export default {
   }
 };
 </script>
-<style lang='scss' scoped>
+<style lang='less' scoped>
 .slide {
   width: 90%; //width fix
   overflow: hidden;
@@ -245,7 +245,7 @@ export default {
     // text-align: center;
     // float: left;
     width: 154vw;
-    
+
     // background: yellowgreen;
     float: left;
     a {

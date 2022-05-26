@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper"> 
+    <div class="wrapper">
         <div class="circle">
             <i :class="icon"></i>
 
@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .circle {
     display: inline-block;
     width: 42px;

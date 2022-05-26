@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .sheet-label {
   text-align: left;
   padding-left: .5rem;

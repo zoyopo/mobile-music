@@ -112,7 +112,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .dailysongs {
   height: 100%;
   .vis-wrapper {

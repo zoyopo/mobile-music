@@ -61,7 +61,7 @@ export default {
       this.touchState.finalRatio = progressWidth / barWidth;// 比例
       this.setOffSetWidth(progressWidth); // 设置进度条
     },
-    
+
     btnOnTouchEnd(e) {
       this.touchState.isInit = false;
       //将比例传给父页面，改变歌曲进度
@@ -90,7 +90,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .progress-bar {
   width: 100%;
   display: flex;

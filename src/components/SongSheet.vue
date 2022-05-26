@@ -164,7 +164,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .song-sheet {
   height: 100%;
   .vis-wrapper {

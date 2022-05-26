@@ -38,10 +38,10 @@
 
         </div>
       </div> -->
-     
+
         <div id="loading-text">加载中...</div>
         <div id="loading-content"></div>
-     
+
     </div>
   </transition>
 </template>
@@ -58,7 +58,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .loading-enter-active,
 .loading-leave-active {
   transition: all 0.5s;

@@ -297,7 +297,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .normal-player {
   background: #cfd0c6;
   width: 100%;

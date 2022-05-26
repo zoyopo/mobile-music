@@ -12,7 +12,7 @@
          <input type="text" class="search-input" v-show="searchIptVis" />
         <button class="cancel-btn" v-show="searchIptVis">取消</button>
         </div>
-        
+
         <x-header v-show="!searchIptVis">
           <div slot="overwrite-left">
             <i :class="headerIcon" @click="showDrawer"></i>
@@ -85,7 +85,7 @@ export default {
     onItemClick(index) {
       console.log("on item click:", index);
     },
-  
+
     ...mapMutations({
       setDrawerVis: "SET_DRAWER_VIS"
     })
@@ -106,8 +106,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "../assets/recommend/iconfont.scss";
+<style lang="less">
+@import "../assets/recommend/iconfont.less";
 .vux-header {
   background: #9bca4f !important;
 }
@@ -163,6 +163,6 @@ export default {
   border-radius: 14px;
 }
 .cancel-btn{
-  width: 15%;  
+  width: 15%;
 }
 </style>
