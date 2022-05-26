@@ -139,6 +139,7 @@ export default {
 
       if (banner.data.code === 200) {
         this.picArray = banner.data.banners;
+        console.log('banner.data.banners',banner.data.banners)
       }
 
       if (personalized.data.code === 200) {
@@ -166,11 +167,11 @@ export default {
 <style lang="less">
 // 播放器出现，高度重新设置
 .playerRstHeight {
-  height: calc(100% - 155px) !important;
+  height: calc( 100% - 155px ) !important;
 }
 .rec-content {
   text-align: center;
-  height: calc(100% - 90px);
+  height: 100%;
   overflow: hidden;
   .wrapper-container {
    // padding-top: 90px;真机ok,不需要加

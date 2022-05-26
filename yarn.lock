@@ -8436,7 +8436,7 @@ vux-xscroll@^3.1.10:
   resolved "https://registry.npmmirror.com/vux-xscroll/-/vux-xscroll-3.1.12.tgz#e352e7f9dc5f9fee9253db331c967dd56b3bc950"
   integrity sha512-7GujTTHTyVO61BIU3jMe1c2sGwDasZv0hRkaexiNPBtzhV7eufG0jfJD7vBZ1/9VIox4B5cc2r0tYVEYozSh5g==
 
-vux@^2.2.0:
+vux@^2.11.1:
   version "2.11.1"
   resolved "https://registry.npmmirror.com/vux/-/vux-2.11.1.tgz#2aa45eaa6c55fd1a75b0cfa3a09b5bf263967f95"
   integrity sha512-OKI6Jc7ZdiQA/Eldjd8kcKQbZEHqSOsxGEX0VdpqrgIg6fHyILuxHWEO0wEhZhmhmdjGr24lhKXsyKufpluJpg==

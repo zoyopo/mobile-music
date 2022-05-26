@@ -3,11 +3,9 @@
     <!-- <Skeleton v-if="!requestEnd"></Skeleton>
     <div v-else> -->
     <transition name="slide" enter-active-class="FIRST_SLIDE">
-      <keep-alive>
-
+<!--      <keep-alive>-->
         <router-view></router-view>
-
-      </keep-alive>
+<!--      </keep-alive>-->
     </transition>
     <Loading></Loading>
     <normal-player class="normal-player" :currentTime="currentTime"></normal-player>

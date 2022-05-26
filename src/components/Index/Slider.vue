@@ -1,7 +1,7 @@
 <template>
   <div class="slide" ref="slide">
     <div class="slide-group" ref="slideGroup">
-         <div v-for="(item,index) in picArray" v-bind:key="index" class="slider-item"><img :src="item.picUrl"/></div>
+         <div v-for="(item,index) in picArray" v-bind:key="index" class="slider-item"><img :src="item.imageUrl"/></div>
     </div>
     <div v-if="showDot" class="dots">
       <span class="dot" @click="ToPic(index)"  v-bind:key="index" :class="{dotActive: (currentPageIndex) === index }" v-for="(item, index) in dots"></span>
