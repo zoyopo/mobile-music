@@ -113,7 +113,7 @@
 
 ### 详细信息
 
-> <a href='http://u-to-world.com:8080/static/index.html#/' style="text-decoration: underline;">测试地址</a>
+> <a href='http://u-to-world.com:8080/' style="text-decoration: underline;">测试地址</a>
 
 
 
